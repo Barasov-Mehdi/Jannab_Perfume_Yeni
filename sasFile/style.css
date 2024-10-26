@@ -584,6 +584,11 @@ a {
   align-items: center;
   width: 100%;
 }
+.container .message_link {
+  position: fixed;
+  right: 20px;
+  bottom: 30px;
+}
 
 @media (max-width: 780px) {
   .container .header {
@@ -623,5 +628,8 @@ a {
   }
   .container .footer {
     display: flex;
+  }
+  .container .message_link {
+    display: none;
   }
 }/*# sourceMappingURL=style.css.map */

@@ -172,9 +172,7 @@ async function addCardAndSearch() {
         }
     });
 }
-
 addCardAndSearch();
-
 
 let cart = {};
 let totalQuantity = 0;

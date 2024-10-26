@@ -703,6 +703,12 @@ a {
         }
     }
 
+    .message_link{
+        position: fixed;
+        right: 20px;
+        bottom: 30px;
+    }
+
 }
 
 @media (max-width: 780px) {
@@ -756,6 +762,10 @@ a {
 
         .footer{
             display: flex;
+        }
+
+        .message_link{
+            display: none;
         }
     }
 }

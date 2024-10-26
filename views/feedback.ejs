@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Geri Bildirim</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 1rem;
+    }
+
+    .container {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 500px;
+      transition: transform 0.2s;
+    }
+
+    .container:hover {
+      transform: scale(1.02);
+    }
+
+    h1 {
+      margin-bottom: 1.5rem;
+      text-align: center;
+      color: #5cb85c;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: #5cb85c;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.5rem;
+      background-color: #5cb85c;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #4cae4c;
+    }
+
+    .btn-back {
+      background-color: #007bff;
+      margin-top: 1rem;
+    }
+
+    .btn-back:hover {
+      background-color: #0056b3;
+    }
+
+    /* Responsiveness */
+    @media screen and (max-width: 600px) {
+      .container {
+        padding: 1rem;
+      }
+
+      button {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Mesaj Formu</h1>
+    <form action="/api/feedback" method="POST">
+      <label for="name">Ad Familiya:</label>
+      <input type="text" name="name" required>
+      <br>
+      <label for="phone">Tel:</label>
+      <input type="text" name="phone" required>
+      <br>
+      <label for="email">E-mail:</label>
+      <input type="email" name="email" required>
+      <br>
+      <label for="message">Mesaj:</label>
+      <textarea name="message" required></textarea>
+      <br>
+      <button type="submit">Göndər</button>
+    </form>
+    <button class="btn-back" onclick="window.location.href='/'">Geri qayıt</button>
+  </div>
+</body>
+
+</html>

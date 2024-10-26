@@ -134,17 +134,19 @@
             </div>
             <div class="other_icon">
                 <div class="icon-box">
-                    <i class="fa-solid fa-comments" style="color: #333333;"></i>
+                    <a href="/api/feedback"><i class="fa-solid fa-comments" style="color: #333333;"></i></a>
                 </div>
             </div>
         </footer>
 
         <div class="product_card" id="productCard" style="display: none;">
-            <h3>Sepet</h3>
+            <h3>Səbət</h3>
             <div id="cartItems"></div>
-            <div>Total: <span id="totalPrice">0</span> ₼</div>
-            <button onclick="closeCart()">Kapat</button>
+            <div>Toplam: <span id="ToplamPrice">0</span> ₼</div>
+            <button onclick="closeCart()">Bağla</button>
         </div>
+
+        <a href="/api/feedback" class="message_link"><i class="fa-regular fa-comment" style="color: white; background-color: #607d8b; padding: 10px; border-radius: 50px; font-size: 40px;"></i></a>
 
     </div>
     <script src="./js/index.js"></script>
