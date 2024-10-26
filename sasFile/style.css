@@ -514,7 +514,7 @@ a {
   }
 }
 .container .footer {
-  display: flex;
+  display: none;
   justify-content: space-between;
   align-items: center;
   padding: 10px 15px;
@@ -550,7 +550,7 @@ a {
 .container .footer .mb_basket {
   position: relative;
   background-color: #545b62;
-  padding: 18px;
+  padding: 16px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
