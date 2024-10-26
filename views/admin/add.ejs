@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: auto;
+        }
+
+        div {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea,
+        select,
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #4cae4c;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        function addCompositionField() {
+            const compositionContainer = document.getElementById('compositionContainer');
+            const newField = document.createElement('input');
+            newField.type = 'text';
+            newField.name = 'composition';
+            newField.placeholder = 'Enter composition';
+            newField.required = true; // Optional: Remove if you want to allow empty fields
+            compositionContainer.appendChild(newField);
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Add New Product</h1>
+    
+    <form action="/admin/add" method="POST" enctype="multipart/form-data">
+        <div>
+            <label for="name">Product Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div>
+            <label for="price">Product Price:</label>
+            <input type="number" id="price" name="price" step="0.01" required>
+        </div>
+
+        <div>
+            <label for="content">Product Description:</label>
+            <textarea id="content" name="content"></textarea>
+        </div>
+
+        <div>
+            <label for="category">Category:</label>
+            <select id="category" name="category" required>
+                <option value="woman">Woman</option>
+                <option value="man">Man</option>
+                <option value="unisex">Unisex</option>
+                <!-- <option value="man">Unisex</option> -->
+            </select>
+        </div>
+        
+        <div id="compositionContainer">
+            <label>Product Composition:</label>
+            <input type="text" name="composition" placeholder="Enter composition">
+        </div>
+        <button type="button" onclick="addCompositionField()">Add Another Composition</button>
+
+        <div>
+            <label for="compositionDescription">Composition Description:</label>
+            <input type="text" id="compositionDescription" name="compositionDescription">
+        </div>
+
+        <div>
+            <label for="bestSellers">Best Sellers:</label>
+            <input type="checkbox" id="bestSellers" name="bestSellers" value="true">
+        </div>
+
+        <div>
+            <label for="img">Product Image:</label>
+            <input type="file" id="img" name="img" accept="image/*" required>
+        </div>
+
+        <div>
+            <button type="submit">Add Product</button>
+        </div>
+    </form>
+
+    <div>
+        <a href="/admin/remove">Go to Remove Product</a>
+    </div>
+</body>
+
+</html>

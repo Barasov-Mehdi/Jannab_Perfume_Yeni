@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/1.0.0/css/font-awesome.css"
+        integrity="sha512-YX9NLok9RLg+o5JkA2Whp1kPDCBCEUolTyYykJVOe1xcaTNebXU/x02TxV0LpVYqVNJV5NVjyoMW0jHnJWICKg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../style.css">
+    <title>Jannab Perfume</title>
+</head>
+<body>
+    <div class="container">
+
+        <header class="header">
+
+            <a href="/"><img src="./img/jannab3_logo.png" alt="Jannab Perfume"></a>
+
+            <div class="nav_box">
+                <a href="#">Əsas səhifə</a>
+                <a href="#">Haqqımızda</a>
+                <a href="#">Filiallarımız</a>
+                <a href="#">Əlaqə</a>
+            </div>
+
+            <div class="else_icons">
+                <i class="fa-solid fa-magnifying-glass search_btn" style="color: white;"></i>
+                <div class="card_box">
+                    <i class="fa-solid fa-cart-shopping show_product_card" style="color: white;"></i>
+                    <p class="added_product">0</p>
+                </div>
+            </div>
+        </header>
+
+        <section class="mb_header">
+            <div class="menu">
+                <i class="fa-solid fa-bars" style="color: black;"></i>
+            </div>
+            <div class="logo_mb">
+                <img src="./img/jannab2_logo.png" alt="">
+            </div>
+            <div class="mb_else_icons">
+                <i class="fa-solid fa-magnifying-glass search_btn" style="color: black;"></i>
+            </div>
+        </section>
+
+        <section class="mb_text">
+            <span>BÜTÜN BRENDLER</span>
+        </section>
+
+        <section class="search">
+
+            <div class="close_box">
+                <i class="fa-solid fa-xmark close_search" style="color: white;"></i>
+            </div>
+
+            <div class="search_box">
+                <input class="search_inp" type="search" name="search" id="">
+                <button class="search_button">Axtar</button>
+            </div>
+
+            <div class="search_results">
+
+            </div>
+
+        </section>
+
+        <main class="slider_box">
+            <div>
+                <img class="slider_show" src="" alt="Jannab">
+            </div>
+        </main>
+
+        <section class="text_slider">
+            <div class="scrolling-text"></div>
+        </section>
+
+        <section class="products">
+            <% if (products.length> 0) { %>
+                <% products.forEach(product=> { %>
+                    <div class="product">
+                        <a href="/products/<%= product._id %>">
+                            <div class="image-container">
+                                <img src="<%= product.img %>" alt="<%= product.name %>">
+                            </div>
+                            <div class="product-details">
+                                <h2>
+                                    <%= product.name %>
+                                </h2>
+                                <div class="rating">
+                                    <% for (let i=0; i < 5; i++) { %>
+                                        <span class="star <%= i < product.rating ? 'filled' : '' %>">★</span>
+                                        <% } %>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="product-footer">
+                            <div class="price">
+                                <%= product.price.toString() %> ₼
+                            </div>
+                            <a href="javascript:void(0)" class="add-to-cart" onclick="addToCart('<%= product._id %>', '<%= product.name %>', '<%= product.img %>', '<%= product.price %>')">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <% }) %>
+                        <% } else { %>
+                            <p>Hiçbir ürün bulunmamaktadır.</p>
+                            <% } %>
+        </section>
+
+        <footer class="footer">
+            <div class="wp_contact">
+                <div class="icon-box">
+                    <a target="_blank" href="https://wa.me/+994553974421?text=Salam,Parfüm Sifariş Etmək İstəyirəm.">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="phone_contact">
+                <div class="icon-box">
+                    <i class="fa-solid fa-phone"></i>
+                </div>
+            </div>
+            <div class="mb_basket">
+                <i class="fa-solid fa-cart-shopping show_product_card"><span class="productNo">0</span></i>
+            </div>
+            <div class="help">
+                <div class="icon-box">
+                    <i class="fa-brands fa-instagram"></i>
+                </div>
+            </div>
+            <div class="other_icon">
+                <div class="icon-box">
+                    <i class="fa-solid fa-comments" style="color: #333333;"></i>
+                </div>
+            </div>
+        </footer>
+
+        <div class="product_card" id="productCard" style="display: none;">
+            <h3>Sepet</h3>
+            <div id="cartItems"></div>
+            <div>Total: <span id="totalPrice">0</span> ₼</div>
+            <button onclick="closeCart()">Kapat</button>
+        </div>
+
+    </div>
+    <script src="./js/index.js"></script>
+</body>
+
+</html>

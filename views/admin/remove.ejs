@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ürün Sil</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        img {
+            width: 100px;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        form {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        button {
+            background-color: #c00;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #a00;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .no-products {
+            text-align: center;
+            color: #888;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Ürün Sil</h1>
+
+        <form action="/admin/remove" method="POST"> <!-- Form açılışı burada -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Seç</th>
+                        <th>Ürün Fotoğrafı</th>
+                        <th>Ürün Adı</th>
+                        <th>Fiyat</th>
+                        <th>Kategori</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (products.length > 0) { %>
+                        <% products.forEach(product => { %>
+                            <tr>
+                                <td>
+                                    <input type="radio" name="productId" id="product-<%= product._id %>" value="<%= product._id %>" required>
+                                </td>
+                                <td>
+                                    <label for="product-<%= product._id %>">
+                                        <img src="<%= product.img %>" alt="<%= product.name %>">
+                                    </label>
+                                </td>
+                                <td><%= product.name %></td>
+                                <td><%= product.price.toString() %> TL</td>
+                                <td><%= product.category %></td>
+                            </tr>
+                        <% }); %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="5" class="no-products">Ürün bulunmamaktadır.</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+
+            <button type="submit">Seçilen Ürünü Sil</button> <!-- Buton buraya dahil edildi -->
+        </form>
+
+        <a href="/admin/add" class="back-link">Yeniden Ürün Ekle</a>
+    </div>
+</body>
+
+</html>
