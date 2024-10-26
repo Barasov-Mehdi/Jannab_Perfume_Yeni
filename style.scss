@@ -753,5 +753,9 @@ a {
         .scrolling-text {
             animation: scroll-left 5s linear infinite;
         }
+
+        .footer{
+            display: flex;
+        }
     }
 }

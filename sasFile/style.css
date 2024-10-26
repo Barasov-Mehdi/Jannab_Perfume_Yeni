@@ -621,4 +621,7 @@ a {
   .container .scrolling-text {
     animation: scroll-left 5s linear infinite;
   }
+  .container .footer {
+    display: flex;
+  }
 }/*# sourceMappingURL=style.css.map */
