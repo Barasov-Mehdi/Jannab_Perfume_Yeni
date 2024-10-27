@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../style.css">
     <title>Jannab Perfume</title>
 </head>
+
 <body>
     <div class="container">
 
@@ -36,7 +37,7 @@
 
         <section class="mb_header">
             <div class="menu">
-                <i class="fa-solid fa-bars" style="color: black;"></i>
+                <i class="fa-solid fa-bars open_left_menu" style="color: black;"></i>
             </div>
             <div class="logo_mb">
                 <img src="./img/jannab2_logo.png" alt="">
@@ -100,7 +101,8 @@
                             <div class="price">
                                 <%= product.price.toString() %> ₼
                             </div>
-                            <a href="javascript:void(0)" class="add-to-cart" onclick="addToCart('<%= product._id %>', '<%= product.name %>', '<%= product.img %>', '<%= product.price %>')">
+                            <a href="javascript:void(0)" class="add-to-cart"
+                                onclick="addToCart('<%= product._id %>', '<%= product.name %>', '<%= product.img %>', '<%= product.price %>')">
                                 <i class="fas fa-plus"></i>
                             </a>
                         </div>
@@ -146,7 +148,25 @@
             <button onclick="closeCart()">Bağla</button>
         </div>
 
-        <a href="/api/feedback" class="message_link"><i class="fa-regular fa-comment" style="color: white; background-color: #607d8b; padding: 10px; border-radius: 50px; font-size: 40px;"></i></a>
+        <a href="/api/feedback" class="message_link"><i class="fa-regular fa-comment"
+                style="color: white; background-color: #607d8b; padding: 10px; border-radius: 50px; font-size: 40px;"></i></a>
+
+        <section class="left_menu">
+            <div>
+                <i class="fa-solid fa-xmark close_left_menu"></i>
+            </div>
+            <div class="menu_links">
+                <div>
+                    <a href="#">Əsas səhifə</a>
+                    <a href="#">Haqqımızda</a>
+                    <a href="#">Filiallarımız</a>
+                    <a href="#">Əlaqə</a>
+                </div>
+            </div>
+            <div class="creator">
+                <span>Baras Software ©</span>
+            </div>
+        </section>
 
     </div>
     <script src="./js/index.js"></script>

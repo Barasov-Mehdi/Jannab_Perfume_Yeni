@@ -1,3 +1,32 @@
+let cart = {};
+let totalQuantity = 0;
+let totalPrice = 0;
+
+function closeLeftMenu() {
+    var close_left_menu = document.querySelector('.close_left_menu');
+    var open_left_menu = document.querySelector('.open_left_menu');
+    var container = document.querySelector('.container');
+    var left_menu = document.querySelector('.left_menu');
+
+    close_left_menu.addEventListener('click', () => {
+        // Use 'toggle' method to switch between showing and hiding the menu
+        if (left_menu.style.display === 'flex' || left_menu.style.display === '') {
+            left_menu.style.display = 'none';
+        }
+    });
+    open_left_menu.addEventListener('click', () => {
+        // Use 'toggle' method to switch between showing and hiding the menu
+        if (left_menu.style.display === 'none' || left_menu.style.display === '') {
+            left_menu.style.display = 'flex';
+            left_menu.style.position = 'fixed'; // Ensure it's fixed
+            left_menu.style.left = '0'; // Position it at the left
+            left_menu.style.top = '0'; // Position it at the top
+            container.style.overflowY = 'hidden'; // Prevent scrolling
+        }
+    });
+}
+closeLeftMenu();
+
 function showProductCard() {
     var product_card = document.querySelector('.product_card');  // Sadece bir tane product_card seçiyoruz
     var show_product_card_buttons = document.querySelectorAll('.show_product_card');  // Tüm butonları seçiyoruz
@@ -96,7 +125,7 @@ async function addCardAndSearch() {
                 const sortedProducts = products.sort((a, b) => {
                     const aContainsQuery = a.name.toLowerCase().includes(query.toLowerCase());
                     const bContainsQuery = b.name.toLowerCase().includes(query.toLowerCase());
-                    
+
                     // Eşleşme var ise öncelik ver
                     if (aContainsQuery && !bContainsQuery) {
                         return -1; // a önce gelsin
@@ -161,7 +190,7 @@ async function addCardAndSearch() {
                             return; // Geçersiz fiyat durumunda işlemi durdur
                         }
 
-                        addToCart(productId, productName, productImg, parsedPrice); 
+                        addToCart(productId, productName, productImg, parsedPrice);
                     });
                 });
             } else {
@@ -174,9 +203,6 @@ async function addCardAndSearch() {
 }
 addCardAndSearch();
 
-let cart = {};
-let totalQuantity = 0;
-let totalPrice = 0;
 
 function addToCart(id, name, img, price) {
     price = parseFloat(price); // Sayıya dönüştür
@@ -243,3 +269,4 @@ document.getElementById('viewDetailsButton').onclick = function () {
 };
 
 
+// buton iki tiklanildiginda products kismi sifirlansin ve bestSellers true isi true olan urunler products kisminda gorunsun. buton 3 tiklanildigi zaman products kisminda veri tabanindaki tum urunler gorunsun.

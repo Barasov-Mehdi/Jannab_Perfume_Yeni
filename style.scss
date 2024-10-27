@@ -132,6 +132,7 @@ a {
             }
         }
     }
+
     // Header Stoped
 
     .mb_text {
@@ -264,14 +265,14 @@ a {
                             text-align: start;
                         }
 
-                        .product-price{
+                        .product-price {
                             display: none;
                         }
                     }
                 }
             }
 
-            i{
+            i {
                 margin: 0 20px;
                 color: #edbe63;
 
@@ -478,140 +479,177 @@ a {
     }
 
     .product_card {
-        width: 92%; /* Ekrana göre genişlik */
-        max-width: 400px; /* Maksimum genişlik sınırlaması */
-        height: 55vh; /* Otomatik yükseklik */
+        width: 92%;
+        /* Ekrana göre genişlik */
+        max-width: 400px;
+        /* Maksimum genişlik sınırlaması */
+        height: 55vh;
+        /* Otomatik yükseklik */
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
         position: fixed;
-        right: 1rem; /* Sağdan birim ekleme */
-        top: 2rem; /* Yukarıdan birim ekleme */
-        background-color: #ffffff; /* Temiz beyaz arka plan */
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Daha belirgin bir gölge */
-        border-radius: 16px; /* Daha yuvarlak kenarlar */
+        right: 1rem;
+        /* Sağdan birim ekleme */
+        top: 2rem;
+        /* Yukarıdan birim ekleme */
+        background-color: #ffffff;
+        /* Temiz beyaz arka plan */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        /* Daha belirgin bir gölge */
+        border-radius: 16px;
+        /* Daha yuvarlak kenarlar */
         padding: 20px;
         z-index: 999;
         transition: transform 0.3s ease;
-    
+
         &:hover {
             transform: scale(1.02);
         }
-    
+
         /* Başlık Stili */
         h3 {
             margin-bottom: 20px;
-            font-size: 2.5rem; /* Başlığın büyüklüğü */
-            color: #343a40; /* Daha koyu bir başlık rengi */
+            font-size: 2.5rem;
+            /* Başlığın büyüklüğü */
+            color: #343a40;
+            /* Daha koyu bir başlık rengi */
             text-align: center;
             font-weight: 600;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* Hafif gölge efekti */
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            /* Hafif gölge efekti */
         }
-    
+
         /* Sepet Öğeleri İçin Alan */
         #cartItems {
             flex: 1;
             overflow-y: auto;
-            max-height: 60vh; /* Maksimum yükseklik belirleme */
-            border: 1px solid #e0e0e0; /* Daha hafif kenar */
-            border-radius: 12px; /* Kenar yuvarlama */
+            max-height: 60vh;
+            /* Maksimum yükseklik belirleme */
+            border: 1px solid #e0e0e0;
+            /* Daha hafif kenar */
+            border-radius: 12px;
+            /* Kenar yuvarlama */
             padding: 15px;
             margin-bottom: 20px;
             width: 100%;
-            background-color: #f7f7f7; /* Sepet arka planı */
-    
+            background-color: #f7f7f7;
+            /* Sepet arka planı */
+
             .product_item {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                border: 1px solid #e0e0e0; /* Kenar rengi */
-                border-radius: 8px; /* Kenar yuvarlama */
+                border: 1px solid #e0e0e0;
+                /* Kenar rengi */
+                border-radius: 8px;
+                /* Kenar yuvarlama */
                 padding: 10px;
                 margin-bottom: 10px;
-                background-color: #ffffff; /* Öğeler için beyaz arka plan */
+                background-color: #ffffff;
+                /* Öğeler için beyaz arka plan */
                 transition: background 0.2s;
-    
+
                 &:hover {
-                    background-color: #eeeeee; /* Hover rengi */
+                    background-color: #eeeeee;
+                    /* Hover rengi */
                 }
-    
+
                 img {
-                    width: 15%; /* Resim genişliği ayarlandı */
-                    max-width: 50px; /* Maksimum genişlik */
+                    width: 15%;
+                    /* Resim genişliği ayarlandı */
+                    max-width: 50px;
+                    /* Maksimum genişlik */
                     height: auto;
                     margin-right: 10px;
-                    border-radius: 10px; /* Resimlerin kenar yuvarlanması */
+                    border-radius: 10px;
+                    /* Resimlerin kenar yuvarlanması */
                 }
-    
+
                 .quantity {
                     display: flex;
                     align-items: center;
-    
+
                     button {
                         cursor: pointer;
                         background: #007bff;
                         border: none;
                         color: white;
-                        padding: 6px 12px; /* Düğme padding */
+                        padding: 6px 12px;
+                        /* Düğme padding */
                         border-radius: 6px;
                         transition: background 0.2s;
-    
+
                         &:hover {
-                            background: #0056b3; /* Hover sonrası renk */
+                            background: #0056b3;
+                            /* Hover sonrası renk */
                         }
                     }
-    
+
                     input {
-                        width: 4rem; /* Sabit genişlik */
+                        width: 4rem;
+                        /* Sabit genişlik */
                         text-align: center;
                         border: 1px solid #ccc;
                         border-radius: 4px;
                         margin: 0 5px;
-                        padding: 5px; /* İç dolgu */
+                        padding: 5px;
+                        /* İç dolgu */
                     }
                 }
             }
         }
-    
+
         /* Toplam Fiyat Alanı */
         .total {
             font-weight: bold;
             margin-bottom: 20px;
-            font-size: 1.5rem; /* Toplam fiyat boyutu */
-            color: #d9534f; /* Çarpıcı toplam fiyat rengi */
-            width: 100%; /* Tam genişlikte */
-            text-align: left; /* Solda hizalama */
+            font-size: 1.5rem;
+            /* Toplam fiyat boyutu */
+            color: #d9534f;
+            /* Çarpıcı toplam fiyat rengi */
+            width: 100%;
+            /* Tam genişlikte */
+            text-align: left;
+            /* Solda hizalama */
         }
-    
+
         button {
-            background: #dc3545; /* Kapatma butonu rengi */
+            background: #dc3545;
+            /* Kapatma butonu rengi */
             color: white;
             padding: 10px 20px;
             border-radius: 5px;
             border: none;
             cursor: pointer;
             transition: background 0.2s, transform 0.1s;
-    
+
             &:hover {
-                background: #c82333; /* Hover rengi */
-                transform: scale(1.05); /* Hover efekti */
+                background: #c82333;
+                /* Hover rengi */
+                transform: scale(1.05);
+                /* Hover efekti */
             }
         }
-    
+
         /* Mobil uyum için medya sorguları */
         @media (max-width: 600px) {
             h3 {
-                font-size: 2rem; /* Mobilde başlık boyutu azaltılsın */
+                font-size: 2rem;
+                /* Mobilde başlık boyutu azaltılsın */
             }
-    
+
             .total {
-                font-size: 1.2rem; /* Mobilde toplam fiyat boyutunu azalt */
+                font-size: 1.2rem;
+                /* Mobilde toplam fiyat boyutunu azalt */
             }
-            
+
             button {
-                width: 100%; /* Mobilde buton tam genişlikte */
-                padding: 12px; /* Mobilde buton dolgusunu artır */
+                width: 100%;
+                /* Mobilde buton tam genişlikte */
+                padding: 12px;
+                /* Mobilde buton dolgusunu artır */
             }
         }
     }
@@ -703,12 +741,83 @@ a {
         }
     }
 
-    .message_link{
+    .message_link {
         position: fixed;
         right: 20px;
         bottom: 30px;
     }
-
+    .left_menu {
+        display: none; 
+        transition: all 0.3s ease; 
+        flex-direction: column; 
+        z-index: 1000; 
+        width: 100%; 
+        height: 89vh; 
+        background-color: white; 
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        overflow-y: hidden; 
+    
+        
+        .menu_links {
+            display: flex; 
+            flex-direction: column; 
+            justify-content: start; 
+            align-items: start; 
+            height: 40vh; 
+    
+            div {
+                display: flex; // Using Flexbox for the item layout
+                flex-direction: column; // Arrange links vertically
+                justify-content: start; // Align children to the start
+                margin-top: 10px; // Spacing at the top
+                margin-bottom: 30px; // Spacing at the bottom
+                flex: 1; // Allow to stretch to available space
+    
+                a {
+                    text-decoration: none; // Remove underline from links
+                    color: black; // Link color
+                    font-size: 20px; // Font size for links
+                    margin: 5px 10px; // Margin around links
+                    font-style: italic; // Italicize text
+                    transition: color 0.3s ease; // Smooth color change on hover
+                    font-weight: bolder;
+                    &:hover {
+                        color: rgb(100, 100, 100); // Change color on hover for better UX
+                    }
+                }
+            }
+        }
+    
+        // Styling for the icon
+        i {
+            color: rgb(212, 211, 211); // Icon color
+            background-color: #545b62; // Background for the icon
+            text-align: end; // Align text to the end
+            width: 100%; // Full width for the icon area
+            font-size: 30px; // Font size for the icon
+            padding: 10px; // Padding around the icon
+            cursor: pointer; // Show as clickable
+        }
+    
+        // Styling for the creator section
+        .creator {
+            display: flex; // Flexbox for layout
+            flex-direction: column; // Align items vertically
+            width: 100%; // Full width
+            position: absolute;
+            bottom: 0;
+    
+            span {
+                color: rgb(212, 211, 211); // Text color
+                background-color: #545b62; // Background color
+                text-align: center; // Center text
+                padding: 15px; // Padding around text
+                flex: 1; // Allow to stretch to fill the available space
+            }
+        }
+    }
 }
 
 @media (max-width: 780px) {
@@ -760,11 +869,11 @@ a {
             animation: scroll-left 5s linear infinite;
         }
 
-        .footer{
+        .footer {
             display: flex;
         }
 
-        .message_link{
+        .message_link {
             display: none;
         }
     }
