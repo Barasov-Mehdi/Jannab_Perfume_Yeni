@@ -268,5 +268,126 @@ document.getElementById('viewDetailsButton').onclick = function () {
     window.location.href = '/productDetails';
 };
 
+function filterBestSellers() {
+    fetch('/bestsellers')
+        .then(response => response.json())
+        .then(data => {
+            const productsContainer = document.getElementById('productsContainer');
+            productsContainer.innerHTML = ''; 
+            data.forEach(product => {
+                const price = typeof product.price === 'object' && product.price.$numberDecimal
+                    ? parseFloat(product.price.$numberDecimal)
+                    : product.price; // Fiyatı doğru bir şekilde al
+                const productHTML = `
+                <div class="product">
+                    <a href="/products/${product._id}">
+                        <div class="image-container">
+                            <img src="${product.img}" alt="${product.name}">
+                        </div>
+                        <div class="product-details">
+                            <h2>${product.name}</h2>
+                            <div class="rating">
+                                ${Array.from({ length: 5 }, (_, i) => `
+                                    <span class="star ${i < product.rating ? 'filled' : ''}">★</span>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </a>
+                    <div class="product-footer">
+                        <div class="price">${price.toFixed(2)} ₼</div> <!-- Fiyatı burada düzelt -->
+                        <a href="javascript:void(0)" class="add-to-cart"
+                           onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${price})">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
+            `;
+                productsContainer.insertAdjacentHTML('beforeend', productHTML);
+            });
+        })
+        .catch(error => console.error('Error fetching best sellers:', error));
+}
 
-// buton iki tiklanildiginda products kismi sifirlansin ve bestSellers true isi true olan urunler products kisminda gorunsun. buton 3 tiklanildigi zaman products kisminda veri tabanindaki tum urunler gorunsun.
+function filterNewArrivals() {
+    fetch('/api/new-arrivals')
+        .then(response => response.json())
+        .then(products => {
+            console.log(products); // Kontrol için yanıtı görün
+            const productsContainer = document.getElementById('productsContainer');
+            productsContainer.innerHTML = ''; // Mevcut ürünleri temizle
+
+            products.forEach(product => {
+                const price = typeof product.price === 'object' && product.price.$numberDecimal 
+                    ? parseFloat(product.price.$numberDecimal)
+                    : product.price; // Fiyatı al
+
+                const productElement = `
+                    <div class="product">
+                        <a href="/products/${product._id}">
+                            <div class="image-container">
+                                <img src="${product.img}" alt="${product.name}">
+                            </div>
+                            <div class="product-details">
+                                <h2>${product.name}</h2>
+                                <div class="rating">
+                                    ${[...Array(5)].map((_, i) => `<span class="star ${i < product.rating ? 'filled' : ''}">★</span>`).join('')}
+                                </div>
+                            </div>
+                        </a>
+                        <div class="product-footer">
+                            <div class="price">${price.toFixed(2)} ₼</div> <!-- Fiyatı düzelt -->
+                            <a href="javascript:void(0)" class="add-to-cart"
+                                onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${price})">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                `;
+                productsContainer.insertAdjacentHTML('beforeend', productElement);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching new arrivals:', error);
+        });
+}
+
+function filterAllProducts() {
+    fetch('/api/products')
+        .then(response => response.json())
+        .then(products => {
+            const productsContainer = document.getElementById('productsContainer');
+            productsContainer.innerHTML = '';
+
+            products.forEach(product => {
+                const price = typeof product.price === 'object' && product.price.$numberDecimal 
+                    ? parseFloat(product.price.$numberDecimal)
+                    : product.price; // Fiyatı al
+                const productElement = `
+                    <div class="product">
+                        <a href="/products/${product._id}">
+                            <div class="image-container">
+                                <img src="${product.img}" alt="${product.name}">
+                            </div>
+                            <div class="product-details">
+                                <h2>${product.name}</h2>
+                                <div class="rating">
+                                    ${[...Array(5)].map((_, i) => `<span class="star ${i < product.rating ? 'filled' : ''}">★</span>`).join('')}
+                                </div>
+                            </div>
+                        </a>
+                        <div class="product-footer">
+                            <div class="price">${price.toFixed(2)} ₼</div> <!-- Fiyatı düzelt -->
+                            <a href="javascript:void(0)" class="add-to-cart"
+                                onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${price})">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                `;
+                productsContainer.insertAdjacentHTML('beforeend', productElement);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching products:', error);
+        });
+}

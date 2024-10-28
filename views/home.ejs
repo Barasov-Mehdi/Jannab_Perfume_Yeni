@@ -77,40 +77,42 @@
         <section class="text_slider">
             <div class="scrolling-text"></div>
         </section>
+        
+        <section>
+            <button onclick="filterAllProducts()">Bütün Ətirlər</button>
+            <button onclick="filterBestSellers()">Ən Çox Satılanlar</button>
+            <button onclick="filterNewArrivals()">Yeni Ətirlər</button>
+        </section>
 
-        <section class="products">
-            <% if (products.length> 0) { %>
-                <% products.forEach(product=> { %>
-                    <div class="product">
-                        <a href="/products/<%= product._id %>">
-                            <div class="image-container">
-                                <img src="<%= product.img %>" alt="<%= product.name %>">
-                            </div>
-                            <div class="product-details">
-                                <h2>
-                                    <%= product.name %>
-                                </h2>
-                                <div class="rating">
-                                    <% for (let i=0; i < 5; i++) { %>
-                                        <span class="star <%= i < product.rating ? 'filled' : '' %>">★</span>
-                                        <% } %>
-                                </div>
-                            </div>
-                        </a>
-                        <div class="product-footer">
-                            <div class="price">
-                                <%= product.price.toString() %> ₼
-                            </div>
-                            <a href="javascript:void(0)" class="add-to-cart"
-                                onclick="addToCart('<%= product._id %>', '<%= product.name %>', '<%= product.img %>', '<%= product.price %>')">
-                                <i class="fas fa-plus"></i>
-                            </a>
+        <section class="products" id="productsContainer">
+            <% products.forEach(product=> { %>
+                <div class="product">
+                    <a href="/products/<%= product._id %>">
+                        <div class="image-container">
+                            <img src="<%= product.img %>" alt="<%= product.name %>">
                         </div>
+                        <div class="product-details">
+                            <h2>
+                                <%= product.name %>
+                            </h2>
+                            <div class="rating">
+                                <% for (let i=0; i < 5; i++) { %>
+                                    <span class="star <%= i < product.rating ? 'filled' : '' %>">★</span>
+                                    <% } %>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="product-footer">
+                        <div class="price">
+                            <%= product.price.toString() %> ₼
+                        </div>
+                        <a href="javascript:void(0)" class="add-to-cart"
+                            onclick="addToCart('<%= product._id %>', '<%= product.name %>', '<%= product.img %>', '<%= product.price %>')">
+                            <i class="fas fa-plus"></i>
+                        </a>
                     </div>
-                    <% }) %>
-                        <% } else { %>
-                            <p>Hiçbir ürün bulunmamaktadır.</p>
-                            <% } %>
+                </div>
+                <% }) %>
         </section>
 
         <footer class="footer">
@@ -144,7 +146,7 @@
         <div class="product_card" id="productCard" style="display: none;">
             <h3>Səbət</h3>
             <div id="cartItems"></div>
-            <div>Toplam: <span id="ToplamPrice">0</span> ₼</div>
+            <div>Toplam: <span id="totalPrice">0</span> ₼</div> <!-- Burayı kontrol edin -->
             <button onclick="closeCart()">Bağla</button>
         </div>
 
@@ -170,6 +172,7 @@
 
     </div>
     <script src="./js/index.js"></script>
+
 </body>
 
 </html>

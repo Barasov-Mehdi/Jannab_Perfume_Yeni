@@ -30,6 +30,14 @@ const adminRouter = require('./routes/admin');
 const errRouter = require('./routes/err');
 const productsRouter = require('./routes/productsRouter'); // Tam yol burada// Ürün route'unu dahil et
 const feedbackRouter = require('./routes/feedback'); // Geri bildirim routes'unu dahil ediyoruz
+// app.js
+const bestSellersRouter = require('./routes/bestSellersRouter');
+// app.js
+const newArrivalsRouter = require('./routes/newArrivalsRouter');
+
+// Register yeni ürünler rotası
+app.use('/api/new-arrivals', newArrivalsRouter);
+app.use('/bestsellers', bestSellersRouter); // /bestsellers rotasını bestSellersRouter ile eşleştir
 
 app.use('/api', feedbackRouter); // /api altındaki tüm istekler için feedbackRouter kullan
 app.use('/products', productsRouter); // /products altındaki tüm istekler için productsRouter kullan
