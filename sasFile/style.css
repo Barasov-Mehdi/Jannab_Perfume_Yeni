@@ -35,6 +35,39 @@ a {
   -o-object-fit: contain;
      object-fit: contain;
 }
+.container .header .nav_box {
+  position: relative;
+}
+.container .header .nav_box .contacts {
+  border: 1px solid grey;
+  width: 70px;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #607d8b;
+  margin-top: 5px;
+}
+.container .header .nav_box .contacts a {
+  margin: 10px 5px;
+  text-decoration: none;
+  font-size: 20px;
+}
+.container .header .nav_box span {
+  position: relative;
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  font-weight: bolder;
+  margin: 0 12px;
+  cursor: pointer;
+}
+.container .header .nav_box span:hover {
+  color: wheat;
+}
 .container .header .nav_box a {
   position: relative;
   text-decoration: none;
@@ -691,30 +724,49 @@ a {
 }
 .container .buttons_filter {
   display: flex;
+  /* Butonları yatayda yan yana diz */
   justify-content: center;
+  /* Butonları yatayda ortala */
   margin-top: 50px;
+  /* Üst kenar boşluğu */
 }
 .container .buttons_filter button {
   background-color: rgba(211, 211, 211, 0.3);
+  /* Hafif gri arka plan */
   color: #616161;
+  /* Gri yazı rengi */
   padding: 8px 16px;
+  /* İç boşluk */
   text-align: center;
+  /* Yazıyı ortala */
   font-size: 16px;
+  /* Yazı boyutu */
   margin: 0 10px;
+  /* Butonlar arası boşluk */
   cursor: pointer;
+  /* Fare gösterimini işaretçi yap */
   transition: background-color 0.3s ease, color 0.3s ease;
+  /* Geçişli efekt */
   border: none;
+  /* Kenar yok */
   outline: none;
+  /* Kenar çerçevesini kaldır */
   border-radius: 4px;
+  /* Köşeleri hafif yuvarlat */
+  /* Fare ile üzerine gelindiğinde */
+  /* Aktif durumda olan buton için stil */
 }
 .container .buttons_filter button:hover {
   background-color: rgba(169, 169, 169, 0.5);
+  /* Üzerine gelindiğinde daha belirgin gri arka plan */
   color: #424242;
+  /* Koyu gri yazı rengi */
 }
 .container .buttons_filter button.active {
   background-color: rgba(128, 128, 128, 0.7);
-  color: #212121;
-  text-decoration: underline;
+  /* Daha koyu bir gri arka plan */
+  color: white;
+  /* Daha koyu gri yazı rengi */
 }
 
 @media (max-width: 780px) {

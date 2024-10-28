@@ -273,7 +273,7 @@ function filterBestSellers() {
         .then(response => response.json())
         .then(data => {
             const productsContainer = document.getElementById('productsContainer');
-            productsContainer.innerHTML = ''; 
+            productsContainer.innerHTML = '';
             data.forEach(product => {
                 const price = typeof product.price === 'object' && product.price.$numberDecimal
                     ? parseFloat(product.price.$numberDecimal)
@@ -317,7 +317,7 @@ function filterNewArrivals() {
             productsContainer.innerHTML = ''; // Mevcut ürünleri temizle
 
             products.forEach(product => {
-                const price = typeof product.price === 'object' && product.price.$numberDecimal 
+                const price = typeof product.price === 'object' && product.price.$numberDecimal
                     ? parseFloat(product.price.$numberDecimal)
                     : product.price; // Fiyatı al
 
@@ -359,7 +359,7 @@ function filterAllProducts() {
             productsContainer.innerHTML = '';
 
             products.forEach(product => {
-                const price = typeof product.price === 'object' && product.price.$numberDecimal 
+                const price = typeof product.price === 'object' && product.price.$numberDecimal
                     ? parseFloat(product.price.$numberDecimal)
                     : product.price; // Fiyatı al
                 const productElement = `
@@ -391,3 +391,7 @@ function filterAllProducts() {
             console.error('Error fetching products:', error);
         });
 }
+
+
+
+

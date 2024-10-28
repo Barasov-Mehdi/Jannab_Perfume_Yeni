@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesaj Qutusu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .feedbacks-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .feedback-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            position: relative;
+        }
+
+        .feedback-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .feedback-header h2 {
+            margin: 0;
+            color: #333;
+            font-size: 20px;
+        }
+
+        .feedback-header p {
+            margin: 4px 0;
+            color: #777;
+            font-size: 18px;
+        }
+
+        .message {
+            margin-top: 15px;
+            font-size: 16px;
+            color: #444;
+        }
+
+        .delete-button {
+            background-color: #ff4c4c; /* Kırmızı arka plan */
+            color: white; /* Beyaz metin rengi */
+            border: none; /* Kenarlık yok */
+            padding: 8px; /* İç boşluk */
+            cursor: pointer; /* Farenin işareti değişsin */
+            border-radius: 4px; /* Kenarları yuvarlat */
+            position: absolute; /* Konumlandırma için */
+            top: 20px; /* Yukarıdan 20px mesafe */
+            right: 20px; /* Sağdan 20px mesafe */
+            transition: background-color 0.3s; /* Geçiş efekti */
+        }
+
+        .delete-button:hover {
+            background-color: #ff1a1a; /* Üzerine gelince daha koyu kırmızı */
+        }
+
+        .timestamp {
+            font-size: 12px;
+            color: #aaa;
+            margin-top: 10px; /* Zaman damgası için boşluk */
+            text-align: right;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #333;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Mesaj Qutusu</h1>
+    <div class="feedbacks-container">
+        <% feedbacks.forEach(feedback => { %>
+            <div class="feedback-card">
+                <div class="feedback-header">
+                    <div>
+                        <p class="label">Ad:</p>
+                        <p><%= feedback.name %></p>
+                        <p class="label">Telefon:</p>
+                        <p><%= feedback.phone %></p>
+                        <p class="label">E-posta:</p>
+                        <p><%= feedback.email %></p>
+                    </div>
+                    <form action="/admin/feedbacks/delete/<%= feedback._id %>" method="POST" style="display:inline;">
+                        <button type="submit" class="delete-button"><i class="fa fa-trash"></i> Sil</button>
+                    </form>
+                </div>
+                <div class="message">
+                    <p class="label">Mesaj:</p>
+                    <p><%= feedback.message %></p>
+                </div>
+                <div class="timestamp">
+                    <%= feedback.createdAt.toLocaleString() %>
+                </div>
+            </div>
+        <% }) %>
+        <a href="/" style="text-decoration: none; color: black; width: 100%; text-align: center; padding: 10px 0; font-size: 20px; background-color: white;">Əsas səhifə</a>
+    </div>
+</body>
+
+</html>

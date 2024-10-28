@@ -36,6 +36,42 @@ a {
         }
 
         .nav_box {
+            position: relative;
+
+            .contacts {
+                border: 1px solid grey;
+                width: 70px;
+                position: absolute;
+                right: 0;
+                top: 100%;
+                display: none;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                background-color: #607d8b;
+                margin-top: 5px;
+
+                a {
+                    margin: 10px 5px;
+                    text-decoration: none;
+                    font-size: 20px;
+                }
+
+            }
+
+            span {
+                position: relative;
+                text-decoration: none;
+                color: white;
+                font-size: 20px;
+                font-weight: bolder;
+                margin: 0 12px;
+                cursor: pointer;
+            }
+
+            span:hover {
+                color: wheat;
+            }
 
             a {
                 position: relative;
@@ -824,37 +860,54 @@ a {
     // Ana bölüm için genel ayarlar
     .buttons_filter {
         display: flex;
-        justify-content: center; // Butonları yatayda ortala
-        margin-top: 50px; // Üst ve alt kenar boşlukları
-    
+        /* Butonları yatayda yan yana diz */
+        justify-content: center;
+        /* Butonları yatayda ortala */
+        margin-top: 50px;
+        /* Üst kenar boşluğu */
+
         button {
-            background-color: rgba(211, 211, 211, 0.3); // Hafif gri arka plan
-            color: #616161; // Gri yazı rengi
-            padding: 8px 16px; // İç boşluk
-            text-align: center; // Yazıyı ortala
-            font-size: 16px; // Yazı boyutu
-            margin: 0 10px; // Butonlar arası boşluk
-            cursor: pointer; // Fare gösterimini işaretçi yap
-            transition: background-color 0.3s ease, color 0.3s ease; // Geçişli efekt
-            border: none; // Kenar yok
-            outline: none; // Kenar çerçevesini kaldır
-            border-radius: 4px; // Köşeleri hafif yuvarlat
-    
-            // Fare ile üzerine gelindiğinde
+            background-color: rgba(211, 211, 211, 0.3);
+            /* Hafif gri arka plan */
+            color: #616161;
+            /* Gri yazı rengi */
+            padding: 8px 16px;
+            /* İç boşluk */
+            text-align: center;
+            /* Yazıyı ortala */
+            font-size: 16px;
+            /* Yazı boyutu */
+            margin: 0 10px;
+            /* Butonlar arası boşluk */
+            cursor: pointer;
+            /* Fare gösterimini işaretçi yap */
+            transition: background-color 0.3s ease, color 0.3s ease;
+            /* Geçişli efekt */
+            border: none;
+            /* Kenar yok */
+            outline: none;
+            /* Kenar çerçevesini kaldır */
+            border-radius: 4px;
+            /* Köşeleri hafif yuvarlat */
+
+            /* Fare ile üzerine gelindiğinde */
             &:hover {
-                background-color: rgba(169, 169, 169, 0.5); // Üzerine gelindiğinde daha belirgin gri arka plan
-                color: #424242; // Koyu gri yazı rengi
+                background-color: rgba(169, 169, 169, 0.5);
+                /* Üzerine gelindiğinde daha belirgin gri arka plan */
+                color: #424242;
+                /* Koyu gri yazı rengi */
             }
-    
-            // Aktif durumda olan buton için stil
+
+            /* Aktif durumda olan buton için stil */
             &.active {
-                background-color: rgba(128, 128, 128, 0.7); // Daha koyu bir gri arka plan
-                color: #212121; // Daha koyu gri yazı rengi
-                text-decoration: underline; // Altı çizili görünüm
+                background-color: rgba(128, 128, 128, 0.7);
+                /* Daha koyu bir gri arka plan */
+                color: white;
+                /* Daha koyu gri yazı rengi */
             }
         }
     }
-    
+
 }
 
 @media (max-width: 780px) {
