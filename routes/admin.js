@@ -26,28 +26,33 @@ router.get('/add', (req, res) => {
 });
 
 // Ürün ekleme işlemi
-router.post('/add', upload.single('img'), async (req, res) => {
+router.post('/add', upload.fields([{ name: 'img', maxCount: 1 }, { name: 'compositionImages' }]), async (req, res) => {
     try {
         const { name, price, content, category, composition, compositionDescription, bestSellers } = req.body;
-
-        // Kompozisyon için birden fazla giriş
         const compositions = Array.isArray(composition) ? composition : [composition];
-
-        const result = await cloudinary.uploader.upload(req.file.path); // Resmi Cloudinary'ye yükle
+        
+        const imgResult = await cloudinary.uploader.upload(req.files['img'][0].path);
+        const compositionImageUrls = await Promise.all(
+            req.files['compositionImages'].map(async (file) => {
+                const result = await cloudinary.uploader.upload(file.path);
+                return result.secure_url;
+            })
+        );
 
         const newProduct = new Products({
-            img: result.secure_url, // Cloudinary'den güvenli URL kullan
+            img: imgResult.secure_url,
             name,
-            price: mongoose.Types.Decimal128.fromString(price), // Fiyatı Decimal128'e dönüştür
+            price: mongoose.Types.Decimal128.fromString(price),
             content,
             category,
-            composition: compositions, // Birden fazla kompozisyon sakla
+            composition: compositions,
+            compositionImages: compositionImageUrls,
             compositionDescription,
-            bestSellers: bestSellers ? true : false // Checkbox'ı boolean'a dönüştür
+            bestSellers: bestSellers ? true : false
         });
 
-        await newProduct.save(); // Yeni ürünü kaydet
-        res.redirect('/admin/add'); // Başarılı ekleme sonrası aynı sayfaya yönlendir
+        await newProduct.save();
+        res.redirect('/admin/add');
     } catch (err) {
         console.error('Öğe eklenirken hata oluştu', err);
         res.status(500).send('İç Sunucu Hatası');

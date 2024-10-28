@@ -79,12 +79,26 @@
     <script>
         function addCompositionField() {
             const compositionContainer = document.getElementById('compositionContainer');
-            const newField = document.createElement('input');
-            newField.type = 'text';
-            newField.name = 'composition';
-            newField.placeholder = 'Enter composition';
-            newField.required = true; // Optional: Remove if you want to allow empty fields
-            compositionContainer.appendChild(newField);
+            
+            // Create a new text input for composition
+            const newTextField = document.createElement('input');
+            newTextField.type = 'text';
+            newTextField.name = 'composition';
+            newTextField.placeholder = 'Enter composition';
+            newTextField.required = true;
+
+            // Create a label and file input for composition image
+            const newImageLabel = document.createElement('label');
+            newImageLabel.innerText = 'Kompozisyon Resmi:';
+            const newImageField = document.createElement('input');
+            newImageField.type = 'file';
+            newImageField.name = 'compositionImages';
+            newImageField.accept = 'image/*';
+
+            // Append the new elements to the container
+            compositionContainer.appendChild(newTextField);
+            compositionContainer.appendChild(newImageLabel);
+            compositionContainer.appendChild(newImageField);
         }
     </script>
 </head>
@@ -114,13 +128,14 @@
                 <option value="woman">Woman</option>
                 <option value="man">Man</option>
                 <option value="unisex">Unisex</option>
-                <!-- <option value="man">Unisex</option> -->
             </select>
         </div>
         
         <div id="compositionContainer">
             <label>Məhsul tərkibi:</label>
             <input type="text" name="composition" placeholder="Enter composition">
+            <label>Kompozisyon Resmi:</label>
+            <input type="file" name="compositionImages" accept="image/*">
         </div>
         <button type="button" onclick="addCompositionField()">Yeni tərkib əlavə et</button>
 
