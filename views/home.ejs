@@ -77,11 +77,11 @@
         <section class="text_slider">
             <div class="scrolling-text"></div>
         </section>
-        
-        <section>
-            <button onclick="filterAllProducts()">Bütün Ətirlər</button>
-            <button onclick="filterBestSellers()">Ən Çox Satılanlar</button>
+
+        <section class="buttons_filter">
             <button onclick="filterNewArrivals()">Yeni Ətirlər</button>
+            <button onclick="filterBestSellers()">Çox Satılanlar</button>
+            <button onclick="filterAllProducts()">Bütün Ətirlər</button>
         </section>
 
         <section class="products" id="productsContainer">
@@ -146,7 +146,7 @@
         <div class="product_card" id="productCard" style="display: none;">
             <h3>Səbət</h3>
             <div id="cartItems"></div>
-            <div>Toplam: <span id="totalPrice">0</span> ₼</div> <!-- Burayı kontrol edin -->
+            <div style="margin: 3px;"><span id="totalPrice">0</span> ₼</div> <!-- Burayı kontrol edin -->
             <button onclick="closeCart()">Bağla</button>
         </div>
 

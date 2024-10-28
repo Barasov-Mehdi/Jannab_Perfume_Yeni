@@ -156,7 +156,7 @@ a {
         top: 0;
         width: 100%;
 
-        background-color: rgba(0, 0, 0, 0.562);
+        background-color: rgba(0, 0, 0, 0.692);
         display: none;
         justify-content: start;
         align-items: center;
@@ -360,7 +360,7 @@ a {
         flex-wrap: wrap;
         justify-content: space-around;
         padding: 20px;
-        margin: 40px 0 50px 0;
+        margin: 0px 0 50px 0;
         width: 95%;
 
         .product {
@@ -746,28 +746,28 @@ a {
         right: 20px;
         bottom: 30px;
     }
-    
+
     .left_menu {
-        display: none; 
-        transition: all 0.3s ease; 
-        flex-direction: column; 
-        z-index: 1000; 
-        width: 100%; 
-        height: 89vh; 
-        background-color: white; 
-        position: fixed; 
-        top: 0; 
-        left: 0; 
-        overflow-y: hidden; 
-    
-        
+        display: none;
+        transition: all 0.3s ease;
+        flex-direction: column;
+        z-index: 1000;
+        width: 100%;
+        height: 89vh;
+        background-color: white;
+        position: fixed;
+        top: 0;
+        left: 0;
+        overflow-y: hidden;
+
+
         .menu_links {
-            display: flex; 
-            flex-direction: column; 
-            justify-content: start; 
-            align-items: start; 
-            height: 40vh; 
-    
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: start;
+            height: 40vh;
+
             div {
                 display: flex; // Using Flexbox for the item layout
                 flex-direction: column; // Arrange links vertically
@@ -775,7 +775,7 @@ a {
                 margin-top: 10px; // Spacing at the top
                 margin-bottom: 30px; // Spacing at the bottom
                 flex: 1; // Allow to stretch to available space
-    
+
                 a {
                     text-decoration: none; // Remove underline from links
                     color: black; // Link color
@@ -784,13 +784,14 @@ a {
                     font-style: italic; // Italicize text
                     transition: color 0.3s ease; // Smooth color change on hover
                     font-weight: bolder;
+
                     &:hover {
                         color: rgb(100, 100, 100); // Change color on hover for better UX
                     }
                 }
             }
         }
-    
+
         // Styling for the icon
         i {
             color: rgb(212, 211, 211); // Icon color
@@ -801,7 +802,7 @@ a {
             padding: 10px; // Padding around the icon
             cursor: pointer; // Show as clickable
         }
-    
+
         // Styling for the creator section
         .creator {
             display: flex; // Flexbox for layout
@@ -809,7 +810,7 @@ a {
             width: 100%; // Full width
             position: absolute;
             bottom: 0;
-    
+
             span {
                 color: rgb(212, 211, 211); // Text color
                 background-color: #545b62; // Background color
@@ -819,6 +820,41 @@ a {
             }
         }
     }
+
+    // Ana bölüm için genel ayarlar
+    .buttons_filter {
+        display: flex;
+        justify-content: center; // Butonları yatayda ortala
+        margin-top: 50px; // Üst ve alt kenar boşlukları
+    
+        button {
+            background-color: rgba(211, 211, 211, 0.3); // Hafif gri arka plan
+            color: #616161; // Gri yazı rengi
+            padding: 8px 16px; // İç boşluk
+            text-align: center; // Yazıyı ortala
+            font-size: 16px; // Yazı boyutu
+            margin: 0 10px; // Butonlar arası boşluk
+            cursor: pointer; // Fare gösterimini işaretçi yap
+            transition: background-color 0.3s ease, color 0.3s ease; // Geçişli efekt
+            border: none; // Kenar yok
+            outline: none; // Kenar çerçevesini kaldır
+            border-radius: 4px; // Köşeleri hafif yuvarlat
+    
+            // Fare ile üzerine gelindiğinde
+            &:hover {
+                background-color: rgba(169, 169, 169, 0.5); // Üzerine gelindiğinde daha belirgin gri arka plan
+                color: #424242; // Koyu gri yazı rengi
+            }
+    
+            // Aktif durumda olan buton için stil
+            &.active {
+                background-color: rgba(128, 128, 128, 0.7); // Daha koyu bir gri arka plan
+                color: #212121; // Daha koyu gri yazı rengi
+                text-decoration: underline; // Altı çizili görünüm
+            }
+        }
+    }
+    
 }
 
 @media (max-width: 780px) {
