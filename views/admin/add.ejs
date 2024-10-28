@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Product</title>
+    <title>Məhsul yüklə</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -90,26 +90,26 @@
 </head>
 
 <body>
-    <h1>Add New Product</h1>
+    <h1>Məhsul yüklə</h1>
     
     <form action="/admin/add" method="POST" enctype="multipart/form-data">
         <div>
-            <label for="name">Product Name:</label>
+            <label for="name">Məhsul adı:</label>
             <input type="text" id="name" name="name" required>
         </div>
         
         <div>
-            <label for="price">Product Price:</label>
+            <label for="price">Məhsul qiyməti:</label>
             <input type="number" id="price" name="price" step="0.01" required>
         </div>
 
         <div>
-            <label for="content">Product Description:</label>
+            <label for="content">Məhsul açıqlaması:</label>
             <textarea id="content" name="content"></textarea>
         </div>
 
         <div>
-            <label for="category">Category:</label>
+            <label for="category">Kategori:</label>
             <select id="category" name="category" required>
                 <option value="woman">Woman</option>
                 <option value="man">Man</option>
@@ -119,33 +119,33 @@
         </div>
         
         <div id="compositionContainer">
-            <label>Product Composition:</label>
+            <label>Məhsul tərkibi:</label>
             <input type="text" name="composition" placeholder="Enter composition">
         </div>
-        <button type="button" onclick="addCompositionField()">Add Another Composition</button>
+        <button type="button" onclick="addCompositionField()">Yeni tərkib əlavə et</button>
 
         <div>
-            <label for="compositionDescription">Composition Description:</label>
+            <label for="compositionDescription">Tərkib açıqlaması:</label>
             <input type="text" id="compositionDescription" name="compositionDescription">
         </div>
 
         <div>
-            <label for="bestSellers">Best Sellers:</label>
+            <label for="bestSellers">Ən çox satılan:</label>
             <input type="checkbox" id="bestSellers" name="bestSellers" value="true">
         </div>
 
         <div>
-            <label for="img">Product Image:</label>
+            <label for="img">Məhsul şəkli:</label>
             <input type="file" id="img" name="img" accept="image/*" required>
         </div>
 
         <div>
-            <button type="submit">Add Product</button>
+            <button type="submit">Yüklə</button>
         </div>
     </form>
 
     <div>
-        <a href="/admin/remove">Go to Remove Product</a>
+        <a href="/admin/remove">Silmə sıhifəsi</a>
     </div>
 </body>
 

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ürün Sil</title>
+    <title>Məhsul Sil</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,7 +19,7 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 1200px; /* Max genişliği artırdım */
             margin: 0 auto;
             background: #fff;
             padding: 20px;
@@ -31,12 +31,14 @@
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
+            overflow-x: auto; /* Ekran dar olduğunda kaydırma çubuğu ekle */
         }
 
         th, td {
             padding: 12px;
             text-align: left;
             border: 1px solid #ddd;
+            word-wrap: break-word; /* Uzun metinlerin taşmasını önle */
         }
 
         th {
@@ -87,21 +89,49 @@
             color: #888;
             padding: 20px;
         }
+
+        @media (max-width: 768px) {
+            th, td {
+                padding: 8px; /* Dar ekranlarda daha az padding */
+            }
+
+            button {
+                width: 100%; /* Butonu tam genişlikte yap */
+            }
+
+            img {
+                width: 80px; /* Resim boyutunu azalt */
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 24px; /* Başlık boyutunu azalt */
+            }
+
+            button {
+                font-size: 14px; /* Buton yazı boyutunu azalt */
+            }
+
+            table {
+                font-size: 14px; /* Tablo yazı boyutunu azalt */
+            }
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1>Ürün Sil</h1>
+        <h1>Məhsul Sil</h1>
 
-        <form action="/admin/remove" method="POST"> <!-- Form açılışı burada -->
+        <form action="/admin/remove" method="POST">
             <table>
                 <thead>
                     <tr>
                         <th>Seç</th>
-                        <th>Ürün Fotoğrafı</th>
-                        <th>Ürün Adı</th>
-                        <th>Fiyat</th>
+                        <th>Məhsul şəkli</th>
+                        <th>Məhsul Adı</th>
+                        <th>Qiymət</th>
                         <th>Kategori</th>
                     </tr>
                 </thead>
@@ -118,22 +148,22 @@
                                     </label>
                                 </td>
                                 <td><%= product.name %></td>
-                                <td><%= product.price.toString() %> TL</td>
+                                <td><%= product.price.toString() %> ₼</td>
                                 <td><%= product.category %></td>
                             </tr>
                         <% }); %>
                     <% } else { %>
                         <tr>
-                            <td colspan="5" class="no-products">Ürün bulunmamaktadır.</td>
+                            <td colspan="5" class="no-products">Məhsul Tapılmadı.</td>
                         </tr>
                     <% } %>
                 </tbody>
             </table>
 
-            <button type="submit">Seçilen Ürünü Sil</button> <!-- Buton buraya dahil edildi -->
+            <button type="submit">Seçilən Məhsulu Sil</button>
         </form>
 
-        <a href="/admin/add" class="back-link">Yeniden Ürün Ekle</a>
+        <a href="/admin/add" class="back-link">Yenidən yüklə</a>
     </div>
 </body>
 
