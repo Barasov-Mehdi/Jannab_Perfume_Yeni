@@ -399,6 +399,39 @@ a {
         margin: 0px 0 50px 0;
         width: 95%;
 
+        .volume-select {
+            margin: 10px 0; // Üst ve alt boşluk
+            position: relative; // İçerik düzenlemesi için konumlandırma
+        
+            select.volume-options {
+                padding: 10px 20px; // İç boşluk
+                border: 1px solid #ddd; // Kenar rengi
+                border-radius: 4px; // Kenar yuvarlama
+                background-color: #fff; // Arka plan rengi
+                font-size: 1em; // Yazı boyutu
+                color: #333; // Yazı rengi
+                cursor: pointer; // İmleci işaretçi yap
+        
+                // Ok simgesinin yerini belirlemek için iç boşluğu artırıyoruz
+                padding-right: 40px;
+                background-image: url('data:image/png;base64,...'); // Özel ok simgesi ekle
+                background-repeat: no-repeat;
+                background-position: right 10px center; // Pozisyon
+                background-size: 12px; // Boyut
+        
+                transition: border-color 0.3s; // Kenar rengi geçişi
+        
+                &:focus {
+                    outline: none; // Varsayılan odak çerçevesini kaldır
+                    border-color: #ecc14d; // Odaklandığında sınır rengi değişimi
+                }
+        
+                option {
+                    padding: 10px; // Seçenekler için iç boşluk
+                }
+            }
+        }
+
         .product {
             border: 1px solid #ddd; // Ürün kartı için kenar
             border-radius: 8px;

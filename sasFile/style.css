@@ -328,6 +328,32 @@ a {
   margin: 0px 0 50px 0;
   width: 95%;
 }
+.container .products .volume-select {
+  margin: 10px 0;
+  position: relative;
+}
+.container .products .volume-select select.volume-options {
+  padding: 10px 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  font-size: 1em;
+  color: #333;
+  cursor: pointer;
+  padding-right: 40px;
+  background-image: url("data:image/png;base64,...");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+  transition: border-color 0.3s;
+}
+.container .products .volume-select select.volume-options:focus {
+  outline: none;
+  border-color: #ecc14d;
+}
+.container .products .volume-select select.volume-options option {
+  padding: 10px;
+}
 .container .products .product {
   border: 1px solid #ddd;
   border-radius: 8px;

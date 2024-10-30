@@ -95,13 +95,13 @@
     </section>
 
     <section class="buttons_filter">
-        <button id="newArrivalsButton" onclick="filterNewArrivals(this)">Yeni Ətirlər</button>
-        <button id="bestSellersButton" onclick="filterBestSellers(this)">Çox Satılanlar</button>
-        <button id="allProductsButton" onclick="filterAllProducts(this)">Bütün Ətirlər</button>
+        <button id="newArrivalsButton" onclick="filterNewArrivals()">Yeni Ətirlər</button>
+        <button id="bestSellersButton" onclick="filterBestSellers()">Çox Satılanlar</button>
+        <button id="allProductsButton" onclick="filterAllProducts()">Bütün Ətirlər</button>
     </section>
 
     <section class="products" id="productsContainer">
-        <% products.forEach(product=> { %>
+        <% products.forEach(product => { %>
             <div class="product">
                 <a target="_blank" href="/products/<%= product._id %>">
                     <div class="image-container">
@@ -112,23 +112,34 @@
                             <%= product.name %>
                         </h2>
                         <div class="rating">
-                            <% for (let i=0; i < 5; i++) { %>
+                            <% for (let i = 0; i < 5; i++) { %>
                                 <span class="star <%= i < product.rating ? 'filled' : '' %>">★</span>
-                                <% } %>
+                            <% } %>
                         </div>
                     </div>
                 </a>
                 <div class="product-footer">
-                    <div class="price">
+                    <div class="price" style="display: none;">
                         <%= product.price.toString() %> ₼
                     </div>
+                    <div class="volume-select">
+                        <select class="volume-options" id="volumeSelect_<%= product._id %>"
+                            onchange="updateVolumePrice('<%= product._id %>', '<%= product.price %>')">
+                            <option value="15" data-price="<%= (product.price / 1 * 15).toFixed() %>">15 ml</option>
+                            <option value="30" data-price="<%= (product.price / 1 * 30).toFixed() %>">30 ml</option>
+                            <option value="50" data-price="<%= (product.price / 1 * 50).toFixed() %>">50 ml</option>
+                        </select>
+                    </div>
+                    <div class="price-per-volume" id="priceDisplay_<%= product._id %>">
+                        <!-- Fiyat burada gösterilecek -->
+                    </div>
                     <a href="javascript:void(0)" class="add-to-cart"
-                        onclick="addToCart('<%= product._id %>', '<%= product.name %>', '<%= product.img %>', '<%= product.price %>')">
+                        onclick="addToCart('<%= product._id %>', '<%= product.name %>', '<%= product.img %>', '<%= product.price %>', document.getElementById('volumeSelect_<%= product._id %>').value)">
                         <i class="fas fa-plus"></i>
                     </a>
                 </div>
             </div>
-            <% }) %>
+        <% }) %>
     </section>
 
     <footer class="footer">
@@ -145,7 +156,8 @@
             </div>
         </div>
         <div class="mb_basket">
-            <i class="fa-solid fa-cart-shopping show_product_card" style="font-size: 20px; font-style:initial;"><span class="productNo">0</span></i>
+            <i class="fa-solid fa-cart-shopping show_product_card" style="font-size: 20px; font-style:initial;"><span
+                    class="productNo">0</span></i>
         </div>
         <div class="help">
             <div class="icon-box">
@@ -163,7 +175,7 @@
     <div class="product_card" id="productCard" style="display: none;">
         <h3>Səbət</h3>
         <div id="cartItems"></div>
-        <div style="margin: 3px;"><span id="totalPrice">0</span> ₼</div> <!-- Burayı kontrol edin -->
+        <div style="margin: 3px;"><span id="totalPrice"></span> ₼</div> <!-- Burayı kontrol edin -->
         <button onclick="closeCart()">Bağla</button>
     </div>
 
@@ -238,6 +250,24 @@
             } else {
                 contacts.style.display = 'none';
             }
+        });
+
+        function updateVolumePrice(productId, basePrice) {
+            const volumeSelect = document.getElementById(`volumeSelect_${productId}`);
+            const selectedOption = volumeSelect.options[volumeSelect.selectedIndex];
+
+            const calculatedPrice = selectedOption.getAttribute('data-price'); // Seçilen hacmin fiyatını al
+
+            // Hesaplanan fiyatı göster
+            const priceDisplay = document.getElementById(`priceDisplay_${productId}`);
+            priceDisplay.innerHTML = `${calculatedPrice} ₼ `; // formatlanmış fiyat
+        }
+
+        // Sayfa yüklendiğinde ilk fiyatları ayarlamak için
+        document.querySelectorAll('.volume-options').forEach(select => {
+            const productId = select.id.split('_')[1]; // ID'den ürün ID'sini al
+            const basePrice = parseFloat(select.options[0].getAttribute('data-price')); // İlk opsiyondaki veriyi al
+            updateVolumePrice(productId, basePrice); // Başlangıç fiyatını güncelle
         });
 
     </script>

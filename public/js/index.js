@@ -108,7 +108,6 @@ async function addCardAndSearch() {
 
     searchInput.addEventListener('input', async function () {
         const query = this.value.trim();
-
         if (query.length > 2) {
             const response = await fetch(`/api/products?search=${encodeURIComponent(query)}`);
             if (!response.ok) {
@@ -116,86 +115,7 @@ async function addCardAndSearch() {
                 return;
             }
             const products = await response.json();
-            console.log(products); // Ürün verisini konsola yazdırma
-
-            searchResults.innerHTML = '';
-
-            if (products.length > 0) {
-                // Arama kelimesinin hangi ürün adında geçtiğine göre sıralama
-                const sortedProducts = products.sort((a, b) => {
-                    const aContainsQuery = a.name.toLowerCase().includes(query.toLowerCase());
-                    const bContainsQuery = b.name.toLowerCase().includes(query.toLowerCase());
-
-                    // Eşleşme var ise öncelik ver
-                    if (aContainsQuery && !bContainsQuery) {
-                        return -1; // a önce gelsin
-                    } else if (!aContainsQuery && bContainsQuery) {
-                        return 1; // b önce gelsin
-                    }
-                    return 0; // Değişiklik yoksa sıralama aynı kalsın
-                });
-
-                sortedProducts.forEach(product => {
-                    const productElement = document.createElement('div');
-                    productElement.classList.add('product-result');
-
-                    const highlightedName = product.name.replace(new RegExp(`(${query})`, 'gi'), '<strong>$1</strong>');
-
-                    // Fiyatı kontrol et ve al
-                    let price;
-                    if (product.price) {
-                        console.log(`Ürün Fiyatı: ${JSON.stringify(product.price)}`); // Fiyat yapısını görmek için
-
-                        // Fiyatı işleme
-                        if (typeof product.price === 'object' && product.price.$numberDecimal) {
-                            price = parseFloat(product.price.$numberDecimal); // Fiyata float olarak eriş
-                        } else if (typeof product.price === 'number') {
-                            price = product.price; // Eğer price doğrudan bir sayı ise
-                        }
-                    }
-
-                    // Fiyatın geçerli olup olmadığını kontrol et
-                    if (isNaN(price)) {
-                        console.warn(`Fiyat geçersiz: ${JSON.stringify(product.price)}`);
-                        price = null; // Geçersiz fiyat durumunda null'a ata
-                    }
-
-                    productElement.innerHTML = `
-                        <a href="/products/${product._id}" class="product-link">
-                            <img src="${product.img}" alt="${product.name}" class="product-image" />
-                            <div class="product-details">
-                                <h2 class="product-name">${highlightedName}</h2>
-                                <p class="product-price">${price !== null ? price.toFixed(2) : 'Fiyat mevcut değil'}</p>
-                            </div>
-                        </a>
-                        <a href="javascript:void(0)" class="add-to-cart" data-id="${product._id}" data-name="${product.name}" data-img="${product.img}" data-price="${price !== null ? price : '0'}">
-                            <i class="fas fa-plus"></i>
-                        </a>
-                    `;
-
-                    searchResults.appendChild(productElement);
-                });
-
-                // Sepete ekleme butonlarına tıklama olayını burada ekle
-                document.querySelectorAll('.add-to-cart').forEach(button => {
-                    button.addEventListener('click', function () {
-                        const productId = this.getAttribute('data-id');
-                        const productName = this.getAttribute('data-name');
-                        const productImg = this.getAttribute('data-img');
-                        const productPrice = this.getAttribute('data-price');
-
-                        const parsedPrice = parseFloat(productPrice);
-                        if (isNaN(parsedPrice)) {
-                            console.warn(`Fiyat geçersiz: ${productPrice}`);
-                            return; // Geçersiz fiyat durumunda işlemi durdur
-                        }
-
-                        addToCart(productId, productName, productImg, parsedPrice);
-                    });
-                });
-            } else {
-                searchResults.innerHTML = '<p>Hiçbir ürün bulunamadı.</p>'; // No products found message
-            }
+            displaySearchResults(products);
         } else {
             searchResults.innerHTML = '';  // Arama boşken sonuçları gizle
         }
@@ -203,46 +123,105 @@ async function addCardAndSearch() {
 }
 addCardAndSearch();
 
+function displaySearchResults(products) {
+    const searchResults = document.querySelector('.search_results');
+    searchResults.innerHTML = '';
 
-function addToCart(id, name, img, price) {
+    if (products.length > 0) {
+        products.forEach(product => {
+            const price = typeof product.price === 'object' && product.price.$numberDecimal
+                ? parseFloat(product.price.$numberDecimal)
+                : product.price;
+
+            const productElement = document.createElement('div');
+            productElement.classList.add('product-result');
+
+            productElement.innerHTML = `
+                <a href="/products/${product._id}" class="product-link">
+                    <img src="${product.img}" alt="${product.name}" class="product-image" />
+                    <div class="product-details">
+                        <h2 class="product-name">${product.name}</h2>
+                        <p class="product-price">${price ? price.toFixed(2) : 'Fiyat mevcut değil'}</p>
+                    </div>
+                </a>
+                <div class="volume-select">
+                    <select class="volume-options" id="volumeSelect_${product._id}">
+                        <option value="15" data-price="${(price / 1 * 15).toFixed()}">15 ml</option>
+                        <option value="30" data-price="${(price / 1 * 30).toFixed()}">30 ml</option>
+                        <option value="50" data-price="${(price / 1 * 50).toFixed()}">50 ml</option>
+                    </select>
+                </div>
+                <a href="javascript:void(0)" class="add-to-cart" 
+                    onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${price}, document.getElementById('volumeSelect_${product._id}').value)">
+                    <i class="fas fa-plus"></i>
+                </a>
+            `;
+
+            searchResults.appendChild(productElement);
+        });
+    } else {
+        searchResults.innerHTML = '<p>Hiçbir ürün bulunamadı.</p>'; // No products found message
+    }
+}
+
+function addToCart(id, name, img, price, volume) {
     price = parseFloat(price); // Sayıya dönüştür
     if (isNaN(price)) {
         console.warn(`Kaydedilemiyor, geçersiz fiyat: ${price}`); // Hata mesajı
         return; // Geçersiz fiyat durumu
     }
-    if (!cart[id]) {
-        cart[id] = { name, img, price, quantity: 0 };
+
+    let priceMultiplier = volume / 1; // Hacim oranını hesapla
+    let calculatedPrice = price * priceMultiplier; // Hacmi dikkate alarak fiyatı çarp
+
+    // Ürün anahtarını hacim ile birleştir
+    const cartKey = `${id}_${volume}`; // Örneğin: "productId_30"
+
+    if (!cart[cartKey]) {
+        cart[cartKey] = { name, img, price: calculatedPrice, quantity: 0, volume }; // Hacmi burada kaydediyoruz
     }
-    cart[id].quantity++;
+    cart[cartKey].quantity++;
     updateCartDisplay();
 }
 
 function updateCartDisplay() {
     const cartItems = document.getElementById('cartItems');
     cartItems.innerHTML = '';
-    totalQuantity = 0;
-    totalPrice = 0;
+    let totalQuantity = 0;
+    let totalPrice = 0;
 
-    for (const id in cart) {
-        const { name, img, price, quantity } = cart[id];
+    for (const key in cart) {
+        const { name, img, price, quantity, volume } = cart[key];
         totalQuantity += quantity;
-        totalPrice += price * quantity;  // Toplam fiyatı hesapla
+        totalPrice += price * quantity; // Toplam fiyatı hesapla
         cartItems.innerHTML += `
             <div class="product_item">
                 <img src="${img}" alt="${name}">
-                <div>${name}</div>
+                <div>${name} (${volume} ml)</div> <!-- Hacim bilgisini buraya ekliyoruz -->
                 <div class="quantity">
-                    <button onclick="changeQuantity('${id}', 1)">+</button>
+                    <button onclick="changeQuantity('${key}', 1)">+</button>
                     <input type="text" value="${quantity}" readonly>
-                    <button onclick="changeQuantity('${id}', -1)">-</button>
+                    <button onclick="changeQuantity('${key}', -1)">-</button>
                 </div>
             </div>
         `;
     }
 
-    document.getElementById('totalPrice').innerText = totalPrice.toFixed(2);  // Toplam fiyatı 2 ondalık basamakla göster
+    document.getElementById('totalPrice').innerText = totalPrice.toFixed(2); // Toplam fiyatı 2 ondalık basamakla göster
     document.querySelector('.added_product').innerText = totalQuantity;
     document.querySelector('.productNo').innerText = totalQuantity;
+}
+
+function changeQuantity(key, delta) {
+    if (cart[key]) {
+        cart[key].quantity += delta;
+
+        if (cart[key].quantity <= 0) {
+            delete cart[key]; // Miktar 0'ın altına inerse ürünü sepetten çıkar
+        }
+
+        updateCartDisplay();
+    }
 }
 
 function changeQuantity(id, delta) {
@@ -268,130 +247,83 @@ document.getElementById('viewDetailsButton').onclick = function () {
     window.location.href = '/productDetails';
 };
 
-function filterBestSellers() {
+async function filterBestSellers() {
     fetch('/bestsellers')
         .then(response => response.json())
-        .then(data => {
-            const productsContainer = document.getElementById('productsContainer');
-            productsContainer.innerHTML = '';
-            data.forEach(product => {
-                const price = typeof product.price === 'object' && product.price.$numberDecimal
-                    ? parseFloat(product.price.$numberDecimal)
-                    : product.price; // Fiyatı doğru bir şekilde al
-                const productHTML = `
-                <div class="product">
-                    <a href="/products/${product._id}">
-                        <div class="image-container">
-                            <img src="${product.img}" alt="${product.name}">
-                        </div>
-                        <div class="product-details">
-                            <h2>${product.name}</h2>
-                            <div class="rating">
-                                ${Array.from({ length: 5 }, (_, i) => `
-                                    <span class="star ${i < product.rating ? 'filled' : ''}">★</span>
-                                `).join('')}
-                            </div>
-                        </div>
-                    </a>
-                    <div class="product-footer">
-                        <div class="price">${price.toFixed(2)} ₼</div> <!-- Fiyatı burada düzelt -->
-                        <a href="javascript:void(0)" class="add-to-cart"
-                           onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${price})">
-                            <i class="fas fa-plus"></i>
-                        </a>
-                    </div>
-                </div>
-            `;
-                productsContainer.insertAdjacentHTML('beforeend', productHTML);
-            });
-        })
+        .then(data => displayProducts(data))
         .catch(error => console.error('Error fetching best sellers:', error));
 }
 
-function filterNewArrivals() {
+async function filterNewArrivals() {
     fetch('/api/new-arrivals')
         .then(response => response.json())
-        .then(products => {
-            console.log(products); // Kontrol için yanıtı görün
-            const productsContainer = document.getElementById('productsContainer');
-            productsContainer.innerHTML = ''; // Mevcut ürünleri temizle
-
-            products.forEach(product => {
-                const price = typeof product.price === 'object' && product.price.$numberDecimal
-                    ? parseFloat(product.price.$numberDecimal)
-                    : product.price; // Fiyatı al
-
-                const productElement = `
-                    <div class="product">
-                        <a href="/products/${product._id}">
-                            <div class="image-container">
-                                <img src="${product.img}" alt="${product.name}">
-                            </div>
-                            <div class="product-details">
-                                <h2>${product.name}</h2>
-                                <div class="rating">
-                                    ${[...Array(5)].map((_, i) => `<span class="star ${i < product.rating ? 'filled' : ''}">★</span>`).join('')}
-                                </div>
-                            </div>
-                        </a>
-                        <div class="product-footer">
-                            <div class="price">${price.toFixed(2)} ₼</div> <!-- Fiyatı düzelt -->
-                            <a href="javascript:void(0)" class="add-to-cart"
-                                onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${price})">
-                                <i class="fas fa-plus"></i>
-                            </a>
-                        </div>
-                    </div>
-                `;
-                productsContainer.insertAdjacentHTML('beforeend', productElement);
-            });
-        })
-        .catch(error => {
-            console.error('Error fetching new arrivals:', error);
-        });
+        .then(products => displayProducts(products))
+        .catch(error => console.error('Error fetching new arrivals:', error));
 }
 
-function filterAllProducts() {
+async function filterAllProducts() {
     fetch('/api/products')
         .then(response => response.json())
-        .then(products => {
-            const productsContainer = document.getElementById('productsContainer');
-            productsContainer.innerHTML = '';
-
-            products.forEach(product => {
-                const price = typeof product.price === 'object' && product.price.$numberDecimal
-                    ? parseFloat(product.price.$numberDecimal)
-                    : product.price; // Fiyatı al
-                const productElement = `
-                    <div class="product">
-                        <a href="/products/${product._id}">
-                            <div class="image-container">
-                                <img src="${product.img}" alt="${product.name}">
-                            </div>
-                            <div class="product-details">
-                                <h2>${product.name}</h2>
-                                <div class="rating">
-                                    ${[...Array(5)].map((_, i) => `<span class="star ${i < product.rating ? 'filled' : ''}">★</span>`).join('')}
-                                </div>
-                            </div>
-                        </a>
-                        <div class="product-footer">
-                            <div class="price">${price.toFixed(2)} ₼</div> <!-- Fiyatı düzelt -->
-                            <a href="javascript:void(0)" class="add-to-cart"
-                                onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${price})">
-                                <i class="fas fa-plus"></i>
-                            </a>
-                        </div>
-                    </div>
-                `;
-                productsContainer.insertAdjacentHTML('beforeend', productElement);
-            });
-        })
-        .catch(error => {
-            console.error('Error fetching products:', error);
-        });
+        .then(products => displayProducts(products))
+        .catch(error => console.error('Error fetching products:', error));
 }
 
+function displayProducts(products) {
+    const productsContainer = document.getElementById('productsContainer');
+    productsContainer.innerHTML = ''; // Mevcut ürünleri temizle
 
+    products.forEach(product => {
+        const price = typeof product.price === 'object' && product.price.$numberDecimal
+            ? parseFloat(product.price.$numberDecimal)
+            : product.price;
 
+        const productElement = `
+            <div class="product">
+                <a href="/products/${product._id}">
+                    <div class="image-container">
+                        <img src="${product.img}" alt="${product.name}">
+                    </div>
+                    <div class="product-details">
+                        <h2>${product.name}</h2>
+                        <div class="rating">
+                            ${[...Array(5)].map((_, i) => `<span class="star ${i < product.rating ? 'filled' : ''}">★</span>`).join('')}
+                        </div>
+                    </div>
+                </a>
+                <div class="product-footer">
+                    <div class="price" style="display: none;">${price.toFixed(2)} ₼</div>
+                    <div class="volume-select">
+                        <select class="volume-options" id="volumeSelect_${product._id}" onchange="updateVolumePrice('${product._id}', ${price})">
+                            <option value="15" data-price="${(price / 1 * 15).toFixed()}">15 ml</option>
+                            <option value="30" data-price="${(price / 1 * 30).toFixed()}">30 ml</option>
+                            <option value="50" data-price="${(price / 1 * 50).toFixed()}">50 ml</option>
+                        </select>
+                    </div>
+                    <div class="price-per-volume" id="priceDisplay_${product._id}">
+                        <!-- Fiyat burada gösterilecek -->
+                    </div>
+                    <a href="javascript:void(0)" class="add-to-cart"
+                        onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${price}, document.getElementById('volumeSelect_${product._id}').value)">
+                        <i class="fas fa-plus"></i>
+                    </a>
+                </div>
+            </div>
+        `;
+        productsContainer.insertAdjacentHTML('beforeend', productElement);
+    });
+}
 
+// Volume price update function
+function updateVolumePrice(productId, basePrice) {
+    const volumeSelect = document.getElementById(`volumeSelect_${productId}`);
+    const selectedOption = volumeSelect.options[volumeSelect.selectedIndex];
+
+    const calculatedPrice = parseFloat(selectedOption.getAttribute('data-price')); // Seçilen hacmin fiyatını al
+
+    // Sadece geçerli fiyatı göster
+    if (!isNaN(calculatedPrice) && calculatedPrice > 0) {
+        document.getElementById(`priceDisplay_${productId}`).innerHTML = `${calculatedPrice.toFixed(2)} ₼ (${volumeSelect.value} ml üçün)`; 
+    } else {
+        document.getElementById(`priceDisplay_${productId}`).innerHTML = ''; // Geçersiz fiyat için boş bırak
+    }
+}
