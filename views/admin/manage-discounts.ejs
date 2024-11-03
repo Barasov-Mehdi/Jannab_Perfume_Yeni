@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- views/admin/manage-discounts.ejs -->
+    <h1>Manage Discounts</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Discount</th>
+                <th>Discount Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% products.forEach(product=> { %>
+                <tr>
+                    <td>
+                        <%= product.name %>
+                    </td>
+                    <td>
+                        <%= product.price.toString() %>
+                    </td>
+                    <td>
+                        <form action="/admin/update/<%= product._id %>" method="POST">
+                            <input type="checkbox" name="discount" <%=product.discount ? 'checked' : '' %> />
+                            <input type="number" name="discountPrice"
+                                value="<%= product.discountPrice ? product.discountPrice.toString() : '' %>" />
+                            <input type="submit" value="Update" />
+                        </form>
+                    </td>
+                    <td>
+                        <%= product.discountPrice ? product.discountPrice.toString() : 'No discount' %>
+                    </td>
+                </tr>
+                <% }); %>
+        </tbody>
+    </table>
+
+</body>
+
+</html>
