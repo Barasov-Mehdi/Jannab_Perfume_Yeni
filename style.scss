@@ -151,37 +151,43 @@ a {
 
 
         .menu {
-
+            display: flex;
+            justify-content: center;
+            width: 20%;
             i {
                 font-size: 30px;
             }
         }
 
         .logo_mb {
-
+            display: flex;
+            justify-content: center;
+            width: 50%;
             img {
                 width: 80px;
                 height: 140px;
                 object-fit: contain;
-                margin-left: 27px;
+                // margin-left: 27px;
             }
         }
 
         .mb_else_icons {
             display: flex;
-            justify-content: end;
-            width: 70px;
+            justify-content: center;
+            width: 20%;
 
             i {
                 font-size: 30px;
-                margin-left: 5px;
+                margin-left: 20px;
+                
             }
 
             .show_product_card {
                 position: relative;
                 font-size: 30px;
                 color: black;
-                margin-left: 5px;
+                margin-left: 2px;
+                text-align: end;
 
                 span{
                     position: absolute;
@@ -194,7 +200,6 @@ a {
         }
     }
 
-    // Header Stoped
     .mb_text {
         width: 100%;
         background-color: #e6e6e6;

@@ -129,30 +129,40 @@ a {
   margin: 0 0 3px 0;
   background-color: white;
 }
+.container .mb_header .menu {
+  display: flex;
+  justify-content: center;
+  width: 20%;
+}
 .container .mb_header .menu i {
   font-size: 30px;
+}
+.container .mb_header .logo_mb {
+  display: flex;
+  justify-content: center;
+  width: 50%;
 }
 .container .mb_header .logo_mb img {
   width: 80px;
   height: 140px;
   -o-object-fit: contain;
      object-fit: contain;
-  margin-left: 27px;
 }
 .container .mb_header .mb_else_icons {
   display: flex;
-  justify-content: end;
-  width: 70px;
+  justify-content: center;
+  width: 20%;
 }
 .container .mb_header .mb_else_icons i {
   font-size: 30px;
-  margin-left: 5px;
+  margin-left: 20px;
 }
 .container .mb_header .mb_else_icons .show_product_card {
   position: relative;
   font-size: 30px;
   color: black;
-  margin-left: 5px;
+  margin-left: 2px;
+  text-align: end;
 }
 .container .mb_header .mb_else_icons .show_product_card span {
   position: absolute;
