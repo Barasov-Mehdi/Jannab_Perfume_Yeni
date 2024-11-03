@@ -140,7 +140,7 @@ a {
 .container .mb_header .logo_mb {
   display: flex;
   justify-content: center;
-  width: 50%;
+  width: 40%;
 }
 .container .mb_header .logo_mb img {
   width: 80px;
