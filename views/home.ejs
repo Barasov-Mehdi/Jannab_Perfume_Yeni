@@ -14,7 +14,6 @@
 
 <body>
     <div class="container">
-
         <header class="header">
 
             <a href="/"><img src="./img/jannab3_logo.png" alt="Jannab Perfume"></a>
@@ -63,9 +62,9 @@
         </div>
     </section>
 
-    <section class="mb_text">
+    <!-- <section class="mb_text">
         <span>BÜTÜN BRENDLƏR</span>
-    </section>
+    </section> -->
 
     <section class="search">
 
@@ -85,14 +84,14 @@
     </section>
 
     <main class="slider_box">
-        <div>
+        <div class="slıdex_show_box">
             <img class="slider_show" src="" alt="Jannab">
+            <button class="filterMan" onclick="filterProducts('man')">Man</button>
+            <button class="filterWoman" onclick="filterProducts('woman')">Woman</button>
+            <button class="filterUnisex" onclick="filterProducts('unisex')">Unisex</button>
+            <!-- <button class="filterAll" onclick="filterProducts()">Tüm Ürünler</button> Tüm ürünleri gösteren buton -->
         </div>
     </main>
-
-    <section class="text_slider">
-        <div class="scrolling-text"></div>
-    </section>
 
     <section class="buttons_filter">
         <button id="newArrivalsButton" onclick="filterNewArrivals()">Yeni Ətirlər</button>
@@ -102,7 +101,7 @@
 
     <section class="products" id="productsContainer">
         <% products.forEach(product => { %>
-            <div class="product">
+            <div class="product" data-category="<%= product.category %>"> <!--Kategori bilgisini ekliyoruz-->
                 <a target="_blank" href="/products/<%= product._id %>">
                     <div class="image-container">
                         <img src="<%= product.img %>" alt="<%= product.name %>">
@@ -111,11 +110,11 @@
                         <h2>
                             <%= product.name %>
                         </h2>
-                        <div class="rating">
+                        <!-- <div class="rating">
                             <% for (let i = 0; i < 5; i++) { %>
                                 <span class="star <%= i < product.rating ? 'filled' : '' %>">★</span>
                             <% } %>
-                        </div>
+                        </div> -->
                     </div>
                 </a>
                 <div class="product-footer">
@@ -130,7 +129,7 @@
                             <option value="50" data-price="<%= (product.price / 1 * 50).toFixed() %>">50 ml</option>
                         </select>
                     </div>
-                    <div class="price-per-volume" id="priceDisplay_<%= product._id %>">
+                    <div class="price-per-volume" style="font-size: 18px;" id="priceDisplay_<%= product._id %>">
                         <!-- Fiyat burada gösterilecek -->
                     </div>
                     <a href="javascript:void(0)" class="add-to-cart"
@@ -202,11 +201,7 @@
     </div>
     <script src="./js/index.js"></script>
 
-    <section class="buttons_filter">
-        <button id="newArrivalsButton">Yeni Ətirlər</button>
-        <button id="bestSellersButton">Çox Satılanlar</button>
-        <button id="allProductsButton">Bütün Ətirlər</button>
-    </section>
+
     <script>
         var newArrivalsButton = document.getElementById('newArrivalsButton');
         var bestSellersButton = document.getElementById('bestSellersButton');

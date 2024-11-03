@@ -58,4 +58,37 @@ router.get('/products', async (req, res) => {
     }
 });
 
+router.get('/items', async (req, res) => {
+    const { category, search } = req.query; // Kategori ve arama sorgusunu al
+
+    let query = {};
+    if (category) {
+        query.category = category; // Kategoriye göre sorgu oluştur
+    }
+    if (search) {
+        query.name = { $regex: search, $options: 'i' } // Arama sorgusu
+    }
+
+    try {
+        const itemList = await Products.find(query); // Sorguya göre ürünleri bul
+        res.json(itemList); // Bulunan ürünleri döndür
+    } catch (error) {
+        console.error('Ürünler alınırken bir hata oluştu:', error);
+        res.status(500).json({ error: 'Sunucu hatası' });
+    }
+});
+
+router.get('/api/products', async (req, res) => {
+    const category = req.query.category; // Kategoriyi sorgudan al
+
+    try {
+        const products = await Products.find(category ? { category: category } : {});
+        res.json(products);
+    } catch (error) {
+        console.error('Error retrieving products:', error);
+        res.status(500).send('Server Error');
+    }
+});
+
+
 module.exports = router;

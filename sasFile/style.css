@@ -124,6 +124,9 @@ a {
   width: 100%;
   justify-content: space-around;
   align-items: center;
+  border-bottom: 0.5px solid rgb(167, 166, 166);
+  margin: 0 0 3px 0;
+  background-color: white;
 }
 .container .mb_header .menu i {
   font-size: 30px;
@@ -151,7 +154,7 @@ a {
   font-weight: 700;
 }
 .container .search {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   width: 100%;
@@ -278,11 +281,62 @@ a {
   overflow: hidden;
   padding: 1px 0;
 }
-.container .slider_box div {
+.container .slider_box .slıdex_show_box {
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
-.container .slider_box div .slider_show {
+.container .slider_box .slıdex_show_box .filterMan {
+  width: 100px;
+  position: absolute;
+  color: black;
+  font-size: 20px;
+  bottom: 80px;
+  left: 35px;
+  outline: none;
+  border: none;
+  font-style: italic;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  font-weight: bolder;
+  padding: 3px;
+}
+.container .slider_box .slıdex_show_box .filterWoman {
+  width: 100px;
+  position: absolute;
+  color: black;
+  font-size: 20px;
+  bottom: 47px;
+  left: 25px;
+  outline: none;
+  border: none;
+  font-style: italic;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  font-weight: bolder;
+  padding: 3px;
+}
+.container .slider_box .slıdex_show_box .filterUnisex {
+  width: 100px;
+  position: absolute;
+  color: black;
+  font-size: 20px;
+  bottom: 15px;
+  left: 12px;
+  outline: none;
+  border: none;
+  font-style: italic;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  font-weight: bolder;
+  padding: 3px;
+}
+.container .slider_box .slıdex_show_box .slider_show {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
@@ -340,6 +394,7 @@ a {
   font-size: 1em;
   color: #333;
   cursor: pointer;
+  font-size: 700;
   padding-right: 40px;
   background-image: url("data:image/png;base64,...");
   background-repeat: no-repeat;
@@ -804,6 +859,10 @@ a {
   }
   .container .mb_header {
     display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
   }
   .container .search .search_box .search_inp {
     width: 65%;
@@ -815,6 +874,7 @@ a {
     width: 100%;
     height: 30vh;
     overflow: hidden;
+    margin-top: 160px;
   }
   .container .slider_box div {
     width: 100%;

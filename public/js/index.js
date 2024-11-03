@@ -76,32 +76,6 @@ function searchBtn() {
 }
 searchBtn();
 
-function textSlider() {
-    const textArray = [
-        "LACOSTE",
-        "ROJA",
-        "TOM FORD",
-        "VERSACE",
-        "XERJOFF",
-        "ZARA",
-        "GUCCI",
-        "KENZO",
-    ];
-
-    const textSliderElement = document.querySelector('.scrolling-text');
-
-    // İlk metni ayarlama
-    textSliderElement.innerHTML = textArray.map(text => `<span>${text}</span>`).join('<span>|</span>'); // Metinlerin arasına ayırıcı eklemek için
-
-    // Metinleri döngüsel olarak kaydırmak için
-    setInterval(() => {
-        // İlk metni sona ekle
-        const firstChild = textSliderElement.firstElementChild;
-        textSliderElement.appendChild(firstChild);
-    }, 5000); // 5 saniye aralıklarla geçiş
-}
-textSlider();
-
 async function addCardAndSearch() {
     const searchInput = document.querySelector('.search_inp');
     const searchResults = document.querySelector('.search_results');
@@ -313,7 +287,6 @@ function displayProducts(products) {
     });
 }
 
-// Volume price update function
 function updateVolumePrice(productId, basePrice) {
     const volumeSelect = document.getElementById(`volumeSelect_${productId}`);
     const selectedOption = volumeSelect.options[volumeSelect.selectedIndex];
@@ -322,8 +295,69 @@ function updateVolumePrice(productId, basePrice) {
 
     // Sadece geçerli fiyatı göster
     if (!isNaN(calculatedPrice) && calculatedPrice > 0) {
-        document.getElementById(`priceDisplay_${productId}`).innerHTML = `${calculatedPrice.toFixed(2)} ₼ (${volumeSelect.value} ml üçün)`; 
+        document.getElementById(`priceDisplay_${productId}`).innerHTML = `${calculatedPrice.toFixed(2)} ₼ (${volumeSelect.value} ml üçün)`;
     } else {
         document.getElementById(`priceDisplay_${productId}`).innerHTML = ''; // Geçersiz fiyat için boş bırak
     }
+}
+
+function filterProducts(category) {
+    const products = document.querySelectorAll('.product'); // Tüm ürünleri seç
+
+    products.forEach(product => {
+        if (category) {
+            // Belirtilen kategoriye göre kontrol et
+            if (product.getAttribute('data-category') === category) {
+                product.style.display = 'block'; // Eşleşen ürünleri göster
+            } else {
+                product.style.display = 'none'; // Eşleşmeyen ürünleri gizle
+            }
+        } else {
+            product.style.display = 'block'; // Tüm ürünleri göster
+        }
+    });
+}
+
+function renderProducts(products) {
+    const productsContainer = document.getElementById('productsContainer');
+    productsContainer.innerHTML = ''; // Clear existing products
+
+    products.forEach(product => {
+        const price = typeof product.price === 'object' && product.price.$numberDecimal
+            ? parseFloat(product.price.$numberDecimal)
+            : product.price;
+
+        const productElement = `
+            <div class="product">
+                <a href="/products/${product._id}">
+                    <div class="image-container">
+                        <img src="${product.img}" alt="${product.name}">
+                    </div>
+                    <div class="product-details">
+                        <h2>${product.name}</h2>
+                        <div class="rating">
+                            ${[...Array(5)].map((_, i) => `<span class="star ${i < product.rating ? 'filled' : ''}">★</span>`).join('')}
+                        </div>
+                    </div>
+                </a>
+                <div class="product-footer">
+                    <div class="price">${price.toFixed(2)} ₼</div>
+                    <div class="volume-select">
+                        <select class="volume-options" id="volumeSelect_${product._id}">
+                            <option value="15" data-price="${(price / 1 * 15).toFixed()}">15 ml</option>
+                            <option value="30" data-price="${(price / 1 * 30).toFixed()}">30 ml</option>
+                            <option value="50" data-price="${(price / 1 * 50).toFixed()}">50 ml</option>
+                        </select>
+                    </div>
+                    <div class="price-per-volume" id="priceDisplay_${product._id}"></div>
+                    <a href="javascript:void(0)" class="add-to-cart"
+                        onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${price}, document.getElementById('volumeSelect_${product._id}').value)">
+                        <i class="fas fa-plus"></i>
+                    </a>
+                </div>
+            </div>
+        `;
+        
+        productsContainer.insertAdjacentHTML('beforeend', productElement); // Append the product element
+    });
 }

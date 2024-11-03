@@ -4,164 +4,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Məhsul yüklə</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-
-        form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            margin: auto;
-        }
-
-        div {
-            margin-bottom: 15px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        input[type="text"],
-        input[type="number"],
-        textarea,
-        select,
-        input[type="file"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-
-        button {
-            background-color: #5cb85c;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            padding: 10px 15px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: #4cae4c;
-        }
-
-        a {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
-    <script>
-        function addCompositionField() {
-            const compositionContainer = document.getElementById('compositionContainer');
-            
-            // Create a new text input for composition
-            const newTextField = document.createElement('input');
-            newTextField.type = 'text';
-            newTextField.name = 'composition';
-            newTextField.placeholder = 'Enter composition';
-            newTextField.required = true;
-
-            // Create a label and file input for composition image
-            const newImageLabel = document.createElement('label');
-            newImageLabel.innerText = 'Kompozisyon Resmi:';
-            const newImageField = document.createElement('input');
-            newImageField.type = 'file';
-            newImageField.name = 'compositionImages';
-            newImageField.accept = 'image/*';
-
-            // Append the new elements to the container
-            compositionContainer.appendChild(newTextField);
-            compositionContainer.appendChild(newImageLabel);
-            compositionContainer.appendChild(newImageField);
-        }
-    </script>
+    <title>Add Product</title>
+    <link rel="stylesheet" href="/path/to/your/styles.css"> <!-- Link to your CSS file -->
 </head>
+<style>
+    /* Reset some default styles */
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+        line-height: 1.6;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        text-align: center;
+        color: #444;
+    }
+
+    h3 {
+        margin-top: 20px;
+        color: #444;
+    }
+
+    label {
+        display: block;
+        margin: 10px 0 5px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea,
+    select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 15px;
+    }
+
+    input[type="file"] {
+        margin: 10px 0;
+    }
+
+    .noteSection {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 4px;
+        background: #f9f9f9;
+    }
+
+    button {
+        background-color: #5cb85c;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    button:hover {
+        background-color: #4cae4c;
+    }
+
+    #addUpperNote,
+    #addHeartNote,
+    #addBaseNote {
+        background-color: #007bff;
+    }
+
+    #addUpperNote:hover,
+    #addHeartNote:hover,
+    #addBaseNote:hover {
+        background-color: #0056b3;
+    }
+
+    .checkbox-label {
+        display: flex;
+        align-items: center;
+    }
+
+    .checkbox-label input {
+        margin-right: 10px;
+    }
+</style>
 
 <body>
-    <h1>Məhsul yüklə</h1>
-    
-    <form action="/admin/add" method="POST" enctype="multipart/form-data">
-        <div>
-            <label for="name">Məhsul adı:</label>
-            <input type="text" id="name" name="name" required>
-        </div>
-        
-        <div>
-            <label for="price">Məhsul qiyməti:</label>
-            <input type="number" id="price" name="price" step="0.01" required>
-        </div>
+    <div class="container">
+        <h1>Add New Product</h1>
+        <form action="/admin/add" method="POST" enctype="multipart/form-data">
+            <label for="name">Product Name:</label>
+            <input type="text" name="name" required>
 
-        <div>
-            <label for="content">Məhsul açıqlaması:</label>
-            <textarea id="content" name="content"></textarea>
-        </div>
+            <label for="price">Price:</label>
+            <input type="number" step="0.01" name="price" required>
 
-        <div>
-            <label for="category">Kategori:</label>
-            <select id="category" name="category" required>
+            <label for="content">Content:</label>
+            <textarea name="content" rows="4" cols="50"></textarea>
+
+            <label for="category">Category:</label>
+            <select name="category" required>
                 <option value="woman">Woman</option>
                 <option value="man">Man</option>
                 <option value="unisex">Unisex</option>
             </select>
-        </div>
-        
-        <div id="compositionContainer">
-            <label>Məhsul tərkibi:</label>
-            <input type="text" name="composition" placeholder="Enter composition">
-            <label>Kompozisyon Resmi:</label>
-            <input type="file" name="compositionImages" accept="image/*">
-        </div>
-        <button type="button" onclick="addCompositionField()">Yeni tərkib əlavə et</button>
 
-        <div>
-            <label for="compositionDescription">Tərkib açıqlaması:</label>
-            <input type="text" id="compositionDescription" name="compositionDescription">
-        </div>
+            <label for="img">Product Image:</label>
+            <input type="file" name="img" required>
 
-        <div>
-            <label for="bestSellers">Ən çox satılan:</label>
-            <input type="checkbox" id="bestSellers" name="bestSellers" value="true">
-        </div>
+            <h3>Üst Notları (Upper Notes)</h3>
+            <div id="upperNotesContainer">
+                <div class="noteSection">
+                    <input type="text" name="upperNotes" placeholder="Upper Note" required>
+                    <input type="file" name="upperNoteImages" accept="image/*" required>
+                </div>
+            </div>
+            <button type="button" id="addUpperNote">Add Another Upper Note</button>
 
-        <div>
-            <label for="img">Məhsul şəkli:</label>
-            <input type="file" id="img" name="img" accept="image/*" required>
-        </div>
+            <h3>Ürək Notları (Heart Notes)</h3>
+            <div id="heartNotesContainer">
+                <div class="noteSection">
+                    <input type="text" name="heartNotes" placeholder="Heart Note" required>
+                    <input type="file" name="heartNoteImages" accept="image/*" required>
+                </div>
+            </div>
+            <button type="button" id="addHeartNote">Add Another Heart Note</button>
 
-        <div>
-            <button type="submit">Yüklə</button>
-        </div>
-    </form>
+            <h3>Baza Notları (Base Notes)</h3>
+            <div id="baseNotesContainer">
+                <div class="noteSection">
+                    <input type="text" name="baseNotes" placeholder="Base Note" required>
+                    <input type="file" name="baseNoteImages" accept="image/*" required>
+                </div>
+            </div>
+            <button type="button" id="addBaseNote">Add Another Base Note</button>
 
-    <div>
-        <a href="/admin/remove">Silmə sıhifəsi</a>
+            <label for="compositionDescription">Composition Description:</label>
+            <textarea name="compositionDescription" rows="4" cols="50"></textarea>
+
+            <label for="bestSellers">Best Seller:</label>
+            <input type="checkbox" name="bestSellers" value="true">
+
+            <button type="submit">Add Product</button>
+        </form>
     </div>
+
+    <script>
+        // JavaScript to dynamically add more notes
+        document.getElementById('addUpperNote').onclick = function () {
+            var container = document.getElementById('upperNotesContainer');
+            var newNoteSection = document.createElement('div');
+            newNoteSection.className = 'noteSection';
+            newNoteSection.innerHTML = `
+                <input type="text" name="upperNotes" placeholder="Upper Note" required>
+                <input type="file" name="upperNoteImages" accept="image/*" required>
+            `;
+            container.appendChild(newNoteSection);
+        };
+
+        document.getElementById('addHeartNote').onclick = function () {
+            var container = document.getElementById('heartNotesContainer');
+            var newNoteSection = document.createElement('div');
+            newNoteSection.className = 'noteSection';
+            newNoteSection.innerHTML = `
+                <input type="text" name="heartNotes" placeholder="Heart Note" required>
+                <input type="file" name="heartNoteImages" accept="image/*" required>
+            `;
+            container.appendChild(newNoteSection);
+        };
+
+        document.getElementById('addBaseNote').onclick = function () {
+            var container = document.getElementById('baseNotesContainer');
+            var newNoteSection = document.createElement('div');
+            newNoteSection.className = 'noteSection';
+            newNoteSection.innerHTML = `
+                <input type="text" name="baseNotes" placeholder="Base Note" required>
+                <input type="file" name="baseNoteImages" accept="image/*" required>
+            `;
+            container.appendChild(newNoteSection);
+        };
+    </script>
 </body>
 
 </html>

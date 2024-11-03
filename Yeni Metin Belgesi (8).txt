@@ -1,1 +1,235 @@
 salty-cucumber-yrljp0dia9gmajbhnw4fdi6x.herokudns.com
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= product.name %> - Product Details
+    </title>
+    <link rel="stylesheet" href="/path/to/your/styles.css"> <!-- Ensure this path is correct -->
+    <!-- Include a library for icons, e.g., Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<style>
+    /* General Styles */
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 10, 20, 0.1);
+    }
+
+    h1 {
+        text-align: center;
+        color: #444;
+        margin-bottom: 20px;
+    }
+
+    /* Product Information */
+    .product-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+
+    .product-details {
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    /* Price Styling */
+    .price {
+        font-size: 1.5em;
+        color: #28a745;
+        /* Green for price */
+    }
+
+    /* Category Label */
+    .category-label {
+        font-weight: bold;
+        padding: 4px 8px;
+        border-radius: 4px;
+    }
+
+    .category-label.woman {
+        background-color: #FAD0D0;
+        /* Light Pink */
+        color: #E91E63;
+        /* Pink for women's category */
+    }
+
+    .category-label.man {
+        background-color: #D0E1FA;
+        /* Light Blue */
+        color: #2196F3;
+        /* Blue for men's category */
+    }
+
+    .category-label.unisex {
+        background-color: #E0E0E0;
+        /* Light Gray */
+        color: #9E9E9E;
+        /* Gray for unisex */
+    }
+
+    /* Notes Section */
+    .notes {
+        margin-top: 30px;
+    }
+
+    .notes-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .note-item {
+        text-align: center;
+        margin: 10px;
+        max-width: 120px;
+    }
+
+    .note-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+
+    /* Back Link */
+    .back-link {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 15px;
+        background-color: #007bff;
+        color: white;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+
+    .back-link:hover {
+        background-color: #0056b3;
+    }
+
+    /* Responsive Layout */
+    @media (min-width: 600px) {
+        .product-info {
+            flex-direction: row;
+            align-items: flex-start;
+        }
+
+        .product-details {
+            margin-left: 20px;
+            text-align: left;
+        }
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h1>
+            <%= product.name %>
+        </h1>
+        <div class="product-info">
+            <img src="<%= product.img %>" alt="<%= product.name %>" class="product-image">
+            <div class="product-details">
+                <p class="price"><strong>Price:</strong> $<%= product.price.toString() %>
+                </p>
+                <p><strong>Description:</strong>
+                    <%= product.content || 'No description available' %>
+                </p>
+                <p><strong>Category:</strong>
+                    <span class="category-label <%= product.category %>">
+                        <%= product.category.charAt(0).toUpperCase() + product.category.slice(1) %>
+                    </span>
+                </p>
+                <p><strong>Best Seller:</strong>
+                    <%= product.bestSellers ? 'Yes' : 'No' %>
+                </p>
+                <p><strong>Composition Description:</strong>
+                    <%= product.compositionDescription || 'No description available' %>
+                </p>
+            </div>
+        </div>
+
+        <div class="notes">
+            <h3>Upper Notes</h3>
+            <% if (product.upperNotes) { %>
+                <div class="notes-container">
+                    <% product.upperNotes.notes.forEach((note, index)=> { %>
+                        <div class="note-item">
+                            <p><strong>
+                                    <%= note %>
+                                </strong></p>
+                            <img src="<%= product.upperNotes.images[index] %>" alt="<%= note %>" class="note-image">
+                        </div>
+                        <% }); %>
+                </div>
+                <% } else { %>
+                    <p>No upper notes available.</p>
+                    <% } %>
+
+                        <h3>Heart Notes</h3>
+                        <% if (product.heartNotes) { %>
+                            <div class="notes-container">
+                                <% product.heartNotes.notes.forEach((note, index)=> { %>
+                                    <div class="note-item">
+                                        <p><strong>
+                                                <%= note %>
+                                            </strong></p>
+                                        <img src="<%= product.heartNotes.images[index] %>" alt="<%= note %>"
+                                            class="note-image">
+                                    </div>
+                                    <% }); %>
+                            </div>
+                            <% } else { %>
+                                <p>No heart notes available.</p>
+                                <% } %>
+
+                                    <h3>Base Notes</h3>
+                                    <% if (product.baseNotes) { %>
+                                        <div class="notes-container">
+                                            <% product.baseNotes.notes.forEach((note, index)=> { %>
+                                                <div class="note-item">
+                                                    <p><strong>
+                                                            <%= note %>
+                                                        </strong></p>
+                                                    <img src="<%= product.baseNotes.images[index] %>" alt="<%= note %>"
+                                                        class="note-image">
+                                                </div>
+                                                <% }); %>
+                                        </div>
+                                        <% } else { %>
+                                            <p>No base notes available.</p>
+                                            <% } %>
+        </div>
+
+        <a href="/products" class="back-link"><i class="fas fa-chevron-left"></i> Back to Products</a>
+    </div>
+</body>
+
+</html>
