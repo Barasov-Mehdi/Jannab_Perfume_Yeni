@@ -50,6 +50,7 @@ a {
                 flex-direction: column;
                 background-color: #607d8b;
                 margin-top: 5px;
+                z-index: 1;
 
                 a {
                     margin: 10px 5px;
@@ -154,6 +155,7 @@ a {
             display: flex;
             justify-content: center;
             width: 20%;
+
             i {
                 font-size: 30px;
             }
@@ -163,6 +165,7 @@ a {
             display: flex;
             justify-content: center;
             width: 40%;
+
             img {
                 width: 80px;
                 height: 140px;
@@ -179,7 +182,7 @@ a {
             i {
                 font-size: 30px;
                 margin-left: 20px;
-                
+
             }
 
             .show_product_card {
@@ -189,7 +192,7 @@ a {
                 margin-left: 2px;
                 text-align: end;
 
-                span{
+                span {
                     position: absolute;
                     right: -3px;
                     top: -9px;
@@ -372,10 +375,8 @@ a {
                 position: absolute;
                 left: 0;
                 bottom: 30px;
-                // border: 1px solid red;
                 width: 100%;
                 height: 70px;
-
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -395,65 +396,17 @@ a {
                         outline: none;
                         cursor: pointer;
                         margin-right: 0;
+                        font-size: 17px;
+                        font-weight: bold;
+
+                        i{
+                            font-weight: bold;
+                            line-height: 10px;
+                        }
                     }
                 }
 
             }
-
-            // .filterMan {
-            //     width: 100px;
-            //     position: absolute;
-            //     color: black;
-            //     font-size: 20px;
-            //     bottom: 80px;
-            //     left: 35px;
-            //     outline: none;
-            //     border: none;
-            //     font-style: italic;
-            //     border-top-left-radius:50px;
-            //     border-top-right-radius:50px;
-            //     border-bottom-right-radius:50px;
-            //     font-weight: bolder;
-            //     padding: 3px;
-
-
-            // }
-            // .filterWoman {
-            //     width: 100px;
-            //     position: absolute;
-            //     color: black;
-            //     font-size: 20px;
-            //     bottom: 47px;
-            //     left: 25px;
-            //     outline: none;
-            //     border: none;
-            //     font-style: italic;
-            //     border-top-left-radius:50px;
-            //     border-top-right-radius:50px;
-            //     border-bottom-right-radius:50px;
-            //     font-weight: bolder;
-            //     padding: 3px;
-
-
-            // }
-            // .filterUnisex {
-            //     width: 100px;
-            //     position: absolute;
-            //     color: black;
-            //     font-size: 20px;
-            //     bottom:15px;
-            //     left: 12px;
-            //     outline: none;
-            //     border: none;
-            //     font-style: italic;
-            //     border-top-left-radius:50px;
-            //     border-top-right-radius:50px;
-            //     border-bottom-right-radius:50px;
-            //     font-weight: bolder;
-            //     padding: 3px;
-
-            // }
-
 
             .slider_show {
                 width: 100%;
@@ -844,98 +797,92 @@ a {
         }
     }
 
-    .footer {
-        display: none;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 15px;
-        background-color: #fafafa; // Açık ana arka plan rengi
-        box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1); // Hafif gölge efekti
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        z-index: 1000;
+    // .footer {
+    //     display: none;
+    //     justify-content: space-between;
+    //     align-items: center;
+    //     padding: 10px 15px;
+    //     background-color: #fafafa; // Açık ana arka plan rengi
+    //     box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1); // Hafif gölge efekti
+    //     position: fixed;
+    //     bottom: 0;
+    //     width: 100%;
+    //     z-index: 1000;
 
-        // Her bir ikon için genel stil
-        .icon-box {
-            background-color: #e0e0e0; // Diğer kutular için uyumlu renk
-            padding: 12px; // Biraz daha geniş padding
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: background-color 0.3s, transform 0.3s;
+    //     // Her bir ikon için genel stil
+    //     .icon-box {
+    //         background-color: #e0e0e0; // Diğer kutular için uyumlu renk
+    //         padding: 12px; // Biraz daha geniş padding
+    //         border-radius: 50%;
+    //         display: flex;
+    //         justify-content: center;
+    //         align-items: center;
+    //         transition: background-color 0.3s, transform 0.3s;
 
-            i {
-                color: #333; // Daha koyu gri tonaj
-                font-size: 1.4em;
-            }
+    //         i {
+    //             color: #333; // Daha koyu gri tonaj
+    //             font-size: 1.4em;
+    //         }
 
-            i:nth-child(1) {
-                color: #333; // Daha koyu gri tonaj
-                font-size: 1.4em;
-                font-weight: bolder;
-            }
+    //         i:nth-child(1) {
+    //             color: #333; // Daha koyu gri tonaj
+    //             font-size: 1.4em;
+    //             font-weight: bolder;
+    //         }
 
-            &:hover {
-                background-color: #d0d0d0; // Hover'da biraz daha koyu arka plan
-                transform: translateY(-2px); // Hover'da hafif yukarı hareket
-            }
-        }
+    //         &:hover {
+    //             background-color: #d0d0d0; // Hover'da biraz daha koyu arka plan
+    //             transform: translateY(-2px); // Hover'da hafif yukarı hareket
+    //         }
+    //     }
 
 
-        // .mb_basket {
-        //     position: relative;
-        //     background-color: #545b62; // Sepet için daha açık renk
-        //     padding: 16px; // Biraz daha geniş padding
-        //     border-radius: 50%;
-        //     display: flex;
-        //     justify-content: center;
-        //     align-items: center;
-        //     transform: translateY(-10px); // Ortada ve yukarıda olacak
+    //     // .mb_basket {
+    //     //     position: relative;
+    //     //     background-color: #545b62; // Sepet için daha açık renk
+    //     //     padding: 16px; // Biraz daha geniş padding
+    //     //     border-radius: 50%;
+    //     //     display: flex;
+    //     //     justify-content: center;
+    //     //     align-items: center;
+    //     //     transform: translateY(-10px); // Ortada ve yukarıda olacak
 
-        //     i {
-        //         color: white;
-        //         font-size: 1.8em;
-        //     }
+    //     //     i {
+    //     //         color: white;
+    //     //         font-size: 1.8em;
+    //     //     }
 
-        //     .productNo {
-        //         position: absolute;
-        //         top: -5px;
-        //         right: -5px;
-        //         background-color: #ffc42d;
-        //         color: black;
-        //         border-radius: 50%;
-        //         padding: 5px 8px;
-        //         font-size: 0.6em;
-        //     }
-        // }
+    //     //     .productNo {
+    //     //         position: absolute;
+    //     //         top: -5px;
+    //     //         right: -5px;
+    //     //         background-color: #ffc42d;
+    //     //         color: black;
+    //     //         border-radius: 50%;
+    //     //         padding: 5px 8px;
+    //     //         font-size: 0.6em;
+    //     //     }
+    //     // }
 
-        // Diğer ikon kutuları düzenlemesi
-        .wp_contact,
-        .phone_contact,
-        .help,
-        .other_icon {
-            .icon-box {
-                width: 45px;
-                height: 45px;
-            }
-        }
+    //     // Diğer ikon kutuları düzenlemesi
+    //     .wp_contact,
+    //     .phone_contact,
+    //     .help,
+    //     .other_icon {
+    //         .icon-box {
+    //             width: 45px;
+    //             height: 45px;
+    //         }
+    //     }
 
-        // Footer container düzenlemesi
-        .footer-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
-    }
-
-    .message_link {
-        position: fixed;
-        right: 20px;
-        bottom: 30px;
-    }
+    //     // Footer container düzenlemesi
+    //     .footer-container {
+    //         display: flex;
+    //         justify-content: space-between;
+    //         align-items: center;
+    //         width: 100%;
+    //     }
+    // }
 
     .left_menu {
         display: none;
@@ -1062,7 +1009,7 @@ a {
         }
     }
 
-    .wp_mobile{
+    .wp_mobile {
         position: fixed;
         right: 10px;
         bottom: 10px;
@@ -1074,10 +1021,16 @@ a {
         justify-content: center;
         align-items: center;
 
-        i{
+        i {
             color: white;
             font-size: 30px;
         }
+    }
+
+    .footer{
+        width: 100%;
+        height: 35vh;
+        background-color: #545b62;
     }
 }
 
@@ -1135,10 +1088,6 @@ a {
             animation: scroll-left 5s linear infinite;
         }
 
-        .footer {
-            display: flex;
-        }
-
         .message_link {
             display: none;
         }
@@ -1154,5 +1103,8 @@ a {
                 font-weight: bold;
             }
         }
+
+
+
     }
 }
