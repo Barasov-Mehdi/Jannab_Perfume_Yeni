@@ -12,69 +12,87 @@
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             background-color: #f4f4f4;
             color: #333;
             line-height: 1.6;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 700px;
             margin: auto;
             background: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
         }
 
         h1 {
             text-align: center;
             color: #444;
             font-size: 2em;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
-        .product-info {
+        .product-images-container {
             display: flex;
             flex-direction: column;
-            align-items: center;
             border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 15px;
+            border-radius: 10px;
+            overflow: hidden;
             background-color: #f9f9f9;
             margin-bottom: 20px;
         }
 
         .product-image {
-            max-width: 70%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            margin-bottom: 15px;
-        }
-
-        .product-details {
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        .price {
-            font-size: 1.5em;
-            color: #28a745;
-            margin: 5px 0;
+            width: 100%;
+            height: auto; 
+            max-height: 300px; 
+            object-fit: contain;
+            border-bottom: 1px solid #ddd;
         }
 
         .additional-images {
             display: flex;
-            justify-content: space-between;
-            margin-top: 15px;
-            width: 70%;
+            justify-content: center;
+            padding: 10px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .additional-images img {
-            width: 32%;
+            width: 30%;
+            max-width: 80px; 
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .additional-images img:hover {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .price {
+            font-size: 1.8em;
+            color: #28a745;
+            margin: 5px 0;
+        }
+
+        .details-section {
+            text-align: center;
         }
 
         .rating {
@@ -90,7 +108,7 @@
 
         .category-label {
             font-weight: bold;
-            padding: 3px 6px;
+            padding: 5px 10px;
             border-radius: 4px;
             display: inline-block;
             margin-top: 5px;
@@ -111,33 +129,10 @@
             color: #9E9E9E;
         }
 
-        .price-table-container {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 15px;
-            background-color: #f9f9f9;
-        }
-
-        .price-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .price-table th,
-        .price-table td {
-            padding: 12px;
-            text-align: center;
-            border: 1px solid #ddd;
-        }
-
-        .price-table th {
-            background-color: #f4f4f4;
-        }
-
-        .notes-section {
+        .section-container {
             margin-top: 20px;
             border: 1px solid #ddd;
-            border-radius: 8px;
+            border-radius: 10px;
             padding: 15px;
             background-color: #f9f9f9;
         }
@@ -146,6 +141,7 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+            gap: 10px;
         }
 
         .note-item {
@@ -169,27 +165,40 @@
             border-radius: 4px;
             text-decoration: none;
             text-align: center;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.2s;
             font-weight: bold;
         }
 
         .back-link:hover {
             background-color: #0056b3;
+            transform: scale(1.05);
         }
 
-        @media (min-width: 600px) {
-            .product-info {
-                flex-direction: row;
-                align-items: flex-start;
+        /* Responsive Styling */
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
             }
 
-            .product-details {
-                margin-left: 15px;
-                text-align: left;
+            .product-images-container {
+                flex-direction: column;
             }
 
             .product-image {
-                max-width: 50%;
+                max-height: 200px; /* Küçük ekranlar için yüksekliği küçült */
+            }
+
+            .additional-images img {
+                width: 45%;
+                max-width: 80px; /* Ekran boyutuna göre değişir */
+            }
+
+            h1, .price {
+                font-size: 1.5em; /* Küçük ekranlar için font boyutunu düşür */
+            }
+
+            .product-info {
+                padding: 10px;
             }
         }
     </style>
@@ -199,15 +208,18 @@
     <div class="container">
         <h1><%= product.name %></h1>
 
-        <div class="product-info">
+        <div class="product-images-container">
             <img src="<%= product.img %>" alt="<%= product.name %> şəkli" class="product-image">
             <div class="additional-images">
                 <img src="/img/15ml.JPG" alt="Görüntü 1">
                 <img src="/img/30ml.JPG" alt="Görüntü 2">
                 <img src="/img/50ml.JPG" alt="Görüntü 3">
             </div>
-            <section class="product-details">
-                <p class="price"><strong>Qiymət:</strong> $<%= product.price.toString() %></p>
+        </div>
+
+        <div class="product-info">
+            <div class="details-section">
+                <p class="price"><strong>Qiymət:</strong> ₼ <%= product.price.toString() %></p>
 
                 <div class="rating">
                     <span class="star"><i class="fas fa-star"></i></span>
@@ -225,10 +237,10 @@
                 </p>
                 <p><strong>Ən Çox Satılan:</strong> <%= product.bestSellers ? 'Bəli' : 'Xeyir' %></p>
                 <p><strong>Kompozisiya:</strong> <%= product.compositionDescription || 'Məlumat mövcud deyil' %></p>
-            </section>
+            </div>
         </div>
 
-        <section class="price-table-container">
+        <section class="section-container">
             <h3>Qiymət Cədvəli</h3>
             <table class="price-table" aria-label="Məhsul qiyməti həcminə görə">
                 <thead>
@@ -240,58 +252,58 @@
                 <tbody>
                     <% const volumePrices = [15, 30, 50]; %>
                     <% volumePrices.forEach(function(volume) {
-                        const price = (product.price * (volume)).toFixed(2); %>
+                        const price = (product.price * volume).toFixed(2); %>
                         <tr>
                             <td><%= volume %> ml</td>
-                            <td><strong>$<%= price %></strong></td>
+                            <td><strong>₼ <%= price %></strong></td>
                         </tr>
                     <% }); %>
                 </tbody>
             </table>
         </section>
 
-        <section class="notes-section">
-            <h4>Üst Qeydlər</h4>
-            <% if (product.upperNotes && product.upperNotes.notes.length) { %>
-                <div class="notes-container">
-                    <% product.upperNotes.notes.forEach((note, index)=> { %>
+        <section class="section-container">
+            <h4 style="text-align: center;">Üst notları:</h4>
+            <div class="notes-container">
+                <% if (product.upperNotes && product.upperNotes.notes.length) { %>
+                    <% product.upperNotes.notes.forEach((note, index) => { %>
                         <div class="note-item">
                             <p><strong><%= note %></strong></p>
                             <img src="<%= product.upperNotes.images[index] %>" alt="<%= note %>" class="note-image">
                         </div>
                     <% }); %>
-                </div>
-            <% } else { %>
-                <p>Üst qeydlər mövcud deyil.</p>
-            <% } %>
+                <% } else { %>
+                    <p>Üst notları: mövcud deyil.</p>
+                <% } %>
+            </div>
 
-            <h4>Ürək Qeydləri</h4>
-            <% if (product.heartNotes && product.heartNotes.notes.length) { %>
-                <div class="notes-container">
-                    <% product.heartNotes.notes.forEach((note, index)=> { %>
+            <h4 style="text-align: center;">Ürək notları:</h4>
+            <div class="notes-container">
+                <% if (product.heartNotes && product.heartNotes.notes.length) { %>
+                    <% product.heartNotes.notes.forEach((note, index) => { %>
                         <div class="note-item">
                             <p><strong><%= note %></strong></p>
                             <img src="<%= product.heartNotes.images[index] %>" alt="<%= note %>" class="note-image">
                         </div>
                     <% }); %>
-                </div>
-            <% } else { %>
-                <p>Ürək qeydləri mövcud deyil.</p>
-            <% } %>
+                <% } else { %>
+                    <p>Ürək notları: mövcud deyil.</p>
+                <% } %>
+            </div>
 
-            <h4>Base Qeydləri</h4>
-            <% if (product.baseNotes && product.baseNotes.notes.length) { %>
-                <div class="notes-container">
-                    <% product.baseNotes.notes.forEach((note, index)=> { %>
+            <h4 style="text-align: center;">Baza notları:</h4>
+            <div class="notes-container">
+                <% if (product.baseNotes && product.baseNotes.notes.length) { %>
+                    <% product.baseNotes.notes.forEach((note, index) => { %>
                         <div class="note-item">
                             <p><strong><%= note %></strong></p>
                             <img src="<%= product.baseNotes.images[index] %>" alt="<%= note %>" class="note-image">
                         </div>
                     <% }); %>
-                </div>
-            <% } else { %>
-                <p>Base qeydləri mövcud deyil.</p>
-            <% } %>
+                <% } else { %>
+                    <p>Baza notları: mövcud deyil.</p>
+                <% } %>
+            </div>
         </section>
 
         <a href="/" class="back-link" aria-label="Məhsul siyahısına keçid">
