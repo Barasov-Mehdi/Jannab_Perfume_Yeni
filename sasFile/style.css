@@ -122,6 +122,7 @@ a {
 .container .mb_header {
   display: none;
   width: 100%;
+  height: 100px;
   justify-content: space-around;
   align-items: center;
   border-bottom: 0.5px solid rgb(167, 166, 166);
@@ -132,8 +133,8 @@ a {
   font-size: 30px;
 }
 .container .mb_header .logo_mb img {
-  width: 100px;
-  height: 150px;
+  width: 90px;
+  height: 140px;
   -o-object-fit: contain;
      object-fit: contain;
 }
@@ -288,53 +289,31 @@ a {
   flex-direction: column;
   position: relative;
 }
-.container .slider_box .slıdex_show_box .filterMan {
-  width: 100px;
+.container .slider_box .slıdex_show_box .slider_box_buttons {
   position: absolute;
-  color: black;
-  font-size: 20px;
-  bottom: 80px;
-  left: 35px;
-  outline: none;
-  border: none;
-  font-style: italic;
-  border-top-left-radius: 50px;
-  border-top-right-radius: 50px;
-  border-bottom-right-radius: 50px;
-  font-weight: bolder;
-  padding: 3px;
+  left: 0;
+  bottom: 30px;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-right: 10px;
 }
-.container .slider_box .slıdex_show_box .filterWoman {
-  width: 100px;
-  position: absolute;
-  color: black;
-  font-size: 20px;
-  bottom: 47px;
-  left: 25px;
-  outline: none;
-  border: none;
-  font-style: italic;
-  border-top-left-radius: 50px;
-  border-top-right-radius: 50px;
-  border-bottom-right-radius: 50px;
-  font-weight: bolder;
-  padding: 3px;
+.container .slider_box .slıdex_show_box .slider_box_buttons .nese {
+  width: 100%;
+  height: auto;
+  padding-right: 5px;
 }
-.container .slider_box .slıdex_show_box .filterUnisex {
-  width: 100px;
-  position: absolute;
-  color: black;
-  font-size: 20px;
-  bottom: 15px;
-  left: 12px;
-  outline: none;
+.container .slider_box .slıdex_show_box .slider_box_buttons .nese button {
+  margin: 5px 10px;
+  background-color: #ffffff;
+  padding: 3px 7px;
   border: none;
-  font-style: italic;
-  border-top-left-radius: 50px;
-  border-top-right-radius: 50px;
-  border-bottom-right-radius: 50px;
-  font-weight: bolder;
-  padding: 3px;
+  outline: none;
+  cursor: pointer;
+  margin-right: 0;
 }
 .container .slider_box .slıdex_show_box .slider_show {
   width: 100%;
@@ -874,7 +853,7 @@ a {
     width: 100%;
     height: 30vh;
     overflow: hidden;
-    margin-top: 160px;
+    margin-top: 130px;
   }
   .container .slider_box div {
     width: 100%;

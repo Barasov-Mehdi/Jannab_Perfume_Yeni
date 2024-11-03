@@ -86,21 +86,32 @@
     <main class="slider_box">
         <div class="slıdex_show_box">
             <img class="slider_show" src="" alt="Jannab">
-            <button class="filterMan" onclick="filterProducts('man')">Man</button>
-            <button class="filterWoman" onclick="filterProducts('woman')">Woman</button>
-            <button class="filterUnisex" onclick="filterProducts('unisex')">Unisex</button>
-            <!-- <button class="filterAll" onclick="filterProducts()">Tüm Ürünler</button> Tüm ürünleri gösteren buton -->
+            <div class="slider_box_buttons">
+                <div class="nese">
+                    <button id="allProductsButton" onclick="filterAllProducts()">Bütün Ətirlər → </button>
+                    <button class="filterWoman" onclick="filterProducts('woman')">Woman → </button>
+                </div>
+
+
+                <div class="nese">
+                    <button class="filterUnisex" onclick="filterProducts('unisex')">Unisex → </button>
+                    <!-- <button class="filterAll" onclick="filterProducts()">Tüm Ürünler</button> Tüm ürünleri gösteren buton -->
+                    <button class="filterMan" onclick="filterProducts('man')">Man → </button>
+                </div>
+
+            </div>
+
         </div>
     </main>
 
     <section class="buttons_filter">
         <button id="newArrivalsButton" onclick="filterNewArrivals()">Yeni Ətirlər</button>
         <button id="bestSellersButton" onclick="filterBestSellers()">Çox Satılanlar</button>
-        <button id="allProductsButton" onclick="filterAllProducts()">Bütün Ətirlər</button>
+        <button>Endirim Malları</button>
     </section>
 
     <section class="products" id="productsContainer">
-        <% products.forEach(product => { %>
+        <% products.forEach(product=> { %>
             <div class="product" data-category="<%= product.category %>"> <!--Kategori bilgisini ekliyoruz-->
                 <a target="_blank" href="/products/<%= product._id %>">
                     <div class="image-container">
@@ -138,7 +149,7 @@
                     </a>
                 </div>
             </div>
-        <% }) %>
+            <% }) %>
     </section>
 
     <footer class="footer">
