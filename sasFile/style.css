@@ -166,10 +166,10 @@ a {
 }
 .container .mb_header .mb_else_icons .show_product_card span {
   position: absolute;
-  right: -6px;
-  top: -10px;
+  right: -3px;
+  top: -9px;
   color: black;
-  font-size: 16px;
+  font-size: 17px;
 }
 .container .mb_text {
   width: 100%;
