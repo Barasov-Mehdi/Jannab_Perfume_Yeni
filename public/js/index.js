@@ -276,7 +276,7 @@ function displayProducts(products) {
 
         const discount = product.discount ? parseFloat(product.discount.$numberDecimal) : 0;
         const discountPercentage = discount > 0 ? discount : 0;
-        
+
         // Calculate discounted prices for different volumes
         const discountedPrice15ml = discount > 0 ? (originalPrice * (15 / 1) * (1 - discount / 100)).toFixed(1) : (originalPrice * (15 / 1)).toFixed(2);
         const discountedPrice30ml = discount > 0 ? (originalPrice * (30 / 1) * (1 - discount / 100)).toFixed(1) : (originalPrice * (30 / 1)).toFixed(2);
@@ -291,9 +291,7 @@ function displayProducts(products) {
                     </div>
                     <div class="product-details">
                         <h2>${product.name}</h2>
-                        <div class="rating">
-                            ${[...Array(5)].map((_, i) => `<span class="star ${i < product.rating ? 'filled' : ''}">★</span>`).join('')}
-                        </div>
+                        
                     </div>
                 </a>
                 <div class="product-footer">
@@ -366,10 +364,10 @@ function renderProducts(products) {
         const originalPrice = typeof product.price === 'object' && product.price.$numberDecimal
             ? parseFloat(product.price.$numberDecimal)
             : product.price;
-        
+
         // Check if there's a discount and calculate discounted prices
-        const discount = product.discount && typeof product.discount === 'object' && product.discount.$numberDecimal 
-            ? parseFloat(product.discount.$numberDecimal) 
+        const discount = product.discount && typeof product.discount === 'object' && product.discount.$numberDecimal
+            ? parseFloat(product.discount.$numberDecimal)
             : 0; // Defaults to 0 if no valid discount
 
         const discountedPrice = discount > 0 ? originalPrice * (1 - discount / 100) : originalPrice; // Calculate discounted price
@@ -388,9 +386,7 @@ function renderProducts(products) {
                     </div>
                     <div class="product-details">
                         <h2>${product.name}</h2>
-                        <div class="rating">
-                            ${[...Array(5)].map((_, i) => `<span class="star ${i < product.rating ? 'filled' : ''}">★</span>`).join('')}
-                        </div>
+                        
                     </div>
                 </a>
                 <div class="product-footer">
@@ -415,3 +411,6 @@ function renderProducts(products) {
     });
 }
 
+{/* <div class="rating">
+    ${[...Array(5)].map((_, i) => `<span class="star ${i < product.rating ? 'filled' : ''}">★</span>`).join('')}
+</div> */}
