@@ -567,7 +567,7 @@ a {
   /* Ekrana göre genişlik */
   max-width: 400px;
   /* Maksimum genişlik sınırlaması */
-  height: 55vh;
+  height: 65vh;
   /* Otomatik yükseklik */
   display: flex;
   flex-direction: column;
