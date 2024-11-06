@@ -14,6 +14,37 @@ router.get('/:id', async (req, res) => {
 
         const product = await Products.findById(productId); // Ürünü bulmaya çalış
         if (product) {
+            // Ürünün 1ml fiyatını al
+            const unitPrice = product.price; // Burada, ürün fiyatının 1ml için olduğunu varsayıyoruz
+            let discountRate = 0;
+
+            // Eğer indirim varsa, oranı al
+            if (product.discount) {
+                discountRate = typeof product.discount === 'object' && product.discount.$numberDecimal 
+                ? parseFloat(product.discount.$numberDecimal) 
+                : parseFloat(product.discount);
+            }
+
+            // Hacimlerin listesi
+            const volumes = [15, 30, 50];
+            const originalPrices = {};
+            const discountedPrices = {};
+
+            volumes.forEach(volume => {
+                const originalPrice = (unitPrice * volume).toFixed(2); // Orijinal fiyat hesapla
+
+                // İndirimli fiyat hesapla, indirim oranını kullan
+                const discountedPrice = (originalPrice * (1 - (discountRate / 100))).toFixed(2); // İndirimli fiyatı hesapla
+
+                // Hesaplanan fiyatları ata
+                originalPrices[volume] = originalPrice;
+                discountedPrices[volume] = discountedPrice;
+            });
+
+            // Hesaplanan fiyatları ürüne ekle
+            product.originalPrices = originalPrices;
+            product.discountedPrices = discountedPrices;
+
             res.render('productDetails', { product }); // Ürünü render et
         } else {
             res.status(404).send('Ürün bulunamadı'); // Ürün bulunamazsa hata mesajı
@@ -77,7 +108,6 @@ router.get('/items', async (req, res) => {
         res.status(500).json({ error: 'Sunucu hatası' });
     }
 });
-
 
 router.get('/filter/:gender', async (req, res) => {
     const { gender } = req.params;

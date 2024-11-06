@@ -300,19 +300,19 @@
                 <thead>
                     <tr>
                         <th>Həcmi (ml)</th>
-                        <th>Qiymət</th>
+                        <th>Orijinal Qiymət</th>
+                        <th>İndirimli Qiymət</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <% const volumePrices=[15, 30, 50]; %>
-                        <% volumePrices.forEach(function(volume) { const price=(product.price * volume).toFixed(2); %>
-                            <tr>
-                                <td>
-                                    <%= volume %> ml
-                                </td>
-                                <td><strong>₼ <%= price %></strong></td>
-                            </tr>
-                            <% }); %>
+                    <% const volumes = [15, 30, 50]; %>
+                    <% volumes.forEach(volume => { %>
+                        <tr>
+                            <td><%= volume %> ml</td>
+                            <td><strong>₼ <%= product.originalPrices[volume] %></strong></td>
+                            <td><strong>₼ <%= product.discountedPrices[volume] %></strong></td>
+                        </tr>
+                    <% }); %>
                 </tbody>
             </table>
         </section>
