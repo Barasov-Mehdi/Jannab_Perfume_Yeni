@@ -144,7 +144,6 @@ a {
   height: 30px;
   -o-object-fit: contain;
      object-fit: contain;
-  margin-left: 10px;
 }
 .container .mb_header .logo_mb {
   display: flex;
