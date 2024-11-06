@@ -2,10 +2,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
     margin: 0;
+    font-family: 'Poppins', sans-serif;
 }
 
 a {
@@ -399,7 +401,7 @@ a {
                         font-size: 17px;
                         font-weight: bold;
 
-                        i{
+                        i {
                             font-weight: bold;
                             line-height: 10px;
                         }
@@ -471,11 +473,11 @@ a {
         padding: 20px;
         margin: 0px 0 50px 0;
         width: 95%;
-
+    
         .volume-select {
             margin: 10px 0; // Üst ve alt boşluk
             position: relative; // İçerik düzenlemesi için konumlandırma
-
+    
             select.volume-options {
                 padding: 10px 20px; // İç boşluk
                 border: 1px solid #ddd; // Kenar rengi
@@ -484,28 +486,36 @@ a {
                 font-size: 1em; // Yazı boyutu
                 color: #333; // Yazı rengi
                 cursor: pointer; // İmleci işaretçi yap
-                font-size: 700;
-
+                font-weight: 700; // Yazı kalınlığı
+    
                 // Ok simgesinin yerini belirlemek için iç boşluğu artırıyoruz
                 padding-right: 40px;
                 background-image: url('data:image/png;base64,...'); // Özel ok simgesi ekle
                 background-repeat: no-repeat;
                 background-position: right 10px center; // Pozisyon
                 background-size: 12px; // Boyut
-
-                transition: border-color 0.3s; // Kenar rengi geçişi
-
+    
+                transition: border-color 0.3s, background-color 0.3s; // Kenar rengi ve arka plan geçişi
+    
                 &:focus {
                     outline: none; // Varsayılan odak çerçevesini kaldır
                     border-color: #ecc14d; // Odaklandığında sınır rengi değişimi
+                    background-color: #f7f7f7; // Arka plan rengi değişimi
                 }
-
+    
                 option {
                     padding: 10px; // Seçenekler için iç boşluk
+                    background-color: #fff; // Arka plan rengi
+                    color: #333; // Yazı rengi
+                    border: none; // Kenar yok
+                }
+    
+                option:hover {
+                    background-color: #f2f2f2; // Seçenek üzerine gelindiğinde arka plan rengi
                 }
             }
         }
-
+    
         .product {
             border: 1px solid #ddd; // Ürün kartı için kenar
             border-radius: 8px;
@@ -516,75 +526,88 @@ a {
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
             position: relative;
-
+    
             &:hover {
                 transform: translateY(-5px);
                 box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
             }
-
+    
             .image-container {
                 width: 100%;
                 height: 200px;
                 border-radius: 5px;
                 background-color: #faefe9;
                 overflow: hidden;
-
+                position: relative;
+    
+                .discount-badge {
+                    position: absolute;
+                    top: 10px; // Konumu ayarlamak için
+                    left: 10px; // Konumu ayarlamak için
+                    background-color: red; // Arka plan rengi
+                    color: white; // Yazı rengi
+                    padding: 5px 5px; // İç boşluk
+                    border-radius: 5px; // Kenar yuvarlama
+                    font-weight: bold; // Yazı kalınlığı
+                    font-size: 15px;
+                }
+    
                 img {
                     width: 100%;
                     height: 100%;
                     object-fit: contain; // Resmin orantılı görünümü
                     transition: transform 0.3s;
-
+    
                     &:hover {
                         transform: scale(1.05); // Hover durumunda büyüme
                     }
                 }
             }
-
+    
             .product-details {
                 margin-top: 10px;
-
+    
                 h2 {
                     font-size: 1.25em;
                     margin: 10px 0;
                     color: #333;
                     text-transform: uppercase;
                 }
-
+    
                 .rating {
                     display: flex;
                     justify-content: center;
                     margin: 10px 0;
-
+    
                     .star {
                         color: lightgray;
-
+    
                         &.filled {
                             color: gold;
                         }
-
+    
                         font-size: 1.5em;
                         margin: 0 2px;
                     }
-
+    
                     .star:nth-child(1) {
                         color: gold;
                     }
-
+    
                     .star:nth-child(2) {
                         color: gold;
                     }
-
+    
                     .star:nth-child(3) {
                         color: gold;
                     }
-
+    
                     .star:nth-child(4) {
                         color: gold;
                     }
                 }
             }
-
+    
             .product-footer {
                 display: flex;
                 justify-content: space-between;
@@ -594,13 +617,13 @@ a {
                 background-color: white;
                 margin: 3px 0;
                 border-top: 0.5px solid grey;
-
+    
                 .price {
                     font-weight: bold;
                     font-size: 1.25em;
                     color: #ecc14d; // Fiyat rengi
                 }
-
+    
                 a.add-to-cart {
                     display: inline-flex;
                     align-items: center;
@@ -611,7 +634,7 @@ a {
                     border-radius: 50%;
                     font-size: 1.5em;
                     transition: background-color 0.3s, color 0.3s;
-
+    
                     &:hover {
                         color: white;
                         background-color: rgba(0, 0, 0, 0.1);
@@ -620,7 +643,7 @@ a {
             }
         }
     }
-
+    
     .product_card {
         width: 92%;
         /* Ekrana göre genişlik */
@@ -797,93 +820,6 @@ a {
         }
     }
 
-    // .footer {
-    //     display: none;
-    //     justify-content: space-between;
-    //     align-items: center;
-    //     padding: 10px 15px;
-    //     background-color: #fafafa; // Açık ana arka plan rengi
-    //     box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1); // Hafif gölge efekti
-    //     position: fixed;
-    //     bottom: 0;
-    //     width: 100%;
-    //     z-index: 1000;
-
-    //     // Her bir ikon için genel stil
-    //     .icon-box {
-    //         background-color: #e0e0e0; // Diğer kutular için uyumlu renk
-    //         padding: 12px; // Biraz daha geniş padding
-    //         border-radius: 50%;
-    //         display: flex;
-    //         justify-content: center;
-    //         align-items: center;
-    //         transition: background-color 0.3s, transform 0.3s;
-
-    //         i {
-    //             color: #333; // Daha koyu gri tonaj
-    //             font-size: 1.4em;
-    //         }
-
-    //         i:nth-child(1) {
-    //             color: #333; // Daha koyu gri tonaj
-    //             font-size: 1.4em;
-    //             font-weight: bolder;
-    //         }
-
-    //         &:hover {
-    //             background-color: #d0d0d0; // Hover'da biraz daha koyu arka plan
-    //             transform: translateY(-2px); // Hover'da hafif yukarı hareket
-    //         }
-    //     }
-
-
-    //     // .mb_basket {
-    //     //     position: relative;
-    //     //     background-color: #545b62; // Sepet için daha açık renk
-    //     //     padding: 16px; // Biraz daha geniş padding
-    //     //     border-radius: 50%;
-    //     //     display: flex;
-    //     //     justify-content: center;
-    //     //     align-items: center;
-    //     //     transform: translateY(-10px); // Ortada ve yukarıda olacak
-
-    //     //     i {
-    //     //         color: white;
-    //     //         font-size: 1.8em;
-    //     //     }
-
-    //     //     .productNo {
-    //     //         position: absolute;
-    //     //         top: -5px;
-    //     //         right: -5px;
-    //     //         background-color: #ffc42d;
-    //     //         color: black;
-    //     //         border-radius: 50%;
-    //     //         padding: 5px 8px;
-    //     //         font-size: 0.6em;
-    //     //     }
-    //     // }
-
-    //     // Diğer ikon kutuları düzenlemesi
-    //     .wp_contact,
-    //     .phone_contact,
-    //     .help,
-    //     .other_icon {
-    //         .icon-box {
-    //             width: 45px;
-    //             height: 45px;
-    //         }
-    //     }
-
-    //     // Footer container düzenlemesi
-    //     .footer-container {
-    //         display: flex;
-    //         justify-content: space-between;
-    //         align-items: center;
-    //         width: 100%;
-    //     }
-    // }
-
     .left_menu {
         display: none;
         transition: all 0.3s ease;
@@ -1027,7 +963,7 @@ a {
         }
     }
 
-    .footer{
+    .footer {
         width: 100%;
         height: 35vh;
         background-color: #545b62;

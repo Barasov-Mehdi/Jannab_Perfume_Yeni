@@ -3,10 +3,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
   margin: 0;
+  font-family: "Poppins", sans-serif;
 }
 
 a {
@@ -410,20 +412,27 @@ a {
   font-size: 1em;
   color: #333;
   cursor: pointer;
-  font-size: 700;
+  font-weight: 700;
   padding-right: 40px;
   background-image: url("data:image/png;base64,...");
   background-repeat: no-repeat;
   background-position: right 10px center;
   background-size: 12px;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s, background-color 0.3s;
 }
 .container .products .volume-select select.volume-options:focus {
   outline: none;
   border-color: #ecc14d;
+  background-color: #f7f7f7;
 }
 .container .products .volume-select select.volume-options option {
   padding: 10px;
+  background-color: #fff;
+  color: #333;
+  border: none;
+}
+.container .products .volume-select select.volume-options option:hover {
+  background-color: #f2f2f2;
 }
 .container .products .product {
   border: 1px solid #ddd;
@@ -446,6 +455,18 @@ a {
   border-radius: 5px;
   background-color: #faefe9;
   overflow: hidden;
+  position: relative;
+}
+.container .products .product .image-container .discount-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: red;
+  color: white;
+  padding: 5px 5px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 15px;
 }
 .container .products .product .image-container img {
   width: 100%;

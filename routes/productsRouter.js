@@ -78,6 +78,19 @@ router.get('/items', async (req, res) => {
     }
 });
 
+
+router.get('/filter/:gender', async (req, res) => {
+    const { gender } = req.params;
+
+    try {
+        const products = await Products.find({ category: gender });
+        res.json(products);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Server Error');
+    }
+});
+
 router.get('/api/products', async (req, res) => {
     const category = req.query.category; // Kategoriyi sorgudan al
 
@@ -89,6 +102,5 @@ router.get('/api/products', async (req, res) => {
         res.status(500).send('Server Error');
     }
 });
-
 
 module.exports = router;

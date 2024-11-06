@@ -139,23 +139,30 @@ function displaySearchResults(products) {
 }
 
 function addToCart(id, name, img, price, volume) {
-    price = parseFloat(price); // Sayıya dönüştür
+    price = parseFloat(price); // Convert to number
     if (isNaN(price)) {
-        console.warn(`Kaydedilemiyor, geçersiz fiyat: ${price}`); // Hata mesajı
-        return; // Geçersiz fiyat durumu
+        console.warn(`Kaydedilemiyor, geçersiz fiyat: ${price}`);
+        return;
     }
 
-    let priceMultiplier = volume / 1; // Hacim oranını hesapla
-    let calculatedPrice = price * priceMultiplier; // Hacmi dikkate alarak fiyatı çarp
+    const volumeSelect = document.querySelector(`#volumeSelect_${id}`);
+    let discountedPrice = price; // Default to the primary price
 
-    // Ürün anahtarını hacim ile birleştir
-    const cartKey = `${id}_${volume}`; // Örneğin: "productId_30"
+    // Get the selected price based on volume
+    if (volumeSelect && volumeSelect.selectedOptions.length > 0) {
+        const selectedOption = volumeSelect.selectedOptions[0];
+        if (selectedOption.dataset.price) {
+            discountedPrice = parseFloat(selectedOption.dataset.price); // Use the selected volume price from data-attribute
+        }
+    }
+
+    const cartKey = `${id}_${volume}`; // e.g., "productId_30"
 
     if (!cart[cartKey]) {
-        cart[cartKey] = { name, img, price: calculatedPrice, quantity: 0, volume }; // Hacmi burada kaydediyoruz
+        cart[cartKey] = { name, img, price: discountedPrice, quantity: 0, volume };
     }
-    cart[cartKey].quantity++;
-    updateCartDisplay();
+    cart[cartKey].quantity++; // Increase the quantity
+    updateCartDisplay(); // Refresh the cart display
 }
 
 function updateCartDisplay() {
@@ -221,18 +228,34 @@ document.getElementById('viewDetailsButton').onclick = function () {
     window.location.href = '/productDetails';
 };
 
-async function filterBestSellers() {
-    fetch('/bestsellers')
-        .then(response => response.json())
-        .then(data => displayProducts(data))
-        .catch(error => console.error('Error fetching best sellers:', error));
+async function filterNewArrivals() {
+    try {
+        const response = await fetch('/admin/new-arrivals');
+        const products = await response.json();
+        displayProducts(products);
+    } catch (error) {
+        console.error('Error fetching new arrivals:', error);
+    }
 }
 
-async function filterNewArrivals() {
-    fetch('/api/new-arrivals')
-        .then(response => response.json())
-        .then(products => displayProducts(products))
-        .catch(error => console.error('Error fetching new arrivals:', error));
+async function filterBestSellers() {
+    try {
+        const response = await fetch('/admin/best-sellers');
+        const products = await response.json();
+        displayProducts(products);
+    } catch (error) {
+        console.error('Error fetching best sellers:', error);
+    }
+}
+
+async function filterDiscountedProducts() {
+    try {
+        const response = await fetch('/admin/discounted-products');
+        const products = await response.json();
+        displayProducts(products);
+    } catch (error) {
+        console.error('Error fetching discounted products:', error);
+    }
 }
 
 async function filterAllProducts() {
@@ -244,18 +267,27 @@ async function filterAllProducts() {
 
 function displayProducts(products) {
     const productsContainer = document.getElementById('productsContainer');
-    productsContainer.innerHTML = ''; // Mevcut ürünleri temizle
+    productsContainer.innerHTML = ''; // Clear existing products
 
     products.forEach(product => {
-        const price = typeof product.price === 'object' && product.price.$numberDecimal
+        const originalPrice = typeof product.price === 'object' && product.price.$numberDecimal
             ? parseFloat(product.price.$numberDecimal)
             : product.price;
+
+        const discount = product.discount ? parseFloat(product.discount.$numberDecimal) : 0;
+        const discountPercentage = discount > 0 ? discount : 0;
+        
+        // Calculate discounted prices for different volumes
+        const discountedPrice15ml = discount > 0 ? (originalPrice * (15 / 1) * (1 - discount / 100)).toFixed(1) : (originalPrice * (15 / 1)).toFixed(2);
+        const discountedPrice30ml = discount > 0 ? (originalPrice * (30 / 1) * (1 - discount / 100)).toFixed(1) : (originalPrice * (30 / 1)).toFixed(2);
+        const discountedPrice50ml = discount > 0 ? (originalPrice * (50 / 1) * (1 - discount / 100)).toFixed(1) : (originalPrice * (50 / 1)).toFixed(2);
 
         const productElement = `
             <div class="product">
                 <a href="/products/${product._id}">
                     <div class="image-container">
                         <img src="${product.img}" alt="${product.name}">
+                        ${discount > 0 ? `<div class="discount-label">-${discountPercentage}%</div>` : ''}
                     </div>
                     <div class="product-details">
                         <h2>${product.name}</h2>
@@ -265,73 +297,94 @@ function displayProducts(products) {
                     </div>
                 </a>
                 <div class="product-footer">
-                    <div class="price" style="display: none;">${price.toFixed(2)} ₼</div>
+                    <div class="price" style="display: none;">${originalPrice.toFixed(2)} ₼</div>
                     <div class="volume-select">
-                        <select class="volume-options" id="volumeSelect_${product._id}" onchange="updateVolumePrice('${product._id}', ${price})">
-                            <option value="15" data-price="${(price / 1 * 15).toFixed()}">15 ml</option>
-                            <option value="30" data-price="${(price / 1 * 30).toFixed()}">30 ml</option>
-                            <option value="50" data-price="${(price / 1 * 50).toFixed()}">50 ml</option>
+                        <select class="volume-options" id="volumeSelect_${product._id}" onchange="updateVolumePrice('${product._id}', ${originalPrice}, ${discount})">
+                            <option value="15" data-price="${discountedPrice15ml}">15 ml - ${discountedPrice15ml} ₼</option>
+                            <option value="30" data-price="${discountedPrice30ml}">30 ml - ${discountedPrice30ml} ₼</option>
+                            <option value="50" data-price="${discountedPrice50ml}">50 ml - ${discountedPrice50ml} ₼</option>
                         </select>
                     </div>
-                    <div class="price-per-volume" id="priceDisplay_${product._id}">
-                        <!-- Fiyat burada gösterilecek -->
-                    </div>
-                    <a href="javascript:void(0)" class="add-to-cart"
-                        onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${price}, document.getElementById('volumeSelect_${product._id}').value)">
+                    <div class="price-per-volume" id="priceDisplay_${product._id}"></div>
+                    <a href="javascript:void(0)" class="add-to-cart" 
+                       onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${originalPrice}, document.getElementById('volumeSelect_${product._id}').value)">
                         <i class="fas fa-plus"></i>
                     </a>
                 </div>
             </div>
         `;
+
         productsContainer.insertAdjacentHTML('beforeend', productElement);
     });
 }
 
-function updateVolumePrice(productId, basePrice) {
+function updateVolumePrice(productId, basePrice, discount) {
     const volumeSelect = document.getElementById(`volumeSelect_${productId}`);
     const selectedOption = volumeSelect.options[volumeSelect.selectedIndex];
 
-    const calculatedPrice = parseFloat(selectedOption.getAttribute('data-price')); // Seçilen hacmin fiyatını al
+    const selectedVolume = parseInt(selectedOption.value); // Get selected volume
+    let calculatedPrice = (basePrice * (selectedVolume / 100)); // Base calculation
 
-    // Sadece geçerli fiyatı göster
+    // If discount is present, apply it
+    if (discount > 0) {
+        calculatedPrice *= (1 - discount / 100);
+    }
+
+    // Update price display
+    const priceDisplayElement = document.getElementById(`priceDisplay_${productId}`);
     if (!isNaN(calculatedPrice) && calculatedPrice > 0) {
-        document.getElementById(`priceDisplay_${productId}`).innerHTML = `${calculatedPrice.toFixed(2)} ₼ (${volumeSelect.value} ml üçün)`;
+        priceDisplayElement.innerHTML = `${calculatedPrice.toFixed(2)} ₼ (${selectedVolume} ml için)`;
     } else {
-        document.getElementById(`priceDisplay_${productId}`).innerHTML = ''; // Geçersiz fiyat için boş bırak
+        priceDisplayElement.innerHTML = ''; // Clear invalid prices
     }
 }
 
-function filterProducts(category) {
-    const products = document.querySelectorAll('.product'); // Tüm ürünleri seç
-
-    products.forEach(product => {
-        if (category) {
-            // Belirtilen kategoriye göre kontrol et
-            if (product.getAttribute('data-category') === category) {
-                product.style.display = 'block'; // Eşleşen ürünleri göster
-            } else {
-                product.style.display = 'none'; // Eşleşmeyen ürünleri gizle
-            }
-        } else {
-            product.style.display = 'block'; // Tüm ürünleri göster
-        }
-    });
+async function fetchProducts(url) {
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`Error fetching products: ${response.statusText}`);
+    }
+    return await response.json();
 }
+
+async function filterProducts(gender) {
+    try {
+        const products = await fetchProducts(`/products/filter/${gender}`);
+        renderProducts(products);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 
 function renderProducts(products) {
     const productsContainer = document.getElementById('productsContainer');
     productsContainer.innerHTML = ''; // Clear existing products
 
     products.forEach(product => {
-        const price = typeof product.price === 'object' && product.price.$numberDecimal
+        // Determine original price based on the data type
+        const originalPrice = typeof product.price === 'object' && product.price.$numberDecimal
             ? parseFloat(product.price.$numberDecimal)
             : product.price;
+        
+        // Check if there's a discount and calculate discounted prices
+        const discount = product.discount && typeof product.discount === 'object' && product.discount.$numberDecimal 
+            ? parseFloat(product.discount.$numberDecimal) 
+            : 0; // Defaults to 0 if no valid discount
+
+        const discountedPrice = discount > 0 ? originalPrice * (1 - discount / 100) : originalPrice; // Calculate discounted price
+
+        // Define prices for different volumes
+        const discountedPrice15ml = (discountedPrice * (15 / 1)).toFixed(2);
+        const discountedPrice30ml = (discountedPrice * (30 / 1)).toFixed(2);
+        const discountedPrice50ml = (discountedPrice * (50 / 1)).toFixed(2);
 
         const productElement = `
-            <div class="product">
+             <div class="product">
                 <a href="/products/${product._id}">
                     <div class="image-container">
                         <img src="${product.img}" alt="${product.name}">
+                        ${discount > 0 ? `<div class="discount-label">-${Math.floor(discount)}%</div>` : ''}
                     </div>
                     <div class="product-details">
                         <h2>${product.name}</h2>
@@ -341,23 +394,24 @@ function renderProducts(products) {
                     </div>
                 </a>
                 <div class="product-footer">
-                    <div class="price">${price.toFixed(2)} ₼</div>
+                    <div class="price" style="display: none;">${originalPrice.toFixed(2)} ₼</div>
                     <div class="volume-select">
-                        <select class="volume-options" id="volumeSelect_${product._id}">
-                            <option value="15" data-price="${(price / 1 * 15).toFixed()}">15 ml</option>
-                            <option value="30" data-price="${(price / 1 * 30).toFixed()}">30 ml</option>
-                            <option value="50" data-price="${(price / 1 * 50).toFixed()}">50 ml</option>
+                        <select class="volume-options" id="volumeSelect_${product._id}" onchange="updateVolumePrice('${product._id}', ${originalPrice}, ${discount})">
+                            <option value="15" data-price="${discountedPrice15ml}">15 ml - ${discountedPrice15ml} ₼</option>
+                            <option value="30" data-price="${discountedPrice30ml}">30 ml - ${discountedPrice30ml} ₼</option>
+                            <option value="50" data-price="${discountedPrice50ml}">50 ml - ${discountedPrice50ml} ₼</option>
                         </select>
                     </div>
                     <div class="price-per-volume" id="priceDisplay_${product._id}"></div>
-                    <a href="javascript:void(0)" class="add-to-cart"
-                        onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${price}, document.getElementById('volumeSelect_${product._id}').value)">
+                    <a href="javascript:void(0)" class="add-to-cart" 
+                       onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${discountedPrice.toFixed(2)}, document.getElementById('volumeSelect_${product._id}').value)">
                         <i class="fas fa-plus"></i>
                     </a>
                 </div>
             </div>
         `;
-        
+
         productsContainer.insertAdjacentHTML('beforeend', productElement); // Append the product element
     });
 }
+

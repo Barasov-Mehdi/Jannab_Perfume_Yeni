@@ -34,9 +34,15 @@ const bestSellersRouter = require('./routes/bestSellersRouter');
 const newArrivalsRouter = require('./routes/newArrivalsRouter');
 const adminFeedbackRouter = require('./routes/adminFeedback');
 
+const discountedProductsRoute = require('./routes/discountedProducts');
+app.use('/discounted-products', discountedProductsRoute);
+const adminRoutes = require('./routes/admin');
+app.use('/admin', adminRoutes);
+
 app.use('/', adminFeedbackRouter); // Admin geri bildirim rotasını ekliyoruz
 app.use('/api/new-arrivals', newArrivalsRouter);
 app.use('/bestsellers', bestSellersRouter); // /bestsellers rotasını bestSellersRouter ile eşleştir
+
 
 app.use('/api', feedbackRouter); // /api altındaki tüm istekler için feedbackRouter kullan
 app.use('/products', productsRouter); // /products altındaki tüm istekler için productsRouter kullan
@@ -66,6 +72,21 @@ app.get('/', async (req, res) => {
   }
 });
 
+// app.js ya da ana dosyanızda
+
+//.products route'unu burada tanımlayın
+app.get('/home', async (req, res) => {
+  try {
+    const discountedProducts = await Products.find({ discount: { $gt: 0 } });
+    const allProducts = await Products.find();
+
+    res.render('home', { discountedProducts, allProducts });
+  } catch (err) {
+    console.error('Ürünleri alırken hata oluştu', err);
+    res.status(500).send('İç Sunucu Hatası');
+  }
+});
+
 app.get('/about', (req, res) => {
   res.render('about');
 });
@@ -73,7 +94,7 @@ app.get('/about', (req, res) => {
 // Ürün arama işlemi
 app.get('/api/products/search', async (req, res) => {
   const query = req.query.q;
-  
+
   try {
     // İsme göre ürün arama
     const products = await Products.find({ name: { $regex: query, $options: 'i' } });

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="az">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Məhsullar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        @media (max-width: 600px) {
+            table {
+                font-size: 14px;
+                /* Küçük ekranlar için yazı boyutunu azalt */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Məhsul Siyahısı</h1>
+    <form action="/admin/apply-discount" method="POST">
+        <table>
+            <thead>
+                <tr>
+                    <th>Məhsulun Adı</th>
+                    <th>Qiymət</th>
+                    <th>Endirim Faizi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% products.forEach(function(product) { %>
+                    <tr>
+                        <td><%= product.name %></td>
+                        <td><%= product.price.toString() %> ₼</td>
+                        <td>
+                            <input type="number" name="discount_<%= product._id %>" min="0" max="100" placeholder="Endirim faizi%">
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        <button type="submit">Endirim Tətbiq Et</button>
+    </form>
+</body>
+
+</html>

@@ -8,13 +8,43 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/1.0.0/css/font-awesome.css"
         integrity="sha512-YX9NLok9RLg+o5JkA2Whp1kPDCBCEUolTyYykJVOe1xcaTNebXU/x02TxV0LpVYqVNJV5NVjyoMW0jHnJWICKg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
     <title>Jannab Perfume</title>
 </head>
+<style>
+    .image-container {
+        position: relative;
+        /* Position context for absolute positioning */
+    }
+
+    .price-per-volume{
+        display: none;
+    }
+    .discount-label {
+        position: absolute;
+        top: 10px;
+        /* Adjust as necessary */
+        left: 10px;
+        /* Adjust as necessary */
+        background-color: #ff0000;
+        /* Red background with some transparency */
+        color: white;
+        /* White text */
+        padding: 5px;
+        /* Padding around the text */
+        border-radius: 5px;
+        /* Rounded corners */
+        font-weight: bold;
+        /* Bold text */
+        font-size: 1em;
+        /* Adjust font size */
+    }
+</style>
 
 <body>
     <div class="container">
-    <header class="header">
+        <header class="header">
 
             <a href="/"><img src="./img/jannab3_logo.png" alt="Jannab Perfume"></a>
 
@@ -65,10 +95,6 @@
         </div>
     </section>
 
-    <!-- <section class="mb_text">
-        <span>BÜTÜN BRENDLƏR</span>
-    </section> -->
-
     <section class="search">
 
         <div class="close_box">
@@ -91,17 +117,17 @@
             <img class="slider_show" src="" alt="Jannab">
             <div class="slider_box_buttons">
                 <div class="nese">
-                    <button id="allProductsButton" onclick="filterAllProducts()">Bütün Ətirlər  <i
+                    <button id="allProductsButton" onclick="filterAllProducts()">Bütün Ətirlər <i
                             class="fa-solid fa-arrow-right-long" style="color: black;"></i> </button>
-                    <button class="filterWoman" onclick="filterProducts('woman')">Woman  <i
+                    <button class="filterWoman" onclick="filterProducts('woman')">Woman <i
                             class="fa-solid fa-arrow-right-long" style="color: black;"></i> </button>
                 </div>
 
                 <div class="nese">
-                    <button class="filterUnisex" onclick="filterProducts('unisex')">Unisex  <i
+                    <button class="filterUnisex" onclick="filterProducts('unisex')">Unisex <i
                             class="fa-solid fa-arrow-right-long" style="color: black;"></i> </button>
                     <!-- <button class="filterAll" onclick="filterProducts()">Tüm Ürünler</button> Tüm ürünleri gösteren buton -->
-                    <button class="filterMan" onclick="filterProducts('man')">Man  <i
+                    <button class="filterMan" onclick="filterProducts('man')">Man <i
                             class="fa-solid fa-arrow-right-long" style="color: black;"></i> </button>
                 </div>
 
@@ -111,27 +137,26 @@
     </main>
 
     <section class="buttons_filter">
-        <button id="newArrivalsButton" onclick="filterNewArrivals()">Yeni Ətirlər</button>
-        <button id="bestSellersButton" onclick="filterBestSellers()">Çox Satılanlar</button>
-        <button>Endirim Malları</button>
+        <button id="newArrivalsButton" onclick="filterNewArrivals()">New Arrivals</button>
+        <button id="bestSellersButton" onclick="filterBestSellers()">Best Sellers</button>
+        <button id="discountedButton" onclick="filterDiscountedProducts()">Discounted Products</button>
+
     </section>
 
     <section class="products" id="productsContainer">
         <% products.forEach(product=> { %>
-            <div class="product" data-category="<%= product.category %>"> <!--Kategori bilgisini ekliyoruz-->
+            <div class="product" data-category="<%= product.category %>">
                 <a target="_blank" href="/products/<%= product._id %>">
                     <div class="image-container">
                         <img src="<%= product.img %>" alt="<%= product.name %>">
+                        <% if (product.discount> 0) { %>
+                            <div class="discount-badge">-<%= Math.floor(product.discount) %>%</div>
+                            <% } %>
                     </div>
                     <div class="product-details">
                         <h2>
                             <%= product.name %>
                         </h2>
-                        <!-- <div class="rating">
-                            <% for (let i = 0; i < 5; i++) { %>
-                                <span class="star <%= i < product.rating ? 'filled' : '' %>">★</span>
-                            <% } %>
-                        </div> -->
                     </div>
                 </a>
                 <div class="product-footer">
@@ -140,53 +165,32 @@
                     </div>
                     <div class="volume-select">
                         <select class="volume-options" id="volumeSelect_<%= product._id %>"
-                            onchange="updateVolumePrice('<%= product._id %>', '<%= product.price %>')">
-                            <option value="15" data-price="<%= (product.price / 1 * 15).toFixed() %>">15 ml</option>
-                            <option value="30" data-price="<%= (product.price / 1 * 30).toFixed() %>">30 ml</option>
-                            <option value="50" data-price="<%= (product.price / 1 * 50).toFixed() %>">50 ml</option>
+                            onchange="updateVolumePrice('<%= product._id %>', '<%= product.price %>', '<%= product.discount %>')">
+                            <% const discountedPrice=product.discount> 0 ? product.price * (1 - product.discount / 100)
+                                : product.price; %>
+                                <option value="15" data-price="<%= (discountedPrice * 15).toFixed(2) %>">
+                                    15 ml - <%= (discountedPrice * 15).toFixed(2) %> ₼
+                                </option>
+                                <option value="30" data-price="<%= (discountedPrice * 30).toFixed(2) %>">
+                                    30 ml - <%= (discountedPrice * 30).toFixed(2) %> ₼
+                                </option>
+                                <option value="50" data-price="<%= (discountedPrice * 50).toFixed(2) %>">
+                                    50 ml - <%= (discountedPrice * 50).toFixed(2) %> ₼
+                                </option>
                         </select>
                     </div>
-                    <div class="price-per-volume" style="font-size: 18px;" id="priceDisplay_<%= product._id %>">
-                        <!-- Fiyat burada gösterilecek -->
-                    </div>
+                    <!-- <div class="price-per-volume" id="priceDisplay_<%= product._id %>">
+                        <%= (discountedPrice * 15).toFixed(2) %> ₼
+                    </div> -->
                     <a href="javascript:void(0)" class="add-to-cart"
                         onclick="addToCart('<%= product._id %>', '<%= product.name %>', '<%= product.img %>', '<%= product.price %>', document.getElementById('volumeSelect_<%= product._id %>').value)">
                         <i class="fas fa-plus"></i>
                     </a>
                 </div>
+
             </div>
             <% }) %>
     </section>
-
-    <!-- <footer class="footer">
-        <div class="wp_contact">
-            <div class="icon-box">
-                <a target="_blank" href="https://wa.me/+994553974421?text=Salam,Parfüm Sifariş Etmək İstəyirəm.">
-                    <i class="fa-brands fa-whatsapp"></i>
-                </a>
-            </div>
-        </div>
-        <div class="phone_contact">
-            <div class="icon-box">
-                <a href="tel:+994553974421"><i class="fa-solid fa-phone"></i></a>
-            </div>
-        </div>
-        <div class="mb_basket">
-            <i class="fa-solid fa-cart-shopping show_product_card" style="font-size: 20px; font-style:initial;"><span
-                    class="productNo">0</span></i>
-        </div>
-        <div class="help">
-            <div class="icon-box">
-                <a target="_blank" href="https://www.instagram.com/jannabperfume/?igsh=MTZpd2Nsancxd2E2eA%3D%3D#"><i
-                        class="fa-brands fa-instagram"></i></a>
-            </div>
-        </div>
-        <div class="other_icon">
-            <div class="icon-box">
-                <a target="_blank" href="/api/feedback"><i class="fa-solid fa-comments" style="color: #333333;"></i></a>
-            </div>
-        </div>
-    </footer> -->
 
     <div class="product_card" id="productCard" style="display: none;">
         <h3>Səbət</h3>
@@ -194,10 +198,6 @@
         <div style="margin: 3px;"><span id="totalPrice"></span> ₼</div> <!-- Burayı kontrol edin -->
         <button onclick="closeCart()">Bağla</button>
     </div>
-
-    <!-- <a href="/api/feedback" class="message_link"><i class="fa-regular fa-comment"
-            style="color: white; background-color: #607d8b; padding: 10px; border-radius: 50px; font-size: 40px;"></i>
-    </a> -->
 
     <section class="left_menu">
         <div>
@@ -230,16 +230,16 @@
     <script>
         var newArrivalsButton = document.getElementById('newArrivalsButton');
         var bestSellersButton = document.getElementById('bestSellersButton');
-        var allProductsButton = document.getElementById('allProductsButton');
+        var discountedButton = document.getElementById('discountedButton');
 
         function resetButtonStyles() {
             newArrivalsButton.classList.remove('active');
             bestSellersButton.classList.remove('active');
-            allProductsButton.classList.remove('active');
+            discountedButton.classList.remove('active');
 
             newArrivalsButton.classList.add('inactive');
             bestSellersButton.classList.add('inactive');
-            allProductsButton.classList.add('inactive');
+            discountedButton.classList.add('inactive');
         }
 
         newArrivalsButton.addEventListener('click', () => {
@@ -254,10 +254,10 @@
             bestSellersButton.classList.remove('inactive');
         });
 
-        allProductsButton.addEventListener('click', () => {
+        discountedButton.addEventListener('click', () => {
             resetButtonStyles();
-            allProductsButton.classList.add('active');
-            allProductsButton.classList.remove('inactive');
+            discountedButton.classList.add('active');
+            discountedButton.classList.remove('inactive');
         });
 
         var contacts_btn = document.querySelector('.contacts_btn');
@@ -290,7 +290,10 @@
             updateVolumePrice(productId, basePrice); // Başlangıç fiyatını güncelle
         });
 
+
+
     </script>
+    
 </body>
 
 </html>
