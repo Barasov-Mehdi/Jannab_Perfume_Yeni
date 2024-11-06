@@ -135,7 +135,7 @@ a {
 .container .mb_header .menu {
   display: flex;
   justify-content: center;
-  width: 20%;
+  width: 19%;
 }
 .container .mb_header .menu img {
   font-size: 30px;
@@ -187,10 +187,10 @@ a {
   margin-left: 2px;
   text-align: end;
 }
-.container .mb_header .mb_else_icons .show_product_card span {
+.container .mb_header .mb_else_icons .productNo {
   position: absolute;
-  right: -3px;
-  top: -9px;
+  right: 0;
+  top: 15px;
   color: black;
   font-size: 17px;
 }
@@ -267,10 +267,13 @@ a {
   border-radius: 8px;
   padding: 10px;
 }
+.container .search .search_results .volume-select {
+  margin: 0 5px;
+}
 .container .search .search_results .product-result {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   height: 80px;
   padding: 15px;
   border: 1px solid #e0e0e0;
@@ -291,7 +294,7 @@ a {
   align-items: center;
 }
 .container .search .search_results .product-result .product-link .product-image {
-  max-width: 80px;
+  max-width: 70px;
   height: auto;
   border-radius: 5px;
   margin-right: 15px;
@@ -306,6 +309,7 @@ a {
 .container .search .search_results .product-result .product-link .product-details {
   display: flex;
   justify-content: start;
+  width: 100%;
 }
 .container .search .search_results .product-result .product-link .product-details .product-name {
   font-size: 1.1em;

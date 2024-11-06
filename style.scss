@@ -156,7 +156,7 @@ a {
         .menu {
             display: flex;
             justify-content: center;
-            width: 20%;
+            width: 19%;
 
             img {
                 font-size: 30px;
@@ -211,14 +211,14 @@ a {
                 color: black;
                 margin-left: 2px;
                 text-align: end;
+            }
 
-                span {
-                    position: absolute;
-                    right: -3px;
-                    top: -9px;
-                    color: black;
-                    font-size: 17px;
-                }
+            .productNo {
+                position: absolute;
+                right: 0;
+                top: 15px;
+                color: black;
+                font-size: 17px;
             }
         }
     }
@@ -304,10 +304,14 @@ a {
             border-radius: 8px; // Köşe yuvarlama
             padding: 10px; // İç boşluk eklemek için
 
+            .volume-select{
+                margin: 0 5px;
+            }
+
             .product-result {
                 display: flex; // Yatay hizalama
                 align-items: center; // Dikey hizalama
-                justify-content: center;
+                justify-content: space-between;
                 height: 80px;
                 padding: 15px;
                 border: 1px solid #e0e0e0; // Çerçeve
@@ -329,7 +333,7 @@ a {
                     align-items: center;
 
                     .product-image {
-                        max-width: 80px; // Resim boyutu
+                        max-width: 70px; // Resim boyutu
                         height: auto; // Yükseklik otomatik
                         border-radius: 5px; // Köşe yuvarlama
                         margin-right: 15px; // Sağ boşluk
@@ -344,6 +348,7 @@ a {
                     .product-details {
                         display: flex;
                         justify-content: start;
+                        width: 100%;
 
                         .product-name {
                             font-size: 1.1em; // Başlık boyutu

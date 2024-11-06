@@ -89,23 +89,38 @@ async function addCardAndSearch() {
                 return;
             }
             const products = await response.json();
-            displaySearchResults(products);
+            displaySearchResults(products, query);
         } else {
-            searchResults.innerHTML = '';  // Arama boşken sonuçları gizle
+            searchResults.innerHTML = '';  // Clear results when the input is empty
         }
     });
 }
-addCardAndSearch();
 
-function displaySearchResults(products) {
+function displaySearchResults(products, query) {
     const searchResults = document.querySelector('.search_results');
     searchResults.innerHTML = '';
 
-    if (products.length > 0) {
-        products.forEach(product => {
+    // Sort the products based on whether they include the query in their name
+    const sortedProducts = products.sort((a, b) => {
+        const aMatches = a.name.toLowerCase().includes(query.toLowerCase());
+        const bMatches = b.name.toLowerCase().includes(query.toLowerCase());
+        return (aMatches === bMatches) ? 0 : aMatches ? -1 : 1;
+    });
+
+    if (sortedProducts.length > 0) {
+        sortedProducts.forEach(product => {
             const price = typeof product.price === 'object' && product.price.$numberDecimal
                 ? parseFloat(product.price.$numberDecimal)
                 : product.price;
+
+            let discountRate = 0;
+            if (product.discount) {
+                discountRate = typeof product.discount === 'object' && product.discount.$numberDecimal
+                    ? parseFloat(product.discount.$numberDecimal)
+                    : parseFloat(product.discount);
+            }
+
+            const discountedPrice = price * (1 - (discountRate / 100));
 
             const productElement = document.createElement('div');
             productElement.classList.add('product-result');
@@ -115,18 +130,18 @@ function displaySearchResults(products) {
                     <img src="${product.img}" alt="${product.name}" class="product-image" />
                     <div class="product-details">
                         <h2 class="product-name">${product.name}</h2>
-                        <p class="product-price">${price ? price.toFixed(2) : 'Fiyat mevcut değil'}</p>
+                        <p class="product-price">Orijinal: ₼${price.toFixed(2)} <br> İndirimli: ₼${discountedPrice.toFixed(2)}</p>
                     </div>
                 </a>
                 <div class="volume-select">
                     <select class="volume-options" id="volumeSelect_${product._id}">
-                        <option value="15" data-price="${(price / 1 * 15).toFixed()}">15 ml</option>
-                        <option value="30" data-price="${(price / 1 * 30).toFixed()}">30 ml</option>
-                        <option value="50" data-price="${(price / 1 * 50).toFixed()}">50 ml</option>
+                        <option value="15" data-price="${(discountedPrice / 1 * 15).toFixed(2)}">15 ml</option>
+                        <option value="30" data-price="${(discountedPrice / 1 * 30).toFixed(2)}">30 ml</option>
+                        <option value="50" data-price="${(discountedPrice / 1 * 50).toFixed(2)}">50 ml</option>
                     </select>
                 </div>
                 <a href="javascript:void(0)" class="add-to-cart" 
-                    onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${price}, document.getElementById('volumeSelect_${product._id}').value)">
+                    onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${discountedPrice}, document.getElementById('volumeSelect_${product._id}').value)">
                     <i class="fas fa-plus"></i>
                 </a>
             `;
@@ -137,6 +152,11 @@ function displaySearchResults(products) {
         searchResults.innerHTML = '<p>Hiçbir ürün bulunamadı.</p>'; // No products found message
     }
 }
+
+addCardAndSearch();
+
+
+
 
 function addToCart(id, name, img, price, volume) {
     price = parseFloat(price); // Convert to number
