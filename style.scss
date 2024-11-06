@@ -158,8 +158,14 @@ a {
             justify-content: center;
             width: 20%;
 
-            i {
+            img {
                 font-size: 30px;
+                margin-left: 20px;
+                width: 30px;
+                height: 30px;
+                object-fit: contain;
+                margin-left: 10px;
+
             }
         }
 
@@ -181,10 +187,22 @@ a {
             justify-content: center;
             width: 20%;
 
-            i {
+            img:nth-child(1) {
                 font-size: 30px;
                 margin-left: 20px;
+                width: 30px;
+                height: 30px;
+                object-fit: contain;
+                margin-left: 10px;
 
+            }
+            img:nth-child(2) {
+                font-size: 30px;
+                margin-left: 20px;
+                width: 30px;
+                height: 30px;
+                object-fit: contain;
+                margin-left: 15px;
             }
 
             .show_product_card {
