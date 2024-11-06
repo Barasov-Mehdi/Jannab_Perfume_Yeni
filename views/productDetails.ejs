@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= product.name %> - Məhsul Detalları</title>
+    <title>
+        <%= product.name %> - Məhsul Detalları
+    </title>
     <link rel="stylesheet" href="/path/to/your/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -48,8 +50,8 @@
 
         .product-image {
             width: 100%;
-            height: auto; 
-            max-height: 300px; 
+            height: auto;
+            max-height: 300px;
             object-fit: contain;
             border-bottom: 1px solid #ddd;
         }
@@ -64,7 +66,7 @@
 
         .additional-images img {
             width: 30%;
-            max-width: 80px; 
+            max-width: 80px;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
@@ -130,11 +132,51 @@
         }
 
         .section-container {
-            margin-top: 20px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 15px;
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
             background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .price-table th,
+        .price-table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .price-table th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        .price-table tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .price-table tbody tr:hover {
+            background-color: #e6f7ff;
+            /* Hover effect */
+        }
+
+        .price-table strong {
+            color: #28a745;
+            /* Price color */
         }
 
         .notes-container {
@@ -185,16 +227,20 @@
             }
 
             .product-image {
-                max-height: 200px; /* Küçük ekranlar için yüksekliği küçült */
+                max-height: 200px;
+                /* Küçük ekranlar için yüksekliği küçült */
             }
 
             .additional-images img {
                 width: 45%;
-                max-width: 80px; /* Ekran boyutuna göre değişir */
+                max-width: 80px;
+                /* Ekran boyutuna göre değişir */
             }
 
-            h1, .price {
-                font-size: 1.5em; /* Küçük ekranlar için font boyutunu düşür */
+            h1,
+            .price {
+                font-size: 1.5em;
+                /* Küçük ekranlar için font boyutunu düşür */
             }
 
             .product-info {
@@ -206,7 +252,9 @@
 
 <body>
     <div class="container">
-        <h1><%= product.name %></h1>
+        <h1>
+            <%= product.name %>
+        </h1>
 
         <div class="product-images-container">
             <img src="<%= product.img %>" alt="<%= product.name %> şəkli" class="product-image">
@@ -229,14 +277,20 @@
                     <span class="star half"><i class="fas fa-star-half-alt"></i></span>
                 </div>
 
-                <p><strong>Təsvir:</strong> <%= product.content || 'Təsvir mövcud deyil' %></p>
+                <p><strong>Təsvir:</strong>
+                    <%= product.content || 'Təsvir mövcud deyil' %>
+                </p>
                 <p><strong>Kateqoriya:</strong>
                     <span class="category-label <%= product.category %>">
                         <%= product.category.charAt(0).toUpperCase() + product.category.slice(1) %>
                     </span>
                 </p>
-                <p><strong>Ən Çox Satılan:</strong> <%= product.bestSellers ? 'Bəli' : 'Xeyir' %></p>
-                <p><strong>Kompozisiya:</strong> <%= product.compositionDescription || 'Məlumat mövcud deyil' %></p>
+                <p><strong>Ən Çox Satılan:</strong>
+                    <%= product.bestSellers ? 'Bəli' : 'Xeyir' %>
+                </p>
+                <p><strong>Kompozisiya:</strong>
+                    <%= product.compositionDescription || 'Məlumat mövcud deyil' %>
+                </p>
             </div>
         </div>
 
@@ -250,59 +304,66 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% const volumePrices = [15, 30, 50]; %>
-                    <% volumePrices.forEach(function(volume) {
-                        const price = (product.price * volume).toFixed(2); %>
-                        <tr>
-                            <td><%= volume %> ml</td>
-                            <td><strong>₼ <%= price %></strong></td>
-                        </tr>
-                    <% }); %>
+                    <% const volumePrices=[15, 30, 50]; %>
+                        <% volumePrices.forEach(function(volume) { const price=(product.price * volume).toFixed(2); %>
+                            <tr>
+                                <td>
+                                    <%= volume %> ml
+                                </td>
+                                <td><strong>₼ <%= price %></strong></td>
+                            </tr>
+                            <% }); %>
                 </tbody>
             </table>
         </section>
 
         <section class="section-container">
-            <h4 style="text-align: center;">Üst notları:</h4>
+            <h4 style="text-align: center; background-color: black; color: white;">Üst notları:</h4>
             <div class="notes-container">
                 <% if (product.upperNotes && product.upperNotes.notes.length) { %>
-                    <% product.upperNotes.notes.forEach((note, index) => { %>
+                    <% product.upperNotes.notes.forEach((note, index)=> { %>
                         <div class="note-item">
-                            <p><strong><%= note %></strong></p>
+                            <p><strong>
+                                    <%= note %>
+                                </strong></p>
                             <img src="<%= product.upperNotes.images[index] %>" alt="<%= note %>" class="note-image">
                         </div>
-                    <% }); %>
-                <% } else { %>
-                    <p>Üst notları: mövcud deyil.</p>
-                <% } %>
+                        <% }); %>
+                            <% } else { %>
+                                <p>Üst notları: mövcud deyil.</p>
+                                <% } %>
             </div>
 
-            <h4 style="text-align: center;">Ürək notları:</h4>
+            <h4 style="text-align: center; background-color: black; color: white;">Ürək notları:</h4>
             <div class="notes-container">
                 <% if (product.heartNotes && product.heartNotes.notes.length) { %>
-                    <% product.heartNotes.notes.forEach((note, index) => { %>
+                    <% product.heartNotes.notes.forEach((note, index)=> { %>
                         <div class="note-item">
-                            <p><strong><%= note %></strong></p>
+                            <p><strong>
+                                    <%= note %>
+                                </strong></p>
                             <img src="<%= product.heartNotes.images[index] %>" alt="<%= note %>" class="note-image">
                         </div>
-                    <% }); %>
-                <% } else { %>
-                    <p>Ürək notları: mövcud deyil.</p>
-                <% } %>
+                        <% }); %>
+                            <% } else { %>
+                                <p>Ürək notları: mövcud deyil.</p>
+                                <% } %>
             </div>
 
-            <h4 style="text-align: center;">Baza notları:</h4>
+            <h4 style="text-align: center; background-color: black; color: white;">Baza notları:</h4>
             <div class="notes-container">
                 <% if (product.baseNotes && product.baseNotes.notes.length) { %>
-                    <% product.baseNotes.notes.forEach((note, index) => { %>
+                    <% product.baseNotes.notes.forEach((note, index)=> { %>
                         <div class="note-item">
-                            <p><strong><%= note %></strong></p>
+                            <p><strong>
+                                    <%= note %>
+                                </strong></p>
                             <img src="<%= product.baseNotes.images[index] %>" alt="<%= note %>" class="note-image">
                         </div>
-                    <% }); %>
-                <% } else { %>
-                    <p>Baza notları: mövcud deyil.</p>
-                <% } %>
+                        <% }); %>
+                            <% } else { %>
+                                <p>Baza notları: mövcud deyil.</p>
+                                <% } %>
             </div>
         </section>
 
