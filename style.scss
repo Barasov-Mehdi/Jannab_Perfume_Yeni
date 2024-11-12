@@ -654,7 +654,7 @@ a {
                     background-color: transparent;
                     // color: #edbe63;
                     padding: 7px;
-                    // border-radius: 50%;
+                    border-radius: 5%;
                     font-size: 1.5em;
                     transition: background-color 0.3s, color 0.3s;
     
@@ -778,6 +778,7 @@ a {
                     button {
                         cursor: pointer;
                         // background: #007bff;
+                        background-color: black;
                         border: none;
                         color: white;
                         padding: 6px 12px;
@@ -820,7 +821,7 @@ a {
         }
 
         button {
-            // background: #dc3545;
+            background: #dc3545;
             /* Kapatma butonu rengi */
             color: white;
             padding: 10px 20px;

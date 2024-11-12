@@ -557,6 +557,7 @@ a {
   justify-content: center;
   background-color: transparent;
   padding: 7px;
+  border-radius: 5%;
   font-size: 1.5em;
   transition: background-color 0.3s, color 0.3s;
 }
@@ -670,6 +671,7 @@ a {
 }
 .container .product_card #cartItems .product_item .quantity button {
   cursor: pointer;
+  background-color: black;
   border: none;
   color: white;
   padding: 6px 12px;
@@ -704,6 +706,7 @@ a {
   /* Solda hizalama */
 }
 .container .product_card button {
+  background: #dc3545;
   /* Kapatma butonu rengi */
   color: white;
   padding: 10px 20px;
