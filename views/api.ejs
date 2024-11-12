@@ -1,0 +1,16 @@
+<div class="product_card" id="productCard" style="display: none;">
+    <h3>Səbət</h3>
+    <div id="cartItems">
+        <div class="product_item">
+            <img src="https://res.cloudinary.com/dr6xakg2t/image/upload/v1730627468/tihx4ty3axpetyqubs1i.jpg" alt="Mango">
+            <div>Mango (15 ml)</div> <!-- Hacim bilgisini buraya ekliyoruz -->
+            <div class="quantity">
+                <button onclick="changeQuantity('6727478f9790a59d29c7bcff_15', 1)">+</button>
+                <input type="text" value="2" readonly="">
+                <button onclick="changeQuantity('6727478f9790a59d29c7bcff_15', -1)">-</button>
+            </div>
+        </div>
+    </div>
+    <div style="margin: 3px;"><span id="totalPrice">75.00</span> 0₼</div> <!-- Burayı kontrol edin -->
+    <button onclick="closeCart()">Bağla</button>
+</div>

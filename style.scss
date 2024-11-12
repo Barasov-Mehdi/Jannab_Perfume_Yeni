@@ -744,7 +744,8 @@ a {
             .product_item {
                 display: flex;
                 align-items: center;
-                justify-content: space-between;
+                justify-content: center;
+                flex-direction: column;
                 border: 1px solid #e0e0e0;
                 /* Kenar rengi */
                 border-radius: 8px;
@@ -761,19 +762,21 @@ a {
                 }
 
                 img {
-                    width: 15%;
+                    width: 100%;
                     /* Resim genişliği ayarlandı */
-                    max-width: 50px;
+                    max-width: 60px;
                     /* Maksimum genişlik */
                     height: auto;
                     margin-right: 10px;
                     border-radius: 10px;
+                    object-fit: contain;
                     /* Resimlerin kenar yuvarlanması */
                 }
 
                 .quantity {
                     display: flex;
                     align-items: center;
+                    margin: 3px 0;
 
                     button {
                         cursor: pointer;

@@ -640,7 +640,8 @@ a {
 .container .product_card #cartItems .product_item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  flex-direction: column;
   border: 1px solid #e0e0e0;
   /* Kenar rengi */
   border-radius: 8px;
@@ -656,18 +657,21 @@ a {
   /* Hover rengi */
 }
 .container .product_card #cartItems .product_item img {
-  width: 15%;
+  width: 100%;
   /* Resim genişliği ayarlandı */
-  max-width: 50px;
+  max-width: 60px;
   /* Maksimum genişlik */
   height: auto;
   margin-right: 10px;
   border-radius: 10px;
+  -o-object-fit: contain;
+     object-fit: contain;
   /* Resimlerin kenar yuvarlanması */
 }
 .container .product_card #cartItems .product_item .quantity {
   display: flex;
   align-items: center;
+  margin: 3px 0;
 }
 .container .product_card #cartItems .product_item .quantity button {
   cursor: pointer;

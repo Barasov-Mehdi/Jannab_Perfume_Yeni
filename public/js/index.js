@@ -140,10 +140,11 @@ function displaySearchResults(products, query) {
                         <option value="50" data-price="${(discountedPrice / 1 * 50).toFixed(2)}">50 ml</option>
                     </select>
                 </div>
-                <a href="javascript:void(0)" class="add-to-cart"  
-                        onclick="addToCart('<%= product._id %>', '<%= product.name %>', '<%= product.img %>', '<%= product.price %>', document.getElementById('volumeSelect_<%= product._id %>').value)" style="background-color: #f76300;">
-                        <i class="fa-solid fa-cart-shopping" style="color: white;"></i>
-                    </a>
+                <a href="javascript:void(0)" class="add-to-cart" style="background-color: #f76300;" 
+                    onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${discountedPrice}, document.getElementById('volumeSelect_${product._id}').value)">
+                    <i class="fa-solid fa-cart-shopping" style="color: white;"></i>
+
+                </a>
             `;
 
             searchResults.appendChild(productElement);
@@ -212,10 +213,12 @@ function loadMoreProducts() {
                                         <option value="50" data-price="${discountedPrice50ml}">50 ml - ${discountedPrice50ml} ₼</option>
                                     </select>
                                 </div>
-                               <a href="javascript:void(0)" class="add-to-cart"  
-                        onclick="addToCart('<%= product._id %>', '<%= product.name %>', '<%= product.img %>', '<%= product.price %>', document.getElementById('volumeSelect_<%= product._id %>').value)" style="background-color: #f76300;">
-                        <i class="fa-solid fa-cart-shopping" style="color: white;"></i>
-                    </a>
+                                <a href="javascript:void(0)" class="add-to-cart" style="background-color: #f76300;" 
+                                    onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${discountedPrice.toFixed(2)}, 
+                                    document.getElementById('volumeSelect_${product._id}').value)">
+                                    <i class="fa-solid fa-cart-shopping" style="color: white;"></i>
+
+                                </a>
                             </div>
                         </div>`;
 
@@ -409,9 +412,10 @@ function displayProducts(products) {
                         </select>
                     </div>
                     <div class="price-per-volume" id="priceDisplay_${product._id}"></div>
-                    <a href="javascript:void(0)" class="add-to-cart"  
-                        onclick="addToCart('<%= product._id %>', '<%= product.name %>', '<%= product.img %>', '<%= product.price %>', document.getElementById('volumeSelect_<%= product._id %>').value)" style="background-color: #f76300;">
+                    <a href="javascript:void(0)" class="add-to-cart" style="background-color: #f76300;"
+                       onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${originalPrice}, document.getElementById('volumeSelect_${product._id}').value)">
                         <i class="fa-solid fa-cart-shopping" style="color: white;"></i>
+
                     </a>
                 </div>
             </div>
@@ -503,9 +507,10 @@ function renderProducts(products) {
                         </select>
                     </div>
                     <div class="price-per-volume" id="priceDisplay_${product._id}"></div>
-                    <a href="javascript:void(0)" class="add-to-cart"  
-                        onclick="addToCart('<%= product._id %>', '<%= product.name %>', '<%= product.img %>', '<%= product.price %>', document.getElementById('volumeSelect_<%= product._id %>').value)" style="background-color: #f76300;">
+                    <a href="javascript:void(0)" class="add-to-cart" style="background-color: #f76300;" 
+                       onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${discountedPrice.toFixed(2)}, document.getElementById('volumeSelect_${product._id}').value)">
                         <i class="fa-solid fa-cart-shopping" style="color: white;"></i>
+
                     </a>
                 </div>
             </div>
