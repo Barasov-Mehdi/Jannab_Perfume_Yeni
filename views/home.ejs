@@ -181,8 +181,8 @@
                                         (discountedPrice * 50).toFixed(2) %> ₼</option>
                         </select>
                     </div>
-                    <a href="javascript:void(0)" class="add-to-cart" style="background-color: #f76300;" 
-                        onclick="addToCart('<%= product._id %>', '<%= product.name %>', '<%= product.img %>', '<%= product.price %>', document.getElementById('volumeSelect_<%= product._id %>').value)">
+                    <a href="javascript:void(0)" class="add-to-cart"  
+                        onclick="addToCart('<%= product._id %>', '<%= product.name %>', '<%= product.img %>', '<%= product.price %>', document.getElementById('volumeSelect_<%= product._id %>').value)" style="background-color: #f76300;">
                         <i class="fa-solid fa-cart-shopping" style="color: white;"></i>
                     </a>
                 </div>
