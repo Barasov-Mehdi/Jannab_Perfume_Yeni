@@ -579,7 +579,7 @@ a {
   background-color: white;
 }
 .container .product_card {
-  width: 94%;
+  width: 93%;
   /* Ekrana göre genişlik */
   max-width: 400px;
   /* Maksimum genişlik sınırlaması */
