@@ -556,8 +556,7 @@ a {
   align-items: center;
   justify-content: center;
   background-color: transparent;
-  color: #edbe63;
-  padding: 10px;
+  padding: 7px;
   border-radius: 50%;
   font-size: 1.5em;
   transition: background-color 0.3s, color 0.3s;
@@ -565,6 +564,9 @@ a {
 .container .products .product .product-footer a.add-to-cart:hover {
   color: white;
   background-color: rgba(0, 0, 0, 0.1);
+}
+.container .products .product .product-footer a.add-to-cart i {
+  font-size: 16px;
 }
 .container .loadMoreButtons {
   margin: 0 0 60px 0;

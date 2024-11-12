@@ -652,8 +652,8 @@ a {
                     align-items: center;
                     justify-content: center;
                     background-color: transparent;
-                    color: #edbe63;
-                    padding: 10px;
+                    // color: #edbe63;
+                    padding: 7px;
                     border-radius: 50%;
                     font-size: 1.5em;
                     transition: background-color 0.3s, color 0.3s;
@@ -661,6 +661,10 @@ a {
                     &:hover {
                         color: white;
                         background-color: rgba(0, 0, 0, 0.1);
+                    }
+
+                    i{
+                        font-size: 16px;
                     }
                 }
             }
