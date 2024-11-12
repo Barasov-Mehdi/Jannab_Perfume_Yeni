@@ -654,7 +654,7 @@ a {
                     background-color: transparent;
                     // color: #edbe63;
                     padding: 7px;
-                    border-radius: 50%;
+                    // border-radius: 50%;
                     font-size: 1.5em;
                     transition: background-color 0.3s, color 0.3s;
     
@@ -679,6 +679,7 @@ a {
         border: none;
         cursor: pointer;
         font-size: 17px;
+        background-color: white;
     }
 
     .product_card {
