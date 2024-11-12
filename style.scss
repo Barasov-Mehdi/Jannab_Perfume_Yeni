@@ -59,23 +59,9 @@ a {
                     text-decoration: none;
                     font-size: 20px;
                 }
-
             }
 
-            span {
-                position: relative;
-                text-decoration: none;
-                color: white;
-                font-size: 20px;
-                font-weight: bolder;
-                margin: 0 12px;
-                cursor: pointer;
-            }
-
-            span:hover {
-                color: wheat;
-            }
-
+            span,
             a {
                 position: relative;
                 text-decoration: none;
@@ -83,23 +69,30 @@ a {
                 font-size: 20px;
                 font-weight: bolder;
                 margin: 0 12px;
+                cursor: pointer;
+                padding: 5px 10px;
+                /* Butona tıklama alanını artırmak için */
+
+                &:hover {
+                    color: wheat;
+                }
+
+                &.active {
+                    background-color: #ffffff;
+                    color: #333;
+                    /* Kontrast rengi */
+                    border-radius: 8px;
+                }
             }
 
-            a:hover {
-                color: wheat;
-            }
-
-            a:nth-child(1)::after {
-                content: '';
-                position: absolute;
-                width: 70%;
-                background-color: white;
-                height: 2px;
-                left: 0;
-                bottom: -2px;
-
+            // İlgili elemana tıklandığında aktif yap
+            span.contacts_btn {
+                &:hover {
+                    color: wheat;
+                }
             }
         }
+
 
         .else_icons {
             display: flex;
@@ -196,6 +189,7 @@ a {
                 margin-left: 10px;
 
             }
+
             img:nth-child(2) {
                 font-size: 30px;
                 margin-left: 20px;
@@ -304,7 +298,7 @@ a {
             border-radius: 8px; // Köşe yuvarlama
             padding: 10px; // İç boşluk eklemek için
 
-            .volume-select{
+            .volume-select {
                 margin: 0 5px;
             }
 
@@ -411,17 +405,17 @@ a {
                 .nese {
                     width: 100%;
                     height: auto;
-                    padding-right: 5px;
+                    padding-right: 15px;
 
                     button {
-                        margin: 5px 10px;
+                        margin: 10px 30px;
                         background-color: #ffffff;
                         padding: 3px 7px;
                         border: none;
                         outline: none;
                         cursor: pointer;
                         margin-right: 0;
-                        font-size: 17px;
+                        font-size: 19px;
                         font-weight: 600;
 
                         i {
@@ -496,11 +490,11 @@ a {
         padding: 20px;
         margin: 0px 0 50px 0;
         width: 95%;
-    
+
         .volume-select {
             margin: 10px 0; // Üst ve alt boşluk
             position: relative; // İçerik düzenlemesi için konumlandırma
-    
+
             select.volume-options {
                 padding: 10px 20px; // İç boşluk
                 border: 1px solid #ddd; // Kenar rengi
@@ -510,35 +504,35 @@ a {
                 color: #333; // Yazı rengi
                 cursor: pointer; // İmleci işaretçi yap
                 font-weight: 700; // Yazı kalınlığı
-    
+
                 // Ok simgesinin yerini belirlemek için iç boşluğu artırıyoruz
                 padding-right: 40px;
                 background-image: url('data:image/png;base64,...'); // Özel ok simgesi ekle
                 background-repeat: no-repeat;
                 background-position: right 10px center; // Pozisyon
                 background-size: 12px; // Boyut
-    
+
                 transition: border-color 0.3s, background-color 0.3s; // Kenar rengi ve arka plan geçişi
-    
+
                 &:focus {
                     outline: none; // Varsayılan odak çerçevesini kaldır
                     border-color: #ecc14d; // Odaklandığında sınır rengi değişimi
                     background-color: #f7f7f7; // Arka plan rengi değişimi
                 }
-    
+
                 option {
                     padding: 10px; // Seçenekler için iç boşluk
                     background-color: #fff; // Arka plan rengi
                     color: #333; // Yazı rengi
                     border: none; // Kenar yok
                 }
-    
+
                 option:hover {
                     background-color: #f2f2f2; // Seçenek üzerine gelindiğinde arka plan rengi
                 }
             }
         }
-    
+
         .product {
             border: 1px solid #ddd; // Ürün kartı için kenar
             border-radius: 8px;
@@ -549,12 +543,12 @@ a {
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
             position: relative;
-    
+
             &:hover {
                 transform: translateY(-5px);
                 box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
             }
-    
+
             .image-container {
                 width: 100%;
                 height: 200px;
@@ -562,7 +556,7 @@ a {
                 background-color: #faefe9;
                 overflow: hidden;
                 position: relative;
-    
+
                 .discount-badge {
                     position: absolute;
                     top: 10px; // Konumu ayarlamak için
@@ -574,63 +568,63 @@ a {
                     font-weight: bold; // Yazı kalınlığı
                     font-size: 15px;
                 }
-    
+
                 img {
                     width: 100%;
                     height: 100%;
                     object-fit: contain; // Resmin orantılı görünümü
                     transition: transform 0.3s;
-    
+
                     &:hover {
                         transform: scale(1.05); // Hover durumunda büyüme
                     }
                 }
             }
-    
+
             .product-details {
                 margin-top: 10px;
-    
+
                 h2 {
                     font-size: 1.25em;
                     margin: 10px 0;
                     color: #333;
                     text-transform: uppercase;
                 }
-    
+
                 .rating {
                     display: flex;
                     justify-content: center;
                     margin: 10px 0;
-    
+
                     .star {
                         color: lightgray;
-    
+
                         &.filled {
                             color: gold;
                         }
-    
+
                         font-size: 1.5em;
                         margin: 0 2px;
                     }
-    
+
                     .star:nth-child(1) {
                         color: gold;
                     }
-    
+
                     .star:nth-child(2) {
                         color: gold;
                     }
-    
+
                     .star:nth-child(3) {
                         color: gold;
                     }
-    
+
                     .star:nth-child(4) {
                         color: gold;
                     }
                 }
             }
-    
+
             .product-footer {
                 display: flex;
                 justify-content: space-between;
@@ -640,13 +634,13 @@ a {
                 background-color: white;
                 margin: 3px 0;
                 border-top: 0.5px solid grey;
-    
+
                 .price {
                     font-weight: bold;
                     font-size: 1.25em;
                     color: #ecc14d; // Fiyat rengi
                 }
-    
+
                 a.add-to-cart {
                     display: inline-flex;
                     align-items: center;
@@ -657,21 +651,21 @@ a {
                     border-radius: 15%;
                     font-size: 1.5em;
                     transition: background-color 0.3s, color 0.3s;
-    
+
                     &:hover {
                         color: white;
                         background-color: rgba(0, 0, 0, 0.1);
                     }
 
-                    i{
+                    i {
                         font-size: 16px;
                     }
                 }
             }
         }
     }
-    
-    .loadMoreButtons{
+
+    .loadMoreButtons {
         margin: 0 0 60px 0;
         color: black;
         font-weight: bold;
@@ -863,75 +857,82 @@ a {
     }
 
     .left_menu {
-        display: none;
-        transition: all 0.3s ease;
-        flex-direction: column;
-        z-index: 1000;
-        width: 80%;
-        height: 100vh;
-        background-color: white;
+        display: none; // Başlanğıcda görünməz
+        transition: all 0.3s ease; // Animasyon
         position: fixed;
         top: 0;
         left: 0;
+        width: 80%;
+        height: 100vh;
+        background-color: white;
+        z-index: 1000;
         overflow-y: hidden;
+        flex-direction: column;
 
+        animation: slideIn 1s forwards;
 
-        .menu_links {
-            display: flex;
-            flex-direction: column;
-            justify-content: start;
-            align-items: start;
-            height: 40vh;
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                /* Başlangıçta solda dışarıda */
+                opacity: 0;
+            }
 
-            div {
-                display: flex; // Using Flexbox for the item layout
-                flex-direction: column; // Arrange links vertically
-                justify-content: start; // Align children to the start
-                margin-top: 10px; // Spacing at the top
-                margin-bottom: 30px; // Spacing at the bottom
-                flex: 1; // Allow to stretch to available space
-
-                a {
-                    text-decoration: none; // Remove underline from links
-                    color: black; // Link color
-                    font-size: 20px; // Font size for links
-                    margin: 5px 10px; // Margin around links
-                    font-style: italic; // Italicize text
-                    transition: color 0.3s ease; // Smooth color change on hover
-                    font-weight: bolder;
-
-                    &:hover {
-                        color: rgb(100, 100, 100); // Change color on hover for better UX
-                    }
-                }
+            to {
+                transform: translateX(0);
+                /* Orijinal pozisyonuna gelir */
+                opacity: 1;
+                /* Görünür olur */
             }
         }
 
-        // Styling for the icon
-        i {
-            color: rgb(212, 211, 211); // Icon color
-            background-color: #292627; // Background for the icon
-            text-align: end; // Align text to the end
-            width: 100%; // Full width for the icon area
-            font-size: 30px; // Font size for the icon
-            padding: 10px; // Padding around the icon
-            cursor: pointer; // Show as clickable
+        .menu_links {
+            display: flex;
+            flex-direction: column; // Vertikal düzülüş
+            justify-content: flex-start; // Yuxarıdan başlayaraq düzülüş
+            padding: 20px; // Ümumi boşluq
+
+            a {
+                border-bottom: 0.4px solid grey;
+                text-decoration: none; // Alt xət gedir
+                color: black; // Rəng
+                font-size: 20px; // Yazı ölçüsü
+                margin: 10px 0; // Yuxarı və aşağı boşluq
+                font-style: italic; // İtalik
+                font-weight: 600; // Qalın
+                transition: color 0.3s ease; // Üzəri rəng çevirməsi
+
+                &:hover {
+                    color: rgb(100, 100, 100); // Hover zamanı rəng
+                }
+            }
+
         }
 
-        // Styling for the creator section
+        // Yanaqlı ikonu
+        .close_left_menu {
+            color: rgb(212, 211, 211); // İkonun rəngi
+            background-color: #292627; // İkonun arxa fonu
+            font-size: 30px; // İkon ölçüsü
+            padding: 10px; // İkon ətrafında boşluq
+            cursor: pointer; // Tıklanabilir
+            text-align: end; // Sağdan sıralama
+            width: 100%; // Tam genişlik
+        }
+
+        // Yaratıcı bölməsi
         .creator {
-            display: flex; // Flexbox for layout
-            flex-direction: column; // Align items vertically
-            width: 100%; // Full width
+            display: flex;
+            flex-direction: column; // Vertikal düzülüş
+            width: 100%; // Tam genişlik
             position: absolute;
             bottom: 0;
 
             span {
-                color: rgb(212, 211, 211); // Text color
-                background-color: #292627; // Background color
-                text-align: center; // Center text
-                padding: 15px; // Padding around text
-                flex: 1; // Allow to stretch to fill the available space
+                color: rgb(212, 211, 211); // Mətnin rəngi
+                background-color: #292627; // Arxa fon
+                text-align: center; // Ortada mətni
+                padding: 15px; // Mətndə boşluq
             }
         }
     }
@@ -948,7 +949,7 @@ a {
         button {
             background-color: rgba(211, 211, 211, 0.3);
             /* Hafif gri arka plan */
-            color: #616161;
+            color: #575656;
             /* Gri yazı rengi */
             padding: 8px 16px;
             /* İç boşluk */
@@ -1049,6 +1050,43 @@ a {
             overflow: hidden; // Prevent overflow if needed
             margin-top: 91px;
 
+            .slider_box_buttons {
+                position: absolute;
+                left: 0;
+                bottom: 30px;
+                width: 100%;
+                height: 70px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding-right: 10px;
+
+                .nese {
+                    width: 100%;
+                    height: auto;
+                    padding-right: 5px;
+
+                    button {
+                        margin: 5px 10px;
+                        background-color: #ffffff;
+                        padding: 3px 7px;
+                        border: none;
+                        outline: none;
+                        cursor: pointer;
+                        margin-right: 0;
+                        font-size: 17px;
+                        font-weight: 600;
+
+                        i {
+                            font-weight: bold;
+                            line-height: 10px;
+                        }
+                    }
+                }
+
+            }
+
             div {
                 width: 100%;
                 height: 100%;
@@ -1081,8 +1119,6 @@ a {
                 font-weight: bold;
             }
         }
-
-
 
     }
 }

@@ -31,6 +31,33 @@
             flex-direction: column;
         }
 
+        .image-wrapper {
+            position: relative;
+        }
+
+        .image-caption {
+            position: absolute;
+            bottom: -5px;
+            /* Yuxarıdan aşağıdakı məsafəni təyin edir */
+            left: 50%;
+            width: 100%;
+            /* Üzərinə mətni mərkəzləşdirir */
+            transform: translateX(-50%);
+            /* Mətni tam mərkəzə yerləşdirir */
+            background-color: rgba(255, 255, 255, 0.7);
+            /* Arxa fon daha aydın olsun deyə */
+            /* Mətni kapsayan ətraf boşluq */
+            border-radius: 5px;
+            /* Küncləri yuvarlaşdırır */
+            font-size: 14px;
+            /* Font ölçüsü */
+            font-weight: 600;
+            text-align: center;
+            /* Mətni mərkəzləşdirir */
+            color: #333;
+            /* Mətni təsvir edən rəng */
+        }
+
         h1 {
             text-align: center;
             color: #444;
@@ -262,11 +289,17 @@
         </h1>
 
         <div class="product-images-container">
-            <img src="<%= product.img %>" alt="<%= product.name %> şəkli" class="product-image">
+            <div class="image-wrapper">
+                <img src="<%= product.img %>" alt="<%= product.name %> şəkli" class="product-image"
+                    id="main-product-image">
+                <p class="image-caption">Şəkil tanıtım xarakteri daşıyır</p>
+            </div>
             <div class="additional-images">
-                <img src="/img/15ml.JPG" alt="Görüntü 1">
-                <img src="/img/50ml.JPG" alt="Görüntü 2">
-                <img src="/img/30ml.JPG" alt="Görüntü 3">
+                <img src="<%= product.img %>" style="border: 0.4px solid black;" alt="<%= product.name %> şəkli"
+                    onclick="changeImage('<%= product.img %>')">
+                <img src="/img/15ml.JPG" alt="Görüntü 1" onclick="changeImage('/img/15ml.JPG')">
+                <img src="/img/50ml.JPG" alt="Görüntü 2" onclick="changeImage('/img/50ml.JPG')">
+                <img src="/img/30ml.JPG" alt="Görüntü 3" onclick="changeImage('/img/30ml.JPG')">
             </div>
         </div>
 
@@ -376,6 +409,17 @@
 
 
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            function changeImage(newSrc) {
+                var mainImage = document.getElementById('main-product-image');
+                mainImage.src = newSrc;
+            }
+
+            // Global erişim için fonksiyonu tanımlayın
+            window.changeImage = changeImage;
+        });
+    </script>
 </body>
 
 </html>

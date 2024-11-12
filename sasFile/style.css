@@ -59,18 +59,7 @@ a {
   text-decoration: none;
   font-size: 20px;
 }
-.container .header .nav_box span {
-  position: relative;
-  text-decoration: none;
-  color: white;
-  font-size: 20px;
-  font-weight: bolder;
-  margin: 0 12px;
-  cursor: pointer;
-}
-.container .header .nav_box span:hover {
-  color: wheat;
-}
+.container .header .nav_box span,
 .container .header .nav_box a {
   position: relative;
   text-decoration: none;
@@ -78,18 +67,23 @@ a {
   font-size: 20px;
   font-weight: bolder;
   margin: 0 12px;
+  cursor: pointer;
+  padding: 5px 10px;
+  /* Butona tıklama alanını artırmak için */
 }
+.container .header .nav_box span:hover,
 .container .header .nav_box a:hover {
   color: wheat;
 }
-.container .header .nav_box a:nth-child(1)::after {
-  content: "";
-  position: absolute;
-  width: 70%;
-  background-color: white;
-  height: 2px;
-  left: 0;
-  bottom: -2px;
+.container .header .nav_box span.active,
+.container .header .nav_box a.active {
+  background-color: #ffffff;
+  color: #333;
+  /* Kontrast rengi */
+  border-radius: 8px;
+}
+.container .header .nav_box span.contacts_btn:hover {
+  color: wheat;
 }
 .container .header .else_icons {
   display: flex;
@@ -361,17 +355,17 @@ a {
 .container .slider_box .slıdex_show_box .slider_box_buttons .nese {
   width: 100%;
   height: auto;
-  padding-right: 5px;
+  padding-right: 15px;
 }
 .container .slider_box .slıdex_show_box .slider_box_buttons .nese button {
-  margin: 5px 10px;
+  margin: 10px 30px;
   background-color: #ffffff;
   padding: 3px 7px;
   border: none;
   outline: none;
   cursor: pointer;
   margin-right: 0;
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 600;
 }
 .container .slider_box .slıdex_show_box .slider_box_buttons .nese button i {
@@ -743,51 +737,57 @@ a {
 .container .left_menu {
   display: none;
   transition: all 0.3s ease;
-  flex-direction: column;
-  z-index: 1000;
-  width: 80%;
-  height: 100vh;
-  background-color: white;
   position: fixed;
   top: 0;
   left: 0;
+  width: 80%;
+  height: 100vh;
+  background-color: white;
+  z-index: 1000;
   overflow-y: hidden;
+  flex-direction: column;
+  animation: slideIn 1s forwards;
+}
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    /* Başlangıçta solda dışarıda */
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    /* Orijinal pozisyonuna gelir */
+    opacity: 1;
+    /* Görünür olur */
+  }
 }
 .container .left_menu .menu_links {
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  align-items: start;
-  height: 40vh;
+  justify-content: flex-start;
+  padding: 20px;
 }
-.container .left_menu .menu_links div {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  margin-top: 10px;
-  margin-bottom: 30px;
-  flex: 1;
-}
-.container .left_menu .menu_links div a {
+.container .left_menu .menu_links a {
+  border-bottom: 0.4px solid grey;
   text-decoration: none;
   color: black;
   font-size: 20px;
-  margin: 5px 10px;
+  margin: 10px 0;
   font-style: italic;
+  font-weight: 600;
   transition: color 0.3s ease;
-  font-weight: bolder;
 }
-.container .left_menu .menu_links div a:hover {
+.container .left_menu .menu_links a:hover {
   color: rgb(100, 100, 100);
 }
-.container .left_menu i {
+.container .left_menu .close_left_menu {
   color: rgb(212, 211, 211);
   background-color: #292627;
-  text-align: end;
-  width: 100%;
   font-size: 30px;
   padding: 10px;
   cursor: pointer;
+  text-align: end;
+  width: 100%;
 }
 .container .left_menu .creator {
   display: flex;
@@ -801,7 +801,6 @@ a {
   background-color: #292627;
   text-align: center;
   padding: 15px;
-  flex: 1;
 }
 .container .buttons_filter {
   display: flex;
@@ -814,7 +813,7 @@ a {
 .container .buttons_filter button {
   background-color: rgba(211, 211, 211, 0.3);
   /* Hafif gri arka plan */
-  color: #616161;
+  color: #575656;
   /* Gri yazı rengi */
   padding: 8px 16px;
   /* İç boşluk */
@@ -896,6 +895,38 @@ a {
     height: 35vh;
     overflow: hidden;
     margin-top: 91px;
+  }
+  .container .slider_box .slider_box_buttons {
+    position: absolute;
+    left: 0;
+    bottom: 30px;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-right: 10px;
+  }
+  .container .slider_box .slider_box_buttons .nese {
+    width: 100%;
+    height: auto;
+    padding-right: 5px;
+  }
+  .container .slider_box .slider_box_buttons .nese button {
+    margin: 5px 10px;
+    background-color: #ffffff;
+    padding: 3px 7px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-right: 0;
+    font-size: 17px;
+    font-weight: 600;
+  }
+  .container .slider_box .slider_box_buttons .nese button i {
+    font-weight: bold;
+    line-height: 10px;
   }
   .container .slider_box div {
     width: 100%;

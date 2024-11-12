@@ -144,7 +144,7 @@
     <section class="buttons_filter">
         <button id="newArrivalsButton" onclick="filterNewArrivals()">Yeni Ətirlər</button>
         <button id="bestSellersButton" onclick="filterBestSellers()">Çox Satılanlar</button>
-        <button id="discountedButton" onclick="filterDiscountedProducts()">Endrimli Mallar</button>
+        <button id="discountedButton" onclick="filterDiscountedProducts()">Endrimli Ətirlər</button>
 
     </section>
 
@@ -181,8 +181,9 @@
                                         (discountedPrice * 50).toFixed(2) %> ₼</option>
                         </select>
                     </div>
-                    <a href="javascript:void(0)" class="add-to-cart"  
-                        onclick="addToCart('<%= product._id %>', '<%= product.name %>', '<%= product.img %>', '<%= product.price %>', document.getElementById('volumeSelect_<%= product._id %>').value)" style="background-color: #f76300;">
+                    <a href="javascript:void(0)" class="add-to-cart"
+                        onclick="addToCart('<%= product._id %>', '<%= product.name %>', '<%= product.img %>', '<%= product.price %>', document.getElementById('volumeSelect_<%= product._id %>').value)"
+                        style="background-color: #f76300;">
                         <i class="fa-solid fa-cart-shopping" style="color: white;"></i>
                     </a>
                 </div>
@@ -195,7 +196,7 @@
     <div class="product_card" id="productCard" style="display: none;">
         <h3>Səbət</h3>
         <div id="cartItems"></div>
-        <div style="margin: 3px;"><span id="totalPrice"></span> 0₼</div> <!-- Burayı kontrol edin -->
+        <div style="margin: 3px;"><span id="totalPrice"></span> ₼</div> <!-- Burayı kontrol edin -->
         <button onclick="closeCart()">Bağla</button>
     </div>
 
@@ -204,12 +205,10 @@
             <i class="fa-solid fa-xmark close_left_menu"></i>
         </div>
         <div class="menu_links">
-            <div>
-                <a href="#">Əsas səhifə</a>
-                <a href="#">Haqqımızda</a>
-                <a href="#">Filiallarımız</a>
-                <a href="#">Əlaqə</a>
-            </div>
+            <a href="#">Əsas səhifə</a>
+            <a href="#">Haqqımızda</a>
+            <a href="#">Filiallarımız</a>
+            <a href="#">Əlaqə</a>
         </div>
         <div class="creator">
             <span>Baras Software ©</span>
@@ -231,7 +230,18 @@
         var newArrivalsButton = document.getElementById('newArrivalsButton');
         var bestSellersButton = document.getElementById('bestSellersButton');
         var discountedButton = document.getElementById('discountedButton');
-      
+
+        document.querySelectorAll('.nav_box a, .nav_box .contacts_btn').forEach(item => {
+            item.addEventListener('click', function () {
+                // Önceden aktif olanları temizle
+                document.querySelectorAll('.nav_box a, .nav_box .contacts_btn').forEach(el => el.classList.remove('active'));
+
+                // Tıklanan öğeye 'active' sınıfını ekle
+                item.classList.add('active');
+            });
+        });
+
+
         newArrivalsButton.addEventListener('click', () => {
             resetButtonStyles();
             newArrivalsButton.classList.add('active');
