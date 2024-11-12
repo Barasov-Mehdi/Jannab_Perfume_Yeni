@@ -20,9 +20,9 @@ router.get('/:id', async (req, res) => {
 
             // Eğer indirim varsa, oranı al
             if (product.discount) {
-                discountRate = typeof product.discount === 'object' && product.discount.$numberDecimal 
-                ? parseFloat(product.discount.$numberDecimal) 
-                : parseFloat(product.discount);
+                discountRate = typeof product.discount === 'object' && product.discount.$numberDecimal
+                    ? parseFloat(product.discount.$numberDecimal)
+                    : parseFloat(product.discount);
             }
 
             // Hacimlerin listesi
@@ -121,15 +121,22 @@ router.get('/filter/:gender', async (req, res) => {
     }
 });
 
+
 router.get('/api/products', async (req, res) => {
-    const category = req.query.category; // Kategoriyi sorgudan al
+    const limit = 2; // Her istekte dönecek ürün sayısı
+    const skip = parseInt(req.query.skip) || 0; // Geçiş değerini al
+    const excludeIds = req.query.excludeIds ? req.query.excludeIds.split(',').map(id => mongoose.Types.ObjectId(id)) : []; // ID'leri ObjectId formatına çevir
 
     try {
-        const products = await Products.find(category ? { category: category } : {});
+        // excludeIds içinde bulunan ürünleri hariç tut
+        const products = await Products.find({ _id: { $nin: excludeIds } })
+            .skip(skip)
+            .limit(limit);
+
         res.json(products);
     } catch (error) {
-        console.error('Error retrieving products:', error);
-        res.status(500).send('Server Error');
+        console.error('Error fetching products:', error);
+        res.status(500).json({ message: 'Server Error' });
     }
 });
 

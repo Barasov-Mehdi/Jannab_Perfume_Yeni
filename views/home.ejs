@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/1.0.0/css/font-awesome.css"
         integrity="sha512-YX9NLok9RLg+o5JkA2Whp1kPDCBCEUolTyYykJVOe1xcaTNebXU/x02TxV0LpVYqVNJV5NVjyoMW0jHnJWICKg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
     <title>Jannab Perfume</title>
 </head>
@@ -18,9 +19,10 @@
         /* Position context for absolute positioning */
     }
 
-    .price-per-volume{
+    .price-per-volume {
         display: none;
     }
+
     .discount-label {
         position: absolute;
         top: 10px;
@@ -40,7 +42,6 @@
         font-size: 1em;
         /* Adjust font size */
     }
-    
 </style>
 
 <body>
@@ -148,7 +149,7 @@
     </section>
 
     <section class="products" id="productsContainer">
-        <% products.forEach(product=> { %>
+        <% products.slice(0, 2).forEach(product=> { %> <!-- İlk iki ürünü göster -->
             <div class="product" data-category="<%= product.category %>">
                 <a target="_blank" href="/products/<%= product._id %>">
                     <div class="image-container">
@@ -172,29 +173,24 @@
                             onchange="updateVolumePrice('<%= product._id %>', '<%= product.price %>', '<%= product.discount %>')">
                             <% const discountedPrice=product.discount> 0 ? product.price * (1 - product.discount / 100)
                                 : product.price; %>
-                                <option value="15" data-price="<%= (discountedPrice * 15).toFixed(2) %>">
-                                    15 ml - <%= (discountedPrice * 15).toFixed(2) %> ₼
-                                </option>
-                                <option value="30" data-price="<%= (discountedPrice * 30).toFixed(2) %>">
-                                    30 ml - <%= (discountedPrice * 30).toFixed(2) %> ₼
-                                </option>
-                                <option value="50" data-price="<%= (discountedPrice * 50).toFixed(2) %>">
-                                    50 ml - <%= (discountedPrice * 50).toFixed(2) %> ₼
-                                </option>
+                                <option value="15" data-price="<%= (discountedPrice * 15).toFixed(2) %>">15 ml - <%=
+                                        (discountedPrice * 15).toFixed(2) %> ₼</option>
+                                <option value="30" data-price="<%= (discountedPrice * 30).toFixed(2) %>">30 ml - <%=
+                                        (discountedPrice * 30).toFixed(2) %> ₼</option>
+                                <option value="50" data-price="<%= (discountedPrice * 50).toFixed(2) %>">50 ml - <%=
+                                        (discountedPrice * 50).toFixed(2) %> ₼</option>
                         </select>
                     </div>
-                    <!-- <div class="price-per-volume" id="priceDisplay_<%= product._id %>">
-                        <%= (discountedPrice * 15).toFixed(2) %> ₼
-                    </div> -->
-                    <a href="javascript:void(0)" class="add-to-cart"
+                    <a href="javascript:void(0)" class="add-to-cart" style="background-color: #f76300;" 
                         onclick="addToCart('<%= product._id %>', '<%= product.name %>', '<%= product.img %>', '<%= product.price %>', document.getElementById('volumeSelect_<%= product._id %>').value)">
-                        <i class="fas fa-plus"></i>
+                        <i class="fa-solid fa-cart-shopping" style="color: white;"></i>
                     </a>
                 </div>
-
             </div>
             <% }) %>
     </section>
+
+    <button class="loadMoreButtons" id="loadMoreButton" onclick="loadMoreProducts()">Load More</button>
 
     <div class="product_card" id="productCard" style="display: none;">
         <h3>Səbət</h3>
@@ -235,17 +231,7 @@
         var newArrivalsButton = document.getElementById('newArrivalsButton');
         var bestSellersButton = document.getElementById('bestSellersButton');
         var discountedButton = document.getElementById('discountedButton');
-
-        function resetButtonStyles() {
-            newArrivalsButton.classList.remove('active');
-            bestSellersButton.classList.remove('active');
-            discountedButton.classList.remove('active');
-
-            newArrivalsButton.classList.add('inactive');
-            bestSellersButton.classList.add('inactive');
-            discountedButton.classList.add('inactive');
-        }
-
+      
         newArrivalsButton.addEventListener('click', () => {
             resetButtonStyles();
             newArrivalsButton.classList.add('active');

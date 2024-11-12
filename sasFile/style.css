@@ -28,7 +28,7 @@ a {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #545b62;
+  background-color: #292627;
   width: 100%;
 }
 .container .header img {
@@ -203,7 +203,7 @@ a {
   padding: 10px;
 }
 .container .mb_text span {
-  color: #545b62;
+  color: #292627;
   font-size: 16px;
   font-weight: 700;
 }
@@ -566,6 +566,15 @@ a {
   color: white;
   background-color: rgba(0, 0, 0, 0.1);
 }
+.container .loadMoreButtons {
+  margin: 0 0 60px 0;
+  color: black;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-size: 17px;
+}
 .container .product_card {
   width: 92%;
   /* Ekrana göre genişlik */
@@ -659,7 +668,6 @@ a {
 }
 .container .product_card #cartItems .product_item .quantity button {
   cursor: pointer;
-  background: #007bff;
   border: none;
   color: white;
   padding: 6px 12px;
@@ -694,7 +702,6 @@ a {
   /* Solda hizalama */
 }
 .container .product_card button {
-  background: #dc3545;
   /* Kapatma butonu rengi */
   color: white;
   padding: 10px 20px;
@@ -767,7 +774,7 @@ a {
 }
 .container .left_menu i {
   color: rgb(212, 211, 211);
-  background-color: #545b62;
+  background-color: #292627;
   text-align: end;
   width: 100%;
   font-size: 30px;
@@ -783,7 +790,7 @@ a {
 }
 .container .left_menu .creator span {
   color: rgb(212, 211, 211);
-  background-color: #545b62;
+  background-color: #292627;
   text-align: center;
   padding: 15px;
   flex: 1;
@@ -853,7 +860,7 @@ a {
 .container .footer {
   width: 100%;
   height: 35vh;
-  background-color: #545b62;
+  background-color: #292627;
 }
 
 @media (max-width: 780px) {

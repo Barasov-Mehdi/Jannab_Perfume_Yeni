@@ -193,7 +193,7 @@
         }
 
         .note-image {
-            max-width: 100%;
+            max-width: 70%;
             height: auto;
             border-radius: 5px;
         }
@@ -202,18 +202,20 @@
             display: inline-block;
             margin-top: 20px;
             padding: 10px 15px;
-            background-color: #007bff;
-            color: white;
+            background-color: #f8f8f8;
+            color: black;
             border-radius: 4px;
             text-decoration: none;
-            text-align: center;
+            text-align: start;
             transition: background-color 0.3s, transform 0.2s;
             font-weight: bold;
+            font-size: 18px;
         }
 
         .back-link:hover {
-            background-color: #0056b3;
+            background-color: #76787a;
             transform: scale(1.05);
+            color: white;
         }
 
         /* Responsive Styling */
@@ -252,6 +254,9 @@
 
 <body>
     <div class="container">
+        <a href="/" class="back-link" aria-label="Məhsul siyahısına keçid">
+            <i class="fas fa-chevron-left"></i> Əsas səhifə
+        </a>
         <h1>
             <%= product.name %>
         </h1>
@@ -260,8 +265,8 @@
             <img src="<%= product.img %>" alt="<%= product.name %> şəkli" class="product-image">
             <div class="additional-images">
                 <img src="/img/15ml.JPG" alt="Görüntü 1">
-                <img src="/img/30ml.JPG" alt="Görüntü 2">
-                <img src="/img/50ml.JPG" alt="Görüntü 3">
+                <img src="/img/50ml.JPG" alt="Görüntü 2">
+                <img src="/img/30ml.JPG" alt="Görüntü 3">
             </div>
         </div>
 
@@ -269,7 +274,7 @@
             <div class="details-section">
                 <!-- <p class="price"><strong>Qiymət:</strong> ₼ <%= product.price.toString() %></p> -->
 
-                <div class="rating">
+                <div class="rating" style="display: none;">
                     <span class="star"><i class="fas fa-star"></i></span>
                     <span class="star"><i class="fas fa-star"></i></span>
                     <span class="star"><i class="fas fa-star"></i></span>
@@ -294,7 +299,7 @@
             </div>
         </div>
 
-        <section class="section-container">
+        <section class="section-container" style="display: none;">
             <h3>Qiymət Cədvəli</h3>
             <table class="price-table" aria-label="Məhsul qiyməti həcminə görə">
                 <thead>
@@ -305,14 +310,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% const volumes = [15, 30, 50]; %>
-                    <% volumes.forEach(volume => { %>
-                        <tr>
-                            <td><%= volume %> ml</td>
-                            <td><strong>₼ <%= product.originalPrices[volume] %></strong></td>
-                            <td><strong>₼ <%= product.discountedPrices[volume] %></strong></td>
-                        </tr>
-                    <% }); %>
+                    <% const volumes=[15, 30, 50]; %>
+                        <% volumes.forEach(volume=> { %>
+                            <tr>
+                                <td>
+                                    <%= volume %> ml
+                                </td>
+                                <td><strong>₼ <%= product.originalPrices[volume] %></strong></td>
+                                <td><strong>₼ <%= product.discountedPrices[volume] %></strong></td>
+                            </tr>
+                            <% }); %>
                 </tbody>
             </table>
         </section>
@@ -367,9 +374,7 @@
             </div>
         </section>
 
-        <a href="/" class="back-link" aria-label="Məhsul siyahısına keçid">
-            <i class="fas fa-chevron-left"></i> Əsas səhifə
-        </a>
+
     </div>
 </body>
 

@@ -28,7 +28,7 @@ a {
         display: flex;
         justify-content: space-around;
         align-items: center;
-        background-color: #545b62;
+        background-color: #292627;
         width: 100%;
 
         img {
@@ -232,7 +232,7 @@ a {
         padding: 10px;
 
         span {
-            color: #545b62;
+            color: #292627;
             font-size: 16px;
             font-weight: 700;
         }
@@ -667,6 +667,16 @@ a {
         }
     }
     
+    .loadMoreButtons{
+        margin: 0 0 60px 0;
+        color: black;
+        font-weight: bold;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        font-size: 17px;
+    }
+
     .product_card {
         width: 92%;
         /* Ekrana göre genişlik */
@@ -762,7 +772,7 @@ a {
 
                     button {
                         cursor: pointer;
-                        background: #007bff;
+                        // background: #007bff;
                         border: none;
                         color: white;
                         padding: 6px 12px;
@@ -805,7 +815,7 @@ a {
         }
 
         button {
-            background: #dc3545;
+            // background: #dc3545;
             /* Kapatma butonu rengi */
             color: white;
             padding: 10px 20px;
@@ -891,7 +901,7 @@ a {
         // Styling for the icon
         i {
             color: rgb(212, 211, 211); // Icon color
-            background-color: #545b62; // Background for the icon
+            background-color: #292627; // Background for the icon
             text-align: end; // Align text to the end
             width: 100%; // Full width for the icon area
             font-size: 30px; // Font size for the icon
@@ -909,7 +919,7 @@ a {
 
             span {
                 color: rgb(212, 211, 211); // Text color
-                background-color: #545b62; // Background color
+                background-color: #292627; // Background color
                 text-align: center; // Center text
                 padding: 15px; // Padding around text
                 flex: 1; // Allow to stretch to fill the available space
@@ -989,7 +999,7 @@ a {
     .footer {
         width: 100%;
         height: 35vh;
-        background-color: #545b62;
+        background-color: #292627;
     }
 }
 

@@ -152,11 +152,97 @@ function displaySearchResults(products, query) {
         searchResults.innerHTML = '<p>Hiçbir ürün bulunamadı.</p>'; // No products found message
     }
 }
-
 addCardAndSearch();
 
+// zordu 
+let skipCount = 2; // İlk başta yüklenecek ürün sayısı
+const limit = 2; // Her seferinde yüklenecek ürün sayısı
+let loadedProductIds = []; // Daha önce yüklenmiş ürün ID'leri
 
+function loadMoreProducts() {
+    fetch(`/api/products?skip=${skipCount}&limit=${limit}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(products => {
+            const productsContainer = document.getElementById('productsContainer');
 
+            const newProducts = products.filter(product => !loadedProductIds.includes(product._id));
+
+            if (newProducts.length > 0) {
+                newProducts.forEach(product => {
+                    // Fiyatı ve indirim oranını doğru bir biçimde oluşturun
+                    const originalPrice = (typeof product.price === 'object' && product.price.$numberDecimal) 
+                        ? parseFloat(product.price.$numberDecimal) 
+                        : product.price;
+
+                    const discount = (typeof product.discount === 'object' && product.discount.$numberDecimal) 
+                        ? parseFloat(product.discount.$numberDecimal) 
+                        : (product.discount ? parseFloat(product.discount) : 0);
+
+                    const discountedPrice = discount > 0 
+                        ? originalPrice * (1 - discount / 100) 
+                        : originalPrice;
+
+                    const discountedPrice15ml = (discountedPrice * (15 / 1)).toFixed(2);
+                    const discountedPrice30ml = (discountedPrice * (30 / 1)).toFixed(2);
+                    const discountedPrice50ml = (discountedPrice * (50 / 1)).toFixed(2);
+
+                    const productHTML = `
+                        <div class="product" data-category="${product.category}">
+                            <a target="_blank" href="/products/${product._id}">
+                                <div class="image-container">
+                                    <img src="${product.img}" alt="${product.name}">
+                                    ${discount > 0 ? `<div class="discount-badge">-${Math.floor(discount)}%</div>` : ''}
+                                </div>
+                                <div class="product-details">
+                                    <h2>${product.name}</h2>
+                                </div>
+                            </a>
+                            <div class="product-footer">
+                                <div class="price" style="display: none;">${originalPrice.toFixed(2)} ₼</div>
+                                <div class="volume-select">
+                                    <select class="volume-options" id="volumeSelect_${product._id}" 
+                                        onchange="updateVolumePrice('${product._id}', ${originalPrice}, ${discount})">
+                                        <option value="15" data-price="${discountedPrice15ml}">15 ml - ${discountedPrice15ml} ₼</option>
+                                        <option value="30" data-price="${discountedPrice30ml}">30 ml - ${discountedPrice30ml} ₼</option>
+                                        <option value="50" data-price="${discountedPrice50ml}">50 ml - ${discountedPrice50ml} ₼</option>
+                                    </select>
+                                </div>
+                                <a href="javascript:void(0)" class="add-to-cart" 
+                                    onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${discountedPrice.toFixed(2)}, 
+                                    document.getElementById('volumeSelect_${product._id}').value)">
+                                    <i class="fas fa-plus"></i>
+                                </a>
+                            </div>
+                        </div>`;
+
+                    productsContainer.insertAdjacentHTML('beforeend', productHTML);
+                    loadedProductIds.push(product._id);
+                });
+
+                skipCount += limit; // Geçiş sayısını güncelle
+            } else {
+                document.getElementById('loadMoreButton').style.display = 'none';
+            }
+        })
+        .catch(error => {
+            console.error('Error loading more products:', error);
+        });
+}
+
+function resetButtonStyles() {
+    newArrivalsButton.classList.remove('active');
+    bestSellersButton.classList.remove('active');
+    discountedButton.classList.remove('active');
+
+    newArrivalsButton.classList.add('inactive');
+    bestSellersButton.classList.add('inactive');
+    discountedButton.classList.add('inactive');
+}
 
 function addToCart(id, name, img, price, volume) {
     price = parseFloat(price); // Convert to number
@@ -374,7 +460,6 @@ async function filterProducts(gender) {
     }
 }
 
-
 function renderProducts(products) {
     const productsContainer = document.getElementById('productsContainer');
     productsContainer.innerHTML = ''; // Clear existing products
@@ -430,7 +515,3 @@ function renderProducts(products) {
         productsContainer.insertAdjacentHTML('beforeend', productElement); // Append the product element
     });
 }
-
-{/* <div class="rating">
-    ${[...Array(5)].map((_, i) => `<span class="star ${i < product.rating ? 'filled' : ''}">★</span>`).join('')}
-</div> */}

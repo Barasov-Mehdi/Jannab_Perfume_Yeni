@@ -106,9 +106,12 @@ app.get('/api/products/search', async (req, res) => {
 });
 
 
+// app.js içerisindeki ürün API'si
 app.get('/api/products', async (req, res) => {
+  const { skip = 0, limit = 2 } = req.query; // Query parametreleri olarak skip ve limit alınır
+
   try {
-    const products = await Products.find();
+    const products = await Products.find().skip(Number(skip)).limit(Number(limit));
     res.json(products);
   } catch (err) {
     console.error('Error fetching products', err);
