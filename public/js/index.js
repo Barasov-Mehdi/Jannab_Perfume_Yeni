@@ -50,7 +50,7 @@ showProductCard();
             setInterval(() => {
                 i = (i + 1) % imgArr.length; // İndeksi döngüsel hale getir
                 slider_show.src = imgArr[i]; // Yeni resmi göster
-            }, 3000);
+            }, 4000);
         }
 
         // Sayfa yüklendiğinde slideShow fonksiyonunu çağır
