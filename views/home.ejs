@@ -42,6 +42,11 @@
         font-size: 1em;
         /* Adjust font size */
     }
+
+    /* .share_whatsap_pro{
+        background-color: forestgreen;
+        color: white;
+    } */
 </style>
 
 <body>
@@ -149,6 +154,7 @@
 
     </section>
 
+
     <section class="products" id="productsContainer">
         <% products.slice(0, 2).forEach(product=> { %> <!-- İlk iki ürünü göster -->
             <div class="product" data-category="<%= product.category %>">
@@ -198,7 +204,11 @@
         <h3>Səbət</h3>
         <div id="cartItems"></div>
         <div style="margin: 3px;"><span id="totalPrice"></span> ₼</div> <!-- Burayı kontrol edin -->
-        <button onclick="closeCart()">Bağla</button>
+        <div class="card_buttons">
+            <button onclick="closeCart()">Bağla</button>
+            <button class="share_whatsap_pro" onclick="shareOnWhatsApp()">Ətraflı</button>
+        </div>
+
     </div>
 
     <section class="left_menu">

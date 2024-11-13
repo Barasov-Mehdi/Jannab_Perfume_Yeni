@@ -237,7 +237,9 @@ function loadMoreProducts() {
 
                                 </a>
                             </div>
-                        </div>`;
+                        </div>
+                        
+                        `;
 
                     productsContainer.insertAdjacentHTML('beforeend', productHTML);
                     loadedProductIds.push(product._id);
@@ -290,6 +292,24 @@ function addToCart(id, name, img, price, volume) {
     updateCartDisplay(); // Refresh the cart display
 }
 
+function shareOnWhatsApp() {
+    let message = "Salam, ";
+
+    // Loop through the cart to get the product details
+    for (const key in cart) {
+        const { name, price, quantity, volume } = cart[key];
+        message += `${name} (${volume} ml) - ₼${price.toFixed(2)} x ${quantity}\n`; // Miktarı ekliyoruz
+    }
+
+    // Create the WhatsApp URL
+    const phoneNumber = "+994605846205"; // Paylaşım yapılacak telefon numarası
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+    // Open WhatsApp sharing
+    window.open(whatsappURL, '_blank');
+}
+
 function updateCartDisplay() {
     const cartItems = document.getElementById('cartItems');
     cartItems.innerHTML = '';
@@ -314,6 +334,9 @@ function updateCartDisplay() {
     }
 
     document.getElementById('totalPrice').innerText = totalPrice.toFixed(2); // Toplam fiyatı 2 ondalık basamakla göster
+    
+    // Add WhatsApp share button
+    
     document.querySelector('.added_product').innerText = totalQuantity;
     document.querySelector('.productNo').innerText = totalQuantity;
 }

@@ -704,7 +704,17 @@ a {
   text-align: left;
   /* Solda hizalama */
 }
-.container .product_card button {
+.container .product_card .card_buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container .product_card .card_buttons .share_whatsap_pro {
+  background-color: forestgreen;
+  color: white;
+  margin: 5px 0 0 5px;
+}
+.container .product_card .card_buttons button {
   background: #dc3545;
   /* Kapatma butonu rengi */
   color: white;
@@ -712,9 +722,10 @@ a {
   border-radius: 5px;
   border: none;
   cursor: pointer;
+  margin: 5px 5px 0 0;
   transition: background 0.2s, transform 0.1s;
 }
-.container .product_card button:hover {
+.container .product_card .card_buttons button:hover {
   background: #c82333;
   /* Hover rengi */
   transform: scale(1.05);

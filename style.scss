@@ -819,24 +819,38 @@ a {
             /* Solda hizalama */
         }
 
-        button {
-            background: #dc3545;
-            /* Kapatma butonu rengi */
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-            transition: background 0.2s, transform 0.1s;
+        .card_buttons{
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-            &:hover {
-                background: #c82333;
-                /* Hover rengi */
-                transform: scale(1.05);
-                /* Hover efekti */
+            .share_whatsap_pro{
+                background-color: forestgreen;
+                color: white;
+                margin: 5px 0 0 5px;
             }
-        }
+            button {
+                background: #dc3545;
+                /* Kapatma butonu rengi */
+                color: white;
+                padding: 10px 20px;
+                border-radius: 5px;
+                border: none;
+                cursor: pointer;
+                margin: 5px 5px 0 0;
 
+                transition: background 0.2s, transform 0.1s;
+    
+                &:hover {
+                    background: #c82333;
+                    /* Hover rengi */
+                    transform: scale(1.05);
+                    /* Hover efekti */
+                }
+            }
+    
+        }
+       
         /* Mobil uyum için medya sorguları */
         @media (max-width: 600px) {
             h3 {
