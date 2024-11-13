@@ -39,17 +39,25 @@ function showProductCard() {
 }
 showProductCard();
 
-function slidShowFunction() {
-    var imgArr = ["./img/IMG_7812.JPG", "./img/IMG_7816.JPG", "./img/IMG_7827.JPG"];
-    var slider_show = document.querySelector('.slider_show');
-    slider_show.src = "./img/IMG_7812.JPG"
-    var i = 0;
-    setInterval(() => {
-        slider_show.src = imgArr[i];
-        i = (i + 1) % imgArr.length;
-    }, 3000);
-}
-slidShowFunction();
+ function slidShowFunction() {
+            var imgArrLarge = ["./img/IMG_7812.JPG", "./img/IMG_7855.JPG"];
+            var imgArrSmall = ["./img/IMG_7816.JPG", "./img/IMG_7827.JPG"];
+            var slider_show = document.querySelector('.slider_show');
+            var imgArr = window.innerWidth <= 775 ? imgArrSmall : imgArrLarge; // Ekran genişliğine göre resim dizisi
+            slider_show.src = imgArr[0]; // İlk resmi göster
+
+            var i = 0;
+            setInterval(() => {
+                i = (i + 1) % imgArr.length; // İndeksi döngüsel hale getir
+                slider_show.src = imgArr[i]; // Yeni resmi göster
+            }, 3000);
+        }
+
+        // Sayfa yüklendiğinde slideShow fonksiyonunu çağır
+        window.onload = slidShowFunction;
+
+        // Pencere boyutu değiştiğinde resmi ayarlamak için
+        window.onresize = slidShowFunction;
 
 function searchBtn() {
     var search_btn = document.querySelectorAll('.search_btn');
