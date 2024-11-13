@@ -42,7 +42,7 @@ showProductCard();
 function slidShowFunction() {
     var imgArr = ["./img/IMG_7812.JPG", "./img/IMG_7816.JPG", "./img/IMG_7827.JPG"];
     var slider_show = document.querySelector('.slider_show');
-    slider_show.src = "./img/IMG_7812.jpg"
+    slider_show.src = "./img/IMG_7812.JPG"
     var i = 0;
     setInterval(() => {
         slider_show.src = imgArr[i];
