@@ -40,7 +40,7 @@ function showProductCard() {
 showProductCard();
 
 function slidShowFunction() {
-    var imgArr = ["./img/IMG_7812.jpg", "./img/IMG_7816.jpg", "./img/IMG_7827.jpg"];
+    var imgArr = ["./img/IMG_7812.JPG", "./img/IMG_7816.JPG", "./img/IMG_7827.JPG"];
     var slider_show = document.querySelector('.slider_show');
     slider_show.src = "./img/IMG_7812.jpg"
     var i = 0;
