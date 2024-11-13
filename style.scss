@@ -561,7 +561,7 @@ a {
                     position: absolute;
                     top: 10px; // Konumu ayarlamak için
                     left: 10px; // Konumu ayarlamak için
-                    background-color: red; // Arka plan rengi
+                    background-color: #f76300; // Arka plan rengi
                     color: white; // Yazı rengi
                     padding: 5px 5px; // İç boşluk
                     border-radius: 5px; // Kenar yuvarlama
@@ -589,6 +589,8 @@ a {
                     margin: 10px 0;
                     color: #333;
                     text-transform: uppercase;
+                    text-align: start;
+                    padding-left: 5px;
                 }
 
                 .rating {
@@ -647,7 +649,7 @@ a {
                     justify-content: center;
                     background-color: transparent;
                     // color: #edbe63;
-                    padding: 7px;
+                    padding: 10px;
                     border-radius: 15%;
                     font-size: 1.5em;
                     transition: background-color 0.3s, color 0.3s;
@@ -898,7 +900,7 @@ a {
                 color: black; // Rəng
                 font-size: 20px; // Yazı ölçüsü
                 margin: 10px 0; // Yuxarı və aşağı boşluq
-                font-style: italic; // İtalik
+                // font-style: italic; // İtalik
                 font-weight: 600; // Qalın
                 transition: color 0.3s ease; // Üzəri rəng çevirməsi
 
@@ -1102,7 +1104,7 @@ a {
         .buttons_filter {
 
             button {
-                background-color: rgba(211, 211, 211, 0.3);
+                background-color: #ede3da;
                 color: #616161;
                 padding: 8px 10px;
                 text-align: center;

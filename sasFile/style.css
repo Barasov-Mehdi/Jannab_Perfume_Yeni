@@ -479,7 +479,7 @@ a {
   position: absolute;
   top: 10px;
   left: 10px;
-  background-color: red;
+  background-color: #f76300;
   color: white;
   padding: 5px 5px;
   border-radius: 5px;
@@ -504,6 +504,8 @@ a {
   margin: 10px 0;
   color: #333;
   text-transform: uppercase;
+  text-align: start;
+  padding-left: 5px;
 }
 .container .products .product .product-details .rating {
   display: flex;
@@ -550,7 +552,7 @@ a {
   align-items: center;
   justify-content: center;
   background-color: transparent;
-  padding: 7px;
+  padding: 10px;
   border-radius: 15%;
   font-size: 1.5em;
   transition: background-color 0.3s, color 0.3s;
@@ -773,7 +775,6 @@ a {
   color: black;
   font-size: 20px;
   margin: 10px 0;
-  font-style: italic;
   font-weight: 600;
   transition: color 0.3s ease;
 }
@@ -935,7 +936,7 @@ a {
     display: none;
   }
   .container .buttons_filter button {
-    background-color: rgba(211, 211, 211, 0.3);
+    background-color: #ede3da;
     color: #616161;
     padding: 8px 10px;
     text-align: center;
