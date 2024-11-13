@@ -39,26 +39,35 @@ function showProductCard() {
 }
 showProductCard();
 
- function slidShowFunction() {
-            var imgArrLarge = ["./img/IMG_7812.JPG", "./img/IMG_7855.JPG"];
-            var imgArrSmall = ["./img/IMG_7816.JPG", "./img/IMG_7827.JPG"];
-            var slider_show = document.querySelector('.slider_show');
-            var imgArr = window.innerWidth <= 775 ? imgArrSmall : imgArrLarge; // Ekran genişliğine göre resim dizisi
-            slider_show.src = imgArr[0]; // İlk resmi göster
+function initializeSlider() {
+    var imgArrLarge = ["./img/IMG_7812.JPG", "./img/IMG_7855.JPG"]; // Geniş ekranlar için
+    var imgArrSmall = ["./img/IMG_7816.JPG", "./img/IMG_7827.JPG"]; // Dar ekranlar için
+    var slider_show = document.querySelector('.slider_show');
+    var imgArr;
+    var i = 0;
 
-            var i = 0;
-            setInterval(() => {
-                i = (i + 1) % imgArr.length; // İndeksi döngüsel hale getir
-                slider_show.src = imgArr[i]; // Yeni resmi göster
-            }, 4000);
+    function updateImageArray() {
+        if (window.innerWidth <= 775) {
+            imgArr = imgArrSmall;
+        } else {
+            imgArr = imgArrLarge;
         }
+        slider_show.src = imgArr[0]; // İlk resmi göster
+        i = 0; // Reset index
+    }
 
-        // Sayfa yüklendiğinde slideShow fonksiyonunu çağır
-        window.onload = slidShowFunction;
+    function changeImage() {
+        i = (i + 1) % imgArr.length; // İndeksi döngüsel hale getir
+        slider_show.src = imgArr[i]; // Yeni resmi göster
+    }
 
-        // Pencere boyutu değiştiğinde resmi ayarlamak için
-        window.onresize = slidShowFunction;
+    updateImageArray(); // Öncelikle diziyi ayarla
+    setInterval(changeImage, 3000); // Resimleri değiştir
+    window.onresize = updateImageArray; // Boyut değiştiğinde diziyi güncelle
+}
 
+// Slider'ı başlat
+initializeSlider();
 function searchBtn() {
     var search_btn = document.querySelectorAll('.search_btn');
     var search = document.querySelector('.search');
