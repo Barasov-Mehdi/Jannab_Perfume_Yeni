@@ -29,7 +29,7 @@
         /* Adjust as necessary */
         left: 10px;
         /* Adjust as necessary */
-        background-color: #ff0000;
+        background-color: #f76300;
         /* Red background with some transparency */
         color: white;
         /* White text */
@@ -113,7 +113,7 @@
 
         <div class="search_box">
             <input class="search_inp" type="search" name="search" id="">
-            <button class="search_button">Axtar</button>
+            <!-- <button class="search_button">Axtar</button> -->
         </div>
 
         <div class="search_results">
@@ -128,18 +128,16 @@
             <div class="slider_box_buttons">
                 <div class="nese">
                     <button id="allProductsButton" onclick="filterAllProducts()">Bütün Ətirlər <i
-                            class="fa-solid fa-arrow-right-long" style="color: black;"></i> </button>
-                    <button class="filterMan" onclick="filterProducts('man')">Man <i
-                            class="fa-solid fa-arrow-right-long" style="color: black;"></i> </button>
+                            class="fa-solid fa-arrow-right-long" style="color: black;"></i></button>
+                    <button id="manButton" class="filterMan" onclick="filterProducts('man')">Man <i
+                            class="fa-solid fa-arrow-right-long" style="color: black;"></i></button>
                 </div>
 
                 <div class="nese">
-                    <button class="filterUnisex" onclick="filterProducts('unisex')">Unisex <i
-                            class="fa-solid fa-arrow-right-long" style="color: black;"></i> </button>
-                    <button class="filterWoman" onclick="filterProducts('woman')">Woman <i
-                            class="fa-solid fa-arrow-right-long" style="color: black;"></i> </button>
-                    <!-- <button class="filterAll" onclick="filterProducts()">Tüm Ürünler</button> Tüm ürünleri gösteren buton -->
-
+                    <button id="unisexButton" class="filterUnisex" onclick="filterProducts('unisex')">Unisex <i
+                            class="fa-solid fa-arrow-right-long" style="color: black;"></i></button>
+                    <button id="womanButton" class="filterWoman" onclick="filterProducts('woman')">Woman <i
+                            class="fa-solid fa-arrow-right-long" style="color: black;"></i></button>
                 </div>
 
             </div>
@@ -231,78 +229,137 @@
     </a>
 
     <footer class="footer">
-
+        <div class="map_box">
+            <div class="iframe_container">
+                <span>Bazardakı ünvanımız</span>
+                <img src="./img/bazar.png" alt="Bazar Images" class="bazar-image">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2982.374950552943!2d46.637428276071674!3d41.62602617127063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDHCsDM3JzMzLjciTiA0NsKwMzgnMjQuMCJF!5e0!3m2!1saz!2saz!4v1731596034664!5m2!1saz!2saz" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="iframe_container">
+                <span>Bazardakı ünvanımız</span>
+                <img src="./img/bazar.png" alt="Bazar Images" class="bazar-image">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2982.374950552943!2d46.637428276071674!3d41.62602617127063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDHCsDM3JzMzLjciTiA0NsKwMzgnMjQuMCJF!5e0!3m2!1saz!2saz!4v1731596034664!5m2!1saz!2saz" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+        <div class="map_icons">
+            <a href="#" class="icon"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="icon"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" class="icon"><i class="fa-brands fa-twitter"></i></a>
+        </div>
     </footer>
 
     </div>
     <script src="./js/index.js"></script>
-
     <script>
-        var newArrivalsButton = document.getElementById('newArrivalsButton');
-        var bestSellersButton = document.getElementById('bestSellersButton');
-        var discountedButton = document.getElementById('discountedButton');
+        // Buton referansları
+        const buttons = {
+            newArrivals: document.getElementById('newArrivalsButton'),
+            bestSellers: document.getElementById('bestSellersButton'),
+            discounted: document.getElementById('discountedButton'),
+            allProducts: document.getElementById('allProductsButton'),
+            man: document.getElementById('manButton'),
+            unisex: document.getElementById('unisexButton'),
+            woman: document.getElementById('womanButton'),
+            contactsBtn: document.querySelector('.contacts_btn'),
+            contacts: document.querySelector('.contacts')
+        };
 
-        document.querySelectorAll('.nav_box a, .nav_box .contacts_btn').forEach(item => {
-            item.addEventListener('click', function () {
-                // Önceden aktif olanları temizle
-                document.querySelectorAll('.nav_box a, .nav_box .contacts_btn').forEach(el => el.classList.remove('active'));
-
-                // Tıklanan öğeye 'active' sınıfını ekle
-                item.classList.add('active');
+        // Tüm butonlardan active/inactive stillerini sıfırlama
+        function resetButtonStyles() {
+            Object.values(buttons).forEach(button => {
+                if (button) {
+                    button.classList.remove('active');
+                    button.classList.add('inactive');
+                }
             });
-        });
-
-
-        newArrivalsButton.addEventListener('click', () => {
-            resetButtonStyles();
-            newArrivalsButton.classList.add('active');
-            newArrivalsButton.classList.remove('inactive');
-        });
-
-        bestSellersButton.addEventListener('click', () => {
-            resetButtonStyles();
-            bestSellersButton.classList.add('active');
-            bestSellersButton.classList.remove('inactive');
-        });
-
-        discountedButton.addEventListener('click', () => {
-            resetButtonStyles();
-            discountedButton.classList.add('active');
-            discountedButton.classList.remove('inactive');
-        });
-
-        var contacts_btn = document.querySelector('.contacts_btn');
-        contacts_btn.addEventListener('click', () => {
-            var contacts = document.querySelector('.contacts');
-
-            // Eğer 'contacts' gizli ise göster, aksi takdirde gizle
-            if (contacts.style.display === 'none' || contacts.style.display === '') {
-                contacts.style.display = 'flex';
-            } else {
-                contacts.style.display = 'none';
-            }
-        });
-
-        function updateVolumePrice(productId, basePrice) {
-            const volumeSelect = document.getElementById(`volumeSelect_${productId}`);
-            const selectedOption = volumeSelect.options[volumeSelect.selectedIndex];
-
-            const calculatedPrice = selectedOption.getAttribute('data-price'); // Seçilen hacmin fiyatını al
-
-            // Hesaplanan fiyatı göster
-            const priceDisplay = document.getElementById(`priceDisplay_${productId}`);
-            priceDisplay.innerHTML = `${calculatedPrice} ₼ `; // formatlanmış fiyat
         }
 
-        // Sayfa yüklendiğinde ilk fiyatları ayarlamak için
-        document.querySelectorAll('.volume-options').forEach(select => {
-            const productId = select.id.split('_')[1]; // ID'den ürün ID'sini al
-            const basePrice = parseFloat(select.options[0].getAttribute('data-price')); // İlk opsiyondaki veriyi al
-            updateVolumePrice(productId, basePrice); // Başlangıç fiyatını güncelle
-        });
+        // Buton tıklama olaylarını ekle
+        function setupButtonListeners() {
+            buttons.newArrivals.addEventListener('click', () => {
+                resetButtonStyles();
+                buttons.newArrivals.classList.add('active');
+                filterNewArrivals();
+            });
 
+            buttons.bestSellers.addEventListener('click', () => {
+                resetButtonStyles();
+                buttons.bestSellers.classList.add('active');
+                filterBestSellers();
+            });
 
+            buttons.discounted.addEventListener('click', () => {
+                resetButtonStyles();
+                buttons.discounted.classList.add('active');
+                filterDiscountedProducts();
+            });
 
+            buttons.allProducts.addEventListener('click', () => {
+                resetButtonStyles();
+                buttons.allProducts.classList.add('active');
+                filterAllProducts();
+            });
+
+            buttons.man.addEventListener('click', () => {
+                resetButtonStyles();
+                buttons.man.classList.add('active');
+                filterProducts('man');
+            });
+
+            buttons.unisex.addEventListener('click', () => {
+                resetButtonStyles();
+                buttons.unisex.classList.add('active');
+                filterProducts('unisex');
+            });
+
+            buttons.woman.addEventListener('click', () => {
+                resetButtonStyles();
+                buttons.woman.classList.add('active');
+                filterProducts('woman');
+            });
+        }
+
+        // Dışarıya tıklama olayını ekle
+        function setupOutsideClickListener() {
+            document.addEventListener('click', (event) => {
+                const isOutsideClick = !Object.values(buttons).some(button => button.contains(event.target));
+                if (isOutsideClick) {
+                    resetButtonStyles();
+                }
+            });
+        }
+
+        // İletişim butonuna tıklama olayını ekle
+        function setupContactsButton() {
+            buttons.contactsBtn.addEventListener('click', () => {
+                buttons.contacts.style.display = buttons.contacts.style.display === 'none' || buttons.contacts.style.display === '' ? 'flex' : 'none';
+            });
+        }
+
+        // Hacim fiyatını güncelleme
+        function updateVolumePrice(productId) {
+            const volumeSelect = document.getElementById(`volumeSelect_${productId}`);
+            const priceDisplay = document.getElementById(`priceDisplay_${productId}`);
+            const selectedOption = volumeSelect.options[volumeSelect.selectedIndex];
+            const calculatedPrice = selectedOption.getAttribute('data-price');
+            priceDisplay.innerHTML = `${calculatedPrice} ₼`;
+        }
+
+        // Sayfa yüklendiğinde başlangıç fiyatlarını ayarlama
+        function setupVolumePriceUpdates() {
+            document.querySelectorAll('.volume-options').forEach(select => {
+                const productId = select.id.split('_')[1];
+                updateVolumePrice(productId);
+            });
+        }
+
+        // Sayfa yüklendiğinde işlevselliği ayarla
+        window.onload = function () {
+            setupButtonListeners();
+            setupOutsideClickListener();
+            setupContactsButton();
+            setupVolumePriceUpdates();
+        };
     </script>
 
 </body>
