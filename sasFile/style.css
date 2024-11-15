@@ -800,6 +800,48 @@ a {
 .container .left_menu .menu_links a:hover {
   color: rgb(100, 100, 100);
 }
+.container .left_menu .menu_links .menu_icons {
+  display: none;
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+  margin: 10px 0;
+  font-weight: 600;
+  transition: color 0.3s ease;
+  animation: slideIns 1s forwards;
+}
+@keyframes slideIns {
+  from {
+    transform: translateY(-100%);
+    /* Başlangıçta solda dışarıda */
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    /* Orijinal pozisyonuna gelir */
+    opacity: 1;
+    /* Görünür olur */
+  }
+}
+.container .left_menu .menu_links .menu_icons a {
+  display: flex;
+  text-decoration: none;
+}
+.container .left_menu .menu_links .menu_icons a i {
+  padding: 0 5px;
+}
+.container .left_menu .menu_links .menu_icons a i:nth-child(1) {
+  font-size: 22px;
+  color: #ff1069;
+}
+.container .left_menu .menu_links .menu_icons a i:nth-child(2) {
+  font-size: 22.5px;
+  color: forestgreen;
+}
+.container .left_menu .menu_links .menu_icons a i:nth-child(3) {
+  font-size: 20px;
+  color: #292627;
+}
 .container .left_menu .close_left_menu {
   color: rgb(212, 211, 211);
   background-color: #292627;

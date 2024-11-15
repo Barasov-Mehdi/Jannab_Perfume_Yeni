@@ -214,10 +214,22 @@
             <i class="fa-solid fa-xmark close_left_menu"></i>
         </div>
         <div class="menu_links">
-            <a href="#">Əsas səhifə</a>
+            <a href="/">Əsas səhifə</a>
             <a href="#">Haqqımızda</a>
             <a href="#">Filiallarımız</a>
-            <a href="#">Əlaqə</a>
+            <a href="#" class="menu_dropdown">Əlaqə <i class="fa-solid fa-caret-down menu_dropdown"></i></a>
+            <section class="menu_icons">
+                <a target="_blank" href="https://www.instagram.com/jannabperfume/?igsh=MTZpd2Nsancxd2E2eA%3D%3D#">
+                    <i class="fa-brands fa-instagram" style="color:#ff1069 ;"></i>
+                </a>
+
+                <a target="_blank" href="https://wa.me/+994553974421?text=Salam">
+                    <i class="fa-brands fa-whatsapp" style="color: forestgreen;"></i>
+                </a>
+                <a href="tel:+994553974421">
+                    <i class="fa-solid fa-phone" style="color: #292627;"></i>
+                </a>
+            </section>
         </div>
         <div class="creator">
             <span>Baras Software ©</span>
@@ -233,12 +245,16 @@
             <div class="iframe_container">
                 <span>Bazardakı ünvanımız</span>
                 <img src="./img/bazar.png" alt="Bazar Images" class="bazar-image">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2982.374950552943!2d46.637428276071674!3d41.62602617127063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDHCsDM3JzMzLjciTiA0NsKwMzgnMjQuMCJF!5e0!3m2!1saz!2saz!4v1731596034664!5m2!1saz!2saz" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2982.374950552943!2d46.637428276071674!3d41.62602617127063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDHCsDM3JzMzLjciTiA0NsKwMzgnMjQuMCJF!5e0!3m2!1saz!2saz!4v1731596034664!5m2!1saz!2saz"
+                    loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <div class="iframe_container">
                 <span>Bazardakı ünvanımız</span>
                 <img src="./img/bazar.png" alt="Bazar Images" class="bazar-image">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2982.374950552943!2d46.637428276071674!3d41.62602617127063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDHCsDM3JzMzLjciTiA0NsKwMzgnMjQuMCJF!5e0!3m2!1saz!2saz!4v1731596034664!5m2!1saz!2saz" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2982.374950552943!2d46.637428276071674!3d41.62602617127063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDHCsDM3JzMzLjciTiA0NsKwMzgnMjQuMCJF!5e0!3m2!1saz!2saz!4v1731596034664!5m2!1saz!2saz"
+                    loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
         <div class="map_icons">
@@ -360,6 +376,22 @@
             setupContactsButton();
             setupVolumePriceUpdates();
         };
+
+        var menu_dropdown = document.querySelectorAll(".menu_dropdown");
+
+        menu_dropdown.forEach((dropdown) => {
+            dropdown.addEventListener('click', () => {
+                // İlgili menu_icons öğesini bul
+                var menu_icons = dropdown.nextElementSibling; // Örneğin, bir sonraki kardeş öğe
+                if (menu_icons && menu_icons.classList.contains('menu_icons')) {
+                    if (menu_icons.style.display === 'none' || menu_icons.style.display === '') {
+                        menu_icons.style.display = 'flex';
+                    } else {
+                        menu_icons.style.display = 'none';
+                    }
+                }
+            });
+        });
     </script>
 
 </body>
