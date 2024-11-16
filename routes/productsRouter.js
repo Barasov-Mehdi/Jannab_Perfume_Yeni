@@ -56,16 +56,17 @@ router.get('/:id', async (req, res) => {
 });
 
 router.get('/search', async (req, res) => {
-    const searchQuery = req.query.search || '';
+    const searchQuery = req.query.q || '';
     try {
-        const products = await Products.find({ name: { $regex: searchQuery, $options: 'i' } }); // Case insensitive arama
+        const products = await Products.find({
+            name: { $regex: searchQuery, $options: 'i' }
+        });
         res.json(products);
     } catch (err) {
         console.error('Error searching products', err);
         res.status(500).send('Internal Server Error');
     }
 });
-
 router.get('/products', async (req, res) => {
     const { search } = req.query;
 
@@ -120,7 +121,6 @@ router.get('/filter/:gender', async (req, res) => {
         res.status(500).send('Server Error');
     }
 });
-
 
 router.get('/api/products', async (req, res) => {
     const limit = 2; // Her istekte dönecek ürün sayısı

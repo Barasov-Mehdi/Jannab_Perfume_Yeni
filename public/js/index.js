@@ -99,33 +99,29 @@ async function addCardAndSearch() {
 
     searchInput.addEventListener('input', async function () {
         const query = this.value.trim();
-        if (query.length > 2) {
-            const response = await fetch(`/api/products?search=${encodeURIComponent(query)}`);
-            if (!response.ok) {
-                console.error('Error fetching products:', response.statusText);
-                return;
+        if (query.length > 2) { // Sadece 3 karakterden fazlası için arama yap
+            try {
+                const response = await fetch(`/api/products/search?q=${encodeURIComponent(query)}`);
+                if (!response.ok) {
+                    throw new Error('Ürünler alınamadı');
+                }
+                const products = await response.json();
+                displaySearchResults(products);
+            } catch (error) {
+                console.error('Arama yaparken bir hata oluştu:', error);
             }
-            const products = await response.json();
-            displaySearchResults(products, query);
         } else {
-            searchResults.innerHTML = '';  // Clear results when the input is empty
+            searchResults.innerHTML = '';  // Arama kutusu boşsa sonuçları temizle
         }
     });
 }
 
-function displaySearchResults(products, query) {
+function displaySearchResults(products) {
     const searchResults = document.querySelector('.search_results');
-    searchResults.innerHTML = '';
+    searchResults.innerHTML = ''; // Önceki sonuçları temizle
 
-    // Sort the products based on whether they include the query in their name
-    const sortedProducts = products.sort((a, b) => {
-        const aMatches = a.name.toLowerCase().includes(query.toLowerCase());
-        const bMatches = b.name.toLowerCase().includes(query.toLowerCase());
-        return (aMatches === bMatches) ? 0 : aMatches ? -1 : 1;
-    });
-
-    if (sortedProducts.length > 0) {
-        sortedProducts.forEach(product => {
+    if (products.length > 0) {
+        products.forEach(product => {
             const price = typeof product.price === 'object' && product.price.$numberDecimal
                 ? parseFloat(product.price.$numberDecimal)
                 : product.price;
@@ -160,17 +156,17 @@ function displaySearchResults(products, query) {
                 <a href="javascript:void(0)" class="add-to-cart" style="background-color: #f76300;" 
                     onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${discountedPrice}, document.getElementById('volumeSelect_${product._id}').value)">
                     <i class="fa-solid fa-cart-shopping" style="color: white;"></i>
-
                 </a>
             `;
 
-            searchResults.appendChild(productElement);
+            searchResults.appendChild(productElement); // Ürün sonuçlarını listele
         });
     } else {
-        searchResults.innerHTML = '<p>Hiçbir ürün bulunamadı.</p>'; // No products found message
+        searchResults.innerHTML = '<p>Hiçbir ürün bulunamadı.</p>'; // Hiçbir sonuç yoksa mesaj yaz
     }
 }
-addCardAndSearch();
+
+addCardAndSearch(); // Önyükleme işlemini başlat
 
 // zordu 
 let skipCount = 2; // İlk başta yüklenecek ürün sayısı

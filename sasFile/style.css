@@ -168,30 +168,22 @@ a {
   height: 30px;
   -o-object-fit: contain;
      object-fit: contain;
-  margin-left: 10px;
-}
-.container .mb_header .mb_else_icons img:nth-child(2) {
-  font-size: 30px;
-  margin-left: 20px;
-  width: 30px;
-  height: 30px;
-  -o-object-fit: contain;
-     object-fit: contain;
-  margin-left: 15px;
+  margin-left: 10p;
 }
 .container .mb_header .mb_else_icons .show_product_card {
+  display: flex;
+  justify-content: center;
   position: relative;
-  font-size: 30px;
-  color: black;
+  font-size: 34px;
   margin-left: 2px;
   text-align: end;
 }
-.container .mb_header .mb_else_icons .productNo {
+.container .mb_header .mb_else_icons .show_product_card .productNo {
   position: absolute;
-  right: 0;
-  top: 15px;
+  top: -5px;
+  right: -8px;
   color: black;
-  font-size: 17px;
+  font-size: 19px;
 }
 .container .mb_text {
   width: 100%;
@@ -802,11 +794,8 @@ a {
 }
 .container .left_menu .menu_links .menu_icons {
   display: none;
-  text-decoration: none;
-  color: black;
   font-size: 20px;
   margin: 10px 0;
-  font-weight: 600;
   transition: color 0.3s ease;
   animation: slideIns 1s forwards;
 }
@@ -826,6 +815,7 @@ a {
 .container .left_menu .menu_links .menu_icons a {
   display: flex;
   text-decoration: none;
+  border-bottom: none;
 }
 .container .left_menu .menu_links .menu_icons a i {
   padding: 0 5px;
@@ -839,8 +829,8 @@ a {
   color: forestgreen;
 }
 .container .left_menu .menu_links .menu_icons a i:nth-child(3) {
-  font-size: 20px;
-  color: #292627;
+  font-size: 15px;
+  color: blue;
 }
 .container .left_menu .close_left_menu {
   color: rgb(212, 211, 211);
@@ -930,6 +920,7 @@ a {
   background-color: #292627;
   padding: 20px;
   text-align: center;
+  width: 100%;
 }
 .container .footer .map_box {
   display: flex;
@@ -943,7 +934,6 @@ a {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: calc(100% - 40px);
   max-width: 600px;
   text-align: left;
 }
@@ -1051,5 +1041,13 @@ a {
     text-align: center;
     font-size: 12px;
     font-weight: bold;
+  }
+  .container .iframe_container {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    text-align: left;
   }
 }/*# sourceMappingURL=style.css.map */

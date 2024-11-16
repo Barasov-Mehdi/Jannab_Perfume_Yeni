@@ -10,6 +10,8 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="../style.css">
     <title>Jannab Perfume</title>
 </head>
@@ -98,10 +100,12 @@
         </div>
         <div class="mb_else_icons">
             <img class="fa-solid fa-magnifying-glass search_btn" src="/img/search-interface-symbol.png" alt="">
-            <img class="fa-solid fa-basket-shopping show_product_card" src="/img/shopping-bag.png" alt="">
+            <!-- <img class="fa-solid fa-basket-shopping show_product_card" src="/img/shopping-bag.png" alt=""> -->
             <!-- <span class="productNo">0</span> -->
             <!-- <i class="fa-solid fa-magnifying-glass search_btn" style="color: black;"></i> -->
             <!-- <i class="fa-solid fa-basket-shopping show_product_card"><span class="productNo">0</span></i> -->
+            <i class='bx bx-cart show_product_card'><span class="productNo">0</span></i>
+
         </div>
     </section>
 
@@ -152,7 +156,6 @@
 
     </section>
 
-
     <section class="products" id="productsContainer">
         <% products.slice(0, 2).forEach(product=> { %> <!-- İlk iki ürünü göster -->
             <div class="product" data-category="<%= product.category %>">
@@ -196,7 +199,7 @@
             <% }) %>
     </section>
 
-    <button class="loadMoreButtons" id="loadMoreButton" onclick="loadMoreProducts()">Load More</button>
+    <button class="loadMoreButtons" id="loadMoreButton" onclick="loadMoreProducts()">Daha çox</button>
 
     <div class="product_card" id="productCard" style="display: none;">
         <h3>Səbət</h3>
@@ -204,7 +207,7 @@
         <div style="margin: 3px;"><span id="totalPrice"></span> ₼</div> <!-- Burayı kontrol edin -->
         <div class="card_buttons">
             <button onclick="closeCart()">Bağla</button>
-            <button class="share_whatsap_pro" onclick="shareOnWhatsApp()">Ətraflı</button>
+            <button class="share_whatsap_pro" onclick="shareOnWhatsApp()">Sifariş</button>
         </div>
 
     </div>
@@ -227,7 +230,7 @@
                     <i class="fa-brands fa-whatsapp" style="color: forestgreen;"></i>
                 </a>
                 <a href="tel:+994553974421">
-                    <i class="fa-solid fa-phone" style="color: #292627;"></i>
+                    <i class="fa-solid fa-phone" style="color: blue; font-size: 19px;"></i>
                 </a>
             </section>
         </div>
@@ -258,9 +261,9 @@
             </div>
         </div>
         <div class="map_icons">
-            <a href="#" class="icon"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" class="icon"><i class="fa-brands fa-facebook"></i></a>
-            <a href="#" class="icon"><i class="fa-brands fa-twitter"></i></a>
+            <a target="_blank" href="https://www.instagram.com/jannabperfume/?igsh=MTZpd2Nsancxd2E2eA%3D%3D#" class="icon"><i class="fa-brands fa-instagram"></i></a>
+            <a target="_blank" href="https://wa.me/+994553974421?text=Salam" class="icon"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="tel:+994553974421" class="icon"><i class="fa-solid fa-phone"></i></a>
         </div>
     </footer>
 
