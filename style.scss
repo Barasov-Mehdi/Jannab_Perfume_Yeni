@@ -221,7 +221,7 @@ a {
                     text-align: end;
                     color: #474747;
 
-                    
+
                 }
 
                 .productNo {
@@ -1132,6 +1132,7 @@ a {
                 .bazar-image {
                     width: 100%;
                     height: auto;
+                    object-fit: contain;
                 }
 
                 iframe {
@@ -1159,6 +1160,69 @@ a {
             }
         }
     }
+
+    .gift-container {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 20%;
+        max-width: 100%; // Kutu genişliği ekran boyutuna göre ayarlanır.
+        margin: 0 auto; // Ortalanır.
+        border: 1px solid #ccc; // Kutu için ince bir çerçeve.
+        border-radius: 8px; // Köşeleri yuvarlama.
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Hafif gölge.
+        overflow: hidden; // Taşan içerikler gizlenir.
+        background-color: #292627;
+        animation: giftBox 1s ease forwards;
+
+
+        @keyframes giftBox {
+            from{
+                transform: translateY(-100%);
+            }
+            to{
+                transform: translateY(0);
+            }
+        }
+
+        .gift-header {
+            background-color: #292627; // Üst kısmın arka plan rengi.
+            padding: 10px;
+            display: flex;
+            justify-content: flex-end; // "X" simgesi sağa yaslanır.
+            border-bottom: 1px solid #ccc; // Üst ve alt kısımlar arasında bir ayrım.
+
+            .close-icon {
+                font-size: 24px;
+                color: #f4f4f4;
+                cursor: pointer;
+                transition: color 0.3s ease;
+
+                &:hover {
+                    color: red; // Üzerine gelindiğinde kırmızıya dönüşür.
+                }
+            }
+        }
+
+        .gift {
+            display: flex; // Resimleri yatay olarak sıralar.
+            overflow-x: auto; // Yatay kaydırmayı etkinleştirir.
+            overflow-y: hidden; // Dikey taşmayı engeller.
+            scroll-snap-type: x mandatory; // Kaydırma sırasında öğelere kilitlenme sağlar.
+            gap: 10px; // Resimler arasında boşluk ekler.
+            padding: 10px;
+
+            img {
+                flex-shrink: 0; // Resimlerin küçülmesini engeller.
+                max-width: 500px; // Resimlerin maksimum genişliği.
+                height: 420px; // Resimlerin oranını korur.
+                scroll-snap-align: center; // Kaydırma sırasında resim merkezlenir.
+                border-radius: 8px; // Resimlerin köşelerini yuvarlar.
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); // Resimlere gölge ekler.
+            }
+        }
+    }
+
 }
 
 @media (max-width: 775px) {
@@ -1272,5 +1336,30 @@ a {
             text-align: left;
 
         }
+
+
+        .gift-container {
+            position: absolute;
+            top: 17%;
+            .gift {
+                display: flex; // Resimleri yatay olarak sıralar.
+                overflow-x: auto; // Yatay kaydırmayı etkinleştirir.
+                overflow-y: hidden; // Dikey taşmayı engeller.
+                scroll-snap-type: x mandatory; // Kaydırma sırasında öğelere kilitlenme sağlar.
+                gap: 10px; // Resimler arasında boşluk ekler.
+                padding: 10px;
+
+                img {
+                    flex-shrink: 0; // Resimlerin küçülmesini engeller.
+                    width: 100%; // Resimlerin maksimum genişliği.
+                    height: 380px; // Resimlerin oranını korur.
+                    scroll-snap-align: center; // Kaydırma sırasında resim merkezlenir.
+                    border-radius: 8px; // Resimlerin köşelerini yuvarlar.
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); // Resimlere gölge ekler.
+                    padding: 5px;
+                }
+            }
+        }
+
     }
 }

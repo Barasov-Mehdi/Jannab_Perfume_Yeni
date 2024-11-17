@@ -330,9 +330,9 @@ function updateCartDisplay() {
     }
 
     document.getElementById('totalPrice').innerText = totalPrice.toFixed(2); // Toplam fiyatı 2 ondalık basamakla göster
-    
+
     // Add WhatsApp share button
-    
+
     document.querySelector('.added_product').innerText = totalQuantity;
     document.querySelector('.productNo').innerText = totalQuantity;
 }
@@ -555,3 +555,5 @@ function renderProducts(products) {
         productsContainer.insertAdjacentHTML('beforeend', productElement); // Append the product element
     });
 }
+
+

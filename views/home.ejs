@@ -250,11 +250,12 @@
     <footer class="footer">
         <div class="map_box">
             <div class="iframe_container">
-                <span>Bazardakı ünvanımız</span>
-                <img src="./img/bazar.png" alt="Bazar Images" class="bazar-image">
+                <span>Şəhərdəki ünvanımız</span>
+                <img src="./img/seher.png" alt="Bazar Images" class="bazar-image">
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2982.374950552943!2d46.637428276071674!3d41.62602617127063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDHCsDM3JzMzLjciTiA0NsKwMzgnMjQuMCJF!5e0!3m2!1saz!2saz!4v1731596034664!5m2!1saz!2saz"
-                    loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2982.227432752016!2d46.6402371!3d41.6292152!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40464b8871e2f769%3A0x1e14ab5735998fa8!2sJannab%20Parfume!5e0!3m2!1sen!2sfr!4v1731852970780!5m2!1sen!2sfr"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <div class="iframe_container">
                 <span>Bazardakı ünvanımız</span>
@@ -273,9 +274,33 @@
         </div>
     </footer>
 
+    <section class="gift-container">
+        <div class="gift-header">
+            <i class="fa fa-times close-icon close_gift" aria-hidden="true"></i>
+        </div>
+        <div class="gift">
+            <img src="./img/gift50.png" alt="endirim 50">
+            <img src="./img/gift30.png" alt="endirim 30">
+        </div>
+    </section>
+
+
     </div>
     <script src="./js/index.js"></script>
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            var giftContainer = document.querySelector('.gift-container');
+            var closeGift = document.querySelector('.close_gift');
+
+            // Başlangıç durumu
+            giftContainer.style.display = 'flex';
+
+            // Kapatma butonuna tıklama olayı
+            closeGift.addEventListener('click', () => {
+                giftContainer.style.display = 'none';
+            });
+        });
+
         // Buton referansları
         const buttons = {
             newArrivals: document.getElementById('newArrivalsButton'),
@@ -401,6 +426,9 @@
                 }
             });
         });
+
+
+
     </script>
 
 </body>

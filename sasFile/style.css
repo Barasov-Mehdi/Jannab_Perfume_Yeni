@@ -954,6 +954,8 @@ a {
 .container .footer .map_box .iframe_container .bazar-image {
   width: 100%;
   height: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .container .footer .map_box .iframe_container iframe {
   width: 100%;
@@ -972,6 +974,60 @@ a {
 }
 .container .footer .map_icons .icon:hover {
   color: #007bff;
+}
+.container .gift-container {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 20%;
+  max-width: 100%;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background-color: #292627;
+  animation: giftBox 1s ease forwards;
+}
+@keyframes giftBox {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.container .gift-container .gift-header {
+  background-color: #292627;
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 1px solid #ccc;
+}
+.container .gift-container .gift-header .close-icon {
+  font-size: 24px;
+  color: #f4f4f4;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.container .gift-container .gift-header .close-icon:hover {
+  color: red;
+}
+.container .gift-container .gift {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  gap: 10px;
+  padding: 10px;
+}
+.container .gift-container .gift img {
+  flex-shrink: 0;
+  max-width: 500px;
+  height: 420px;
+  scroll-snap-align: center;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 @media (max-width: 775px) {
@@ -1055,5 +1111,26 @@ a {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     width: 100%;
     text-align: left;
+  }
+  .container .gift-container {
+    position: absolute;
+    top: 17%;
+  }
+  .container .gift-container .gift {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    gap: 10px;
+    padding: 10px;
+  }
+  .container .gift-container .gift img {
+    flex-shrink: 0;
+    width: 100%;
+    height: 380px;
+    scroll-snap-align: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 5px;
   }
 }/*# sourceMappingURL=style.css.map */
