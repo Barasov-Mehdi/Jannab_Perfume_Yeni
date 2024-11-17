@@ -31,7 +31,7 @@ a {
         align-items: center;
         background-color: #292627;
         width: 100%;
-        height: 110px;
+        height: 85px;
         position: fixed;
         top: 0;
         left: 0;
@@ -41,6 +41,7 @@ a {
             width: 150px;
             height: 100px;
             object-fit: contain;
+            margin-top: 8px;
         }
 
         .nav_box {
@@ -405,7 +406,7 @@ a {
         height: 100vh;
         overflow: hidden;
         padding: 1px 0;
-        margin-top: 100px;
+        margin-top: 84px;
 
         .slıdex_show_box {
             width: 100%;
@@ -432,9 +433,9 @@ a {
                     padding-right: 15px;
 
                     button {
-                        margin: 10px 30px;
+                        margin: 10px 27px;
                         background-color: #ffffff;
-                        padding: 3px 7px;
+                        padding: 3px 6px;
                         border: none;
                         outline: none;
                         cursor: pointer;
@@ -445,6 +446,26 @@ a {
                         i {
                             font-weight: bold;
                             line-height: 10px;
+                        }
+                    }
+
+                    a {
+                        margin: 10px 30px;
+                        background-color: #ffffff;
+                        padding: 3px 7px;
+                        border: none;
+                        outline: none;
+                        cursor: pointer;
+                        margin-right: 0;
+                        font-size: 19px;
+                        font-weight: 600;
+                        color: orangered;
+                        text-decoration: none;
+
+                        i {
+                            font-weight: bold;
+                            line-height: 10px;
+                            color: orangered;
                         }
                     }
                 }
@@ -696,10 +717,18 @@ a {
         color: black;
         font-weight: bold;
         outline: none;
-        border: none;
+        border: 0.5px solid grey;
         cursor: pointer;
         font-size: 17px;
         background-color: white;
+        padding: 10px;
+
+
+    }
+
+    .loadMoreButtons:hover {
+        background: grey;
+        color: white;
     }
 
     .product_card {
@@ -1162,41 +1191,46 @@ a {
     }
 
     .gift-container {
-        display: none;
+        display: flex;
         flex-direction: column;
-        position: absolute;
-        top: 20%;
+        justify-content: center;
+        align-items: center;
         max-width: 100%; // Kutu genişliği ekran boyutuna göre ayarlanır.
         margin: 0 auto; // Ortalanır.
-        border: 1px solid #ccc; // Kutu için ince bir çerçeve.
+        border: 2px solid white; // Kutu için ince bir çerçeve.
         border-radius: 8px; // Köşeleri yuvarlama.
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Hafif gölge.
         overflow: hidden; // Taşan içerikler gizlenir.
-        background-color: #292627;
-        animation: giftBox 1s ease forwards;
+        background-color: #ede3da;
+        animation: giftBox 3s ease forwards;
+        margin-bottom: 10px;
+        width: 100%;
 
 
         @keyframes giftBox {
-            from{
-                transform: translateY(-100%);
-            }
-            to{
-                transform: translateY(0);
+            from {
+                transform: translateX(-100%);
+
+                to {
+                    transform: translateX(0);
+                }
             }
         }
 
         .gift-header {
-            background-color: #292627; // Üst kısmın arka plan rengi.
+            background-color: white; // Üst kısmın arka plan rengi.
             padding: 10px;
             display: flex;
             justify-content: flex-end; // "X" simgesi sağa yaslanır.
             border-bottom: 1px solid #ccc; // Üst ve alt kısımlar arasında bir ayrım.
+            width: 100%;
 
             .close-icon {
                 font-size: 24px;
-                color: #f4f4f4;
+                color: #292627;
                 cursor: pointer;
                 transition: color 0.3s ease;
+                text-align: end;
 
                 &:hover {
                     color: red; // Üzerine gelindiğinde kırmızıya dönüşür.
@@ -1211,14 +1245,16 @@ a {
             scroll-snap-type: x mandatory; // Kaydırma sırasında öğelere kilitlenme sağlar.
             gap: 10px; // Resimler arasında boşluk ekler.
             padding: 10px;
+            background-color: #ede3da;
 
             img {
                 flex-shrink: 0; // Resimlerin küçülmesini engeller.
-                max-width: 500px; // Resimlerin maksimum genişliği.
+                min-width: 400px; // Resimlerin maksimum genişliği.
                 height: 420px; // Resimlerin oranını korur.
                 scroll-snap-align: center; // Kaydırma sırasında resim merkezlenir.
                 border-radius: 8px; // Resimlerin köşelerini yuvarlar.
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); // Resimlere gölge ekler.
+                object-fit: contain;
             }
         }
     }
@@ -1269,11 +1305,15 @@ a {
                     height: auto;
                     margin-right: 50px;
                     // border: 1px solid red;
+                    display: flex;
 
                     button {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 35px;
                         margin: 5px 10px;
                         background-color: #ffffff;
-                        padding: 2px 7px;
                         border: none;
                         outline: none;
                         cursor: pointer;
@@ -1286,8 +1326,35 @@ a {
                             font-weight: bold;
                             line-height: 10px;
                             color: black;
+                            padding: 3px 7px;
+
                         }
                     }
+
+                    a {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 35px;
+                        margin: 5px;
+                        background-color: #ffffff;
+                        border: none;
+                        outline: none;
+                        cursor: pointer;
+                        font-size: 15px;
+                        font-weight: 600;
+                        color: orangered;
+
+                        i {
+                            font-weight: bold;
+                            line-height: 10px;
+                            color: orangered;
+                            padding: 3px 7px;
+
+                        }
+                    }
+
+
                 }
 
             }
@@ -1337,26 +1404,17 @@ a {
 
         }
 
-
         .gift-container {
-            position: absolute;
-            top: 17%;
+
             .gift {
-                display: flex; // Resimleri yatay olarak sıralar.
-                overflow-x: auto; // Yatay kaydırmayı etkinleştirir.
-                overflow-y: hidden; // Dikey taşmayı engeller.
-                scroll-snap-type: x mandatory; // Kaydırma sırasında öğelere kilitlenme sağlar.
-                gap: 10px; // Resimler arasında boşluk ekler.
+                gap: 10px;
+                overflow-x: scroll;
+                width: 500px;
                 padding: 10px;
 
                 img {
-                    flex-shrink: 0; // Resimlerin küçülmesini engeller.
-                    width: 100%; // Resimlerin maksimum genişliği.
-                    height: 380px; // Resimlerin oranını korur.
-                    scroll-snap-align: center; // Kaydırma sırasında resim merkezlenir.
-                    border-radius: 8px; // Resimlerin köşelerini yuvarlar.
-                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); // Resimlere gölge ekler.
-                    padding: 5px;
+                    width: 100%;
+                    height: 200px;
                 }
             }
         }

@@ -30,7 +30,7 @@ a {
   align-items: center;
   background-color: #292627;
   width: 100%;
-  height: 110px;
+  height: 85px;
   position: fixed;
   top: 0;
   left: 0;
@@ -41,6 +41,7 @@ a {
   height: 100px;
   -o-object-fit: contain;
      object-fit: contain;
+  margin-top: 8px;
 }
 .container .header .nav_box {
   position: relative;
@@ -337,7 +338,7 @@ a {
   height: 100vh;
   overflow: hidden;
   padding: 1px 0;
-  margin-top: 100px;
+  margin-top: 84px;
 }
 .container .slider_box .slıdex_show_box {
   width: 100%;
@@ -364,9 +365,9 @@ a {
   padding-right: 15px;
 }
 .container .slider_box .slıdex_show_box .slider_box_buttons .nese button {
-  margin: 10px 30px;
+  margin: 10px 27px;
   background-color: #ffffff;
-  padding: 3px 7px;
+  padding: 3px 6px;
   border: none;
   outline: none;
   cursor: pointer;
@@ -377,6 +378,24 @@ a {
 .container .slider_box .slıdex_show_box .slider_box_buttons .nese button i {
   font-weight: bold;
   line-height: 10px;
+}
+.container .slider_box .slıdex_show_box .slider_box_buttons .nese a {
+  margin: 10px 30px;
+  background-color: #ffffff;
+  padding: 3px 7px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin-right: 0;
+  font-size: 19px;
+  font-weight: 600;
+  color: orangered;
+  text-decoration: none;
+}
+.container .slider_box .slıdex_show_box .slider_box_buttons .nese a i {
+  font-weight: bold;
+  line-height: 10px;
+  color: orangered;
 }
 .container .slider_box .slıdex_show_box .slider_show {
   width: 100%;
@@ -575,10 +594,15 @@ a {
   color: black;
   font-weight: bold;
   outline: none;
-  border: none;
+  border: 0.5px solid grey;
   cursor: pointer;
   font-size: 17px;
   background-color: white;
+  padding: 10px;
+}
+.container .loadMoreButtons:hover {
+  background: grey;
+  color: white;
 }
 .container .product_card {
   width: 92%;
@@ -976,39 +1000,43 @@ a {
   color: #007bff;
 }
 .container .gift-container {
-  display: none;
+  display: flex;
   flex-direction: column;
-  position: absolute;
-  top: 20%;
+  justify-content: center;
+  align-items: center;
   max-width: 100%;
   margin: 0 auto;
-  border: 1px solid #ccc;
+  border: 2px solid white;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  background-color: #292627;
-  animation: giftBox 1s ease forwards;
+  background-color: #ede3da;
+  animation: giftBox 3s ease forwards;
+  margin-bottom: 10px;
+  width: 100%;
 }
 @keyframes giftBox {
   from {
-    transform: translateY(-100%);
-  }
-  to {
-    transform: translateY(0);
+    transform: translateX(-100%);
+    to {
+      transform: translateX(0);
+    }
   }
 }
 .container .gift-container .gift-header {
-  background-color: #292627;
+  background-color: white;
   padding: 10px;
   display: flex;
   justify-content: flex-end;
   border-bottom: 1px solid #ccc;
+  width: 100%;
 }
 .container .gift-container .gift-header .close-icon {
   font-size: 24px;
-  color: #f4f4f4;
+  color: #292627;
   cursor: pointer;
   transition: color 0.3s ease;
+  text-align: end;
 }
 .container .gift-container .gift-header .close-icon:hover {
   color: red;
@@ -1020,14 +1048,17 @@ a {
   scroll-snap-type: x mandatory;
   gap: 10px;
   padding: 10px;
+  background-color: #ede3da;
 }
 .container .gift-container .gift img {
   flex-shrink: 0;
-  max-width: 500px;
+  min-width: 400px;
   height: 420px;
   scroll-snap-align: center;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 @media (max-width: 775px) {
@@ -1060,11 +1091,15 @@ a {
     width: 100%;
     height: auto;
     margin-right: 50px;
+    display: flex;
   }
   .container .slider_box .slider_box_buttons .nese button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
     margin: 5px 10px;
     background-color: #ffffff;
-    padding: 2px 7px;
     border: none;
     outline: none;
     cursor: pointer;
@@ -1077,6 +1112,27 @@ a {
     font-weight: bold;
     line-height: 10px;
     color: black;
+    padding: 3px 7px;
+  }
+  .container .slider_box .slider_box_buttons .nese a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    margin: 5px;
+    background-color: #ffffff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    color: orangered;
+  }
+  .container .slider_box .slider_box_buttons .nese a i {
+    font-weight: bold;
+    line-height: 10px;
+    color: orangered;
+    padding: 3px 7px;
   }
   .container .slider_box div {
     width: 100%;
@@ -1112,25 +1168,14 @@ a {
     width: 100%;
     text-align: left;
   }
-  .container .gift-container {
-    position: absolute;
-    top: 17%;
-  }
   .container .gift-container .gift {
-    display: flex;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
     gap: 10px;
+    overflow-x: scroll;
+    width: 500px;
     padding: 10px;
   }
   .container .gift-container .gift img {
-    flex-shrink: 0;
     width: 100%;
-    height: 380px;
-    scroll-snap-align: center;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    padding: 5px;
+    height: 200px;
   }
 }/*# sourceMappingURL=style.css.map */
