@@ -1423,29 +1423,27 @@ a {
         }
 
         .buttons_filter {
-            width: 100%;
+            width: 90%;
             padding: 0 10px;
             display: flex;
             justify-content: center;
-            overflow-x: auto; // Scroll özelliği
-            -webkit-overflow-scrolling: touch; // Mobil cihazlarda akıcı kaydırma
-            scrollbar-width: thin; // İnce kaydırma çubuğu
+            overflow-x: auto; // Kaydırma (scroll) özelliği
+            -webkit-overflow-scrolling: touch; // Mobil cihazlarda kaydırma efekti
+            scrollbar-width: thin; // İnce scrollbar
 
             &::-webkit-scrollbar {
-                height: 3px; // Daha küçük scrollbar yüksekliği
+                height: 4px; // Kaydırıcı çubuğun yüksekliği
             }
 
             &::-webkit-scrollbar-thumb {
-                background-color: #ccc; // Scroll çubuğu rengi
-                border-radius: 8px; // Daha yuvarlak köşeler
+                background-color: #ccc; // Kaydırıcı çubuğunun rengi
+                border-radius: 8px; // Yuvarlak köşeler
             }
 
             .buttons_wrapper {
-                width: 80%;
                 display: flex;
-                justify-content: center;
-                gap: 7px; // Daha az boşluk
-                white-space: nowrap; // Elemanların yan yana dizilmesini sağlar
+                gap: 8px; // Butonlar arasındaki boşluk
+                white-space: nowrap; // Butonların yatayda taşmaması için
 
                 button {
                     background-color: #ede3da;
@@ -1453,14 +1451,15 @@ a {
                     font-size: 10px; // Küçük font boyutu
                     font-weight: bold;
                     text-align: center;
-                    padding: 5px 8px; // Daha az boşluk
+                    padding: 5px 8px;
                     border: none;
-                    border-radius: 4px; // Hafif yuvarlak köşeler
+                    border-radius: 4px; // Yuvarlak köşeler
                     cursor: pointer;
                     transition: background-color 0.3s ease;
+                    white-space: nowrap; // Butonların metninin taşmaması için
 
                     &:hover {
-                        background-color: #d6c5b8; // Hover rengi
+                        background-color: #d6c5b8; // Hover efekti
                     }
                 }
 
@@ -1469,19 +1468,34 @@ a {
                     text-decoration: none;
                     color: #616161;
                     background-color: #ede3da;
-                    font-size: 10px;
+                    font-size: 10px; // Küçük font boyutu
                     font-weight: bold;
-                    padding: 5px 8px; // Daha az boşluk
-                    border-radius: 4px; // Hafif yuvarlak köşeler
+                    padding: 5px 8px;
+                    border-radius: 4px; // Yuvarlak köşeler
                     transition: background-color 0.3s ease;
 
                     i {
-                        margin-left: 3px; // Daha az boşluk
-                        font-size: 10px; // Küçük ikon boyutu
+                        margin-left: 3px; // Sol tarafta ikon ile buton metni arasına boşluk ekleyelim
+                        font-size: 12px; // İkon boyutunu küçültme
                     }
 
                     &:hover {
-                        background-color: #d6c5b8; // Hover rengi
+                        background-color: #d6c5b8; // Hover efekti
+                    }
+                }
+            }
+
+            // 380px ve altındaki ekranlar için düzenleme
+            @media (max-width: 380px) {
+                .buttons_wrapper {
+                    flex-wrap: nowrap; // Butonları yatayda sarmalarını engelle
+                    gap: 5px; // Butonlar arasındaki boşluğu daha da azalt
+
+                    button,
+                    a {
+                        font-size: 9px; // Font boyutunu küçült
+                        padding: 5px 6px; // Daha az padding
+                        width: auto; // Butonları sıkıştırmadan, gerektiği kadar genişlikte tut
                     }
                 }
             }

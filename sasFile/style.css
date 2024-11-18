@@ -1192,7 +1192,7 @@ a {
     display: none;
   }
   .container .buttons_filter {
-    width: 100%;
+    width: 90%;
     padding: 0 10px;
     display: flex;
     justify-content: center;
@@ -1201,17 +1201,15 @@ a {
     scrollbar-width: thin;
   }
   .container .buttons_filter::-webkit-scrollbar {
-    height: 3px;
+    height: 4px;
   }
   .container .buttons_filter::-webkit-scrollbar-thumb {
     background-color: #ccc;
     border-radius: 8px;
   }
   .container .buttons_filter .buttons_wrapper {
-    width: 80%;
     display: flex;
-    justify-content: center;
-    gap: 7px;
+    gap: 8px;
     white-space: nowrap;
   }
   .container .buttons_filter .buttons_wrapper button {
@@ -1225,6 +1223,7 @@ a {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    white-space: nowrap;
   }
   .container .buttons_filter .buttons_wrapper button:hover {
     background-color: #d6c5b8;
@@ -1242,11 +1241,25 @@ a {
   }
   .container .buttons_filter .buttons_wrapper a i {
     margin-left: 3px;
-    font-size: 10px;
+    font-size: 12px;
   }
   .container .buttons_filter .buttons_wrapper a:hover {
     background-color: #d6c5b8;
   }
+}
+@media (max-width: 775px) and (max-width: 380px) {
+  .container .buttons_filter .buttons_wrapper {
+    flex-wrap: nowrap;
+    gap: 5px;
+  }
+  .container .buttons_filter .buttons_wrapper button,
+  .container .buttons_filter .buttons_wrapper a {
+    font-size: 9px;
+    padding: 5px 6px;
+    width: auto;
+  }
+}
+@media (max-width: 775px) {
   .container .iframe_container {
     background: #fff;
     border-radius: 10px;
