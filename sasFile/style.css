@@ -1195,20 +1195,21 @@ a {
     width: 100%;
     overflow-x: hidden;
     white-space: nowrap;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
     overflow-x: scroll;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
   }
   .container .buttons_filter button {
-    margin: 0 3px;
     background-color: #ede3da;
     color: #616161;
-    padding: 8px 12px;
-    text-align: center;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: bolder;
-    display: inline-block;
-    width: 105px;
+    padding: 5px 5px;
+    text-align: center;
+    margin-left: 10px;
   }
   .container .buttons_filter a {
     display: inline-block;

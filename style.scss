@@ -1428,17 +1428,19 @@ a {
             width: 100%;
             overflow-x: hidden; // Başlangıçta gizle
             white-space: nowrap; // Elemanların yan yana dizilmesini sağlar
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
 
             button {
-                margin: 0 3px;
                 background-color: #ede3da;
                 color: #616161;
-                padding: 8px 12px;
-                text-align: center;
-                font-size: 11px;
+                font-size: 10px;
                 font-weight: bolder;
-                display: inline-block;
-                width: 105px; // Satır içinde hizalama
+                padding: 5px 5px;
+                text-align: center;
+                margin-left: 10px;
+
             }
 
             a {
