@@ -1423,24 +1423,23 @@ a {
         }
 
         .buttons_filter {
-            // display: flex;
-            // justify-content: center;
             width: 100%;
-            overflow-x: hidden; // Başlangıçta gizle
+            overflow-x: scroll; // Scroll özelliğini aktif et
             white-space: nowrap; // Elemanların yan yana dizilmesini sağlar
             padding: 0 20px;
             display: flex;
             justify-content: center;
+            -webkit-overflow-scrolling: touch; // Mobil cihazlarda akıcı kaydırma
+            scrollbar-width: thin; // Modern tarayıcılarda ince scrollbar
 
             button {
                 background-color: #ede3da;
                 color: #616161;
-                font-size: 10px;
+                font-size: 10.5px;
                 font-weight: bolder;
-                padding: 5px 5px;
+                padding: 5px 7px;
                 text-align: center;
                 margin-left: 10px;
-
             }
 
             a {
@@ -1449,18 +1448,33 @@ a {
                 color: inherit;
                 background-color: #ede3da;
                 color: #616161;
+                font-size: 10.5px;
 
                 i {
                     margin-left: 5px;
+                    font-size: 10px;
+
                 }
             }
 
-            overflow-x: scroll; // Scroll özelliğini aktif et
-            -webkit-overflow-scrolling: touch; // Mobil cihazlarda daha akıcı kaydırma
-            scrollbar-width: thin; // Modern tarayıcılarda ince scrollbar
+            // Scrollbar tasarımı için (isteğe bağlı)
+            &::-webkit-scrollbar {
+                height: 5px; // Scrollbar yüksekliği
+            }
 
+            &::-webkit-scrollbar-thumb {
+                background: #cccccc; // Scrollbar rengi
+                border-radius: 10px; // Yuvarlatılmış köşeler
+            }
+
+            &::-webkit-scrollbar-thumb:hover {
+                background: #b3b3b3; // Hover durumunda scrollbar rengi
+            }
+
+            &::-webkit-scrollbar-track {
+                background: #f1f1f1; // Scrollbar arka planı
+            }
         }
-
 
         .iframe_container {
             background: #fff;
