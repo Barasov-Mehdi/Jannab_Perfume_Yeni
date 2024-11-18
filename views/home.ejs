@@ -156,12 +156,14 @@
         </main>
 
         <section class="buttons_filter">
-            <button id="newArrivalsButton" onclick="filterNewArrivals()">Yeni Ətirlər</button>
-            <button id="bestSellersButton" onclick="filterBestSellers()">Çox Satılanlar</button>
-            <button id="discountedButton" onclick="filterDiscountedProducts()">Endrimli Ətirlər</button>
-            <a href="#loadMoreButton">Kartlar <i class="fa-solid fa-caret-down"></i></a>
-
+            <div class="buttons_wrapper">
+                <button id="newArrivalsButton" onclick="filterNewArrivals()">Yeni Ətirlər</button>
+                <button id="bestSellersButton" onclick="filterBestSellers()">Çox Satılanlar</button>
+                <button id="discountedButton" onclick="filterDiscountedProducts()">Endrimli Ətirlər</button>
+                <a href="#loadMoreButton">Kartlar <i class="fa-solid fa-caret-down"></i></a>
+            </div>
         </section>
+        
 
         <section class="products" id="productsContainer">
             <% products.slice(0, 2).forEach(product=> { %> <!-- İlk iki ürünü göster -->

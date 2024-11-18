@@ -1424,55 +1424,66 @@ a {
 
         .buttons_filter {
             width: 100%;
-            overflow-x: scroll; // Scroll özelliğini aktif et
-            white-space: nowrap; // Elemanların yan yana dizilmesini sağlar
-            padding: 0 20px;
+            padding: 0 10px;
             display: flex;
             justify-content: center;
+            overflow-x: auto; // Scroll özelliği
             -webkit-overflow-scrolling: touch; // Mobil cihazlarda akıcı kaydırma
-            scrollbar-width: thin; // Modern tarayıcılarda ince scrollbar
+            scrollbar-width: thin; // İnce kaydırma çubuğu
 
-            button {
-                background-color: #ede3da;
-                color: #616161;
-                font-size: 10.5px;
-                font-weight: bolder;
-                padding: 5px 7px;
-                text-align: center;
-                margin-left: 10px;
-            }
-
-            a {
-                display: inline-block; // Satır içinde hizalama
-                text-decoration: none;
-                color: inherit;
-                background-color: #ede3da;
-                color: #616161;
-                font-size: 10.5px;
-
-                i {
-                    margin-left: 5px;
-                    font-size: 10px;
-
-                }
-            }
-
-            // Scrollbar tasarımı için (isteğe bağlı)
             &::-webkit-scrollbar {
-                height: 5px; // Scrollbar yüksekliği
+                height: 3px; // Daha küçük scrollbar yüksekliği
             }
 
             &::-webkit-scrollbar-thumb {
-                background: #cccccc; // Scrollbar rengi
-                border-radius: 10px; // Yuvarlatılmış köşeler
+                background-color: #ccc; // Scroll çubuğu rengi
+                border-radius: 8px; // Daha yuvarlak köşeler
             }
 
-            &::-webkit-scrollbar-thumb:hover {
-                background: #b3b3b3; // Hover durumunda scrollbar rengi
-            }
+            .buttons_wrapper {
+                width: 80%;
+                display: flex;
+                justify-content: center;
+                gap: 7px; // Daha az boşluk
+                white-space: nowrap; // Elemanların yan yana dizilmesini sağlar
 
-            &::-webkit-scrollbar-track {
-                background: #f1f1f1; // Scrollbar arka planı
+                button {
+                    background-color: #ede3da;
+                    color: #616161;
+                    font-size: 10px; // Küçük font boyutu
+                    font-weight: bold;
+                    text-align: center;
+                    padding: 5px 8px; // Daha az boşluk
+                    border: none;
+                    border-radius: 4px; // Hafif yuvarlak köşeler
+                    cursor: pointer;
+                    transition: background-color 0.3s ease;
+
+                    &:hover {
+                        background-color: #d6c5b8; // Hover rengi
+                    }
+                }
+
+                a {
+                    display: inline-block;
+                    text-decoration: none;
+                    color: #616161;
+                    background-color: #ede3da;
+                    font-size: 10px;
+                    font-weight: bold;
+                    padding: 5px 8px; // Daha az boşluk
+                    border-radius: 4px; // Hafif yuvarlak köşeler
+                    transition: background-color 0.3s ease;
+
+                    i {
+                        margin-left: 3px; // Daha az boşluk
+                        font-size: 10px; // Küçük ikon boyutu
+                    }
+
+                    &:hover {
+                        background-color: #d6c5b8; // Hover rengi
+                    }
+                }
             }
         }
 
