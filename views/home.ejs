@@ -147,7 +147,6 @@
                                 class="fa-solid fa-arrow-right-long" style="color: black;"></i></button>
                         <button id="manButton" class="filterMan" onclick="filterProducts('man')">Man <i
                                 class="fa-solid fa-arrow-right-long" style="color: black;"></i></button>
-                        <a href="#loadMoreButton">Kartlar <i class="fa-solid fa-caret-down"></i></a>
 
                     </div>
 
@@ -160,6 +159,8 @@
             <button id="newArrivalsButton" onclick="filterNewArrivals()">Yeni Ətirlər</button>
             <button id="bestSellersButton" onclick="filterBestSellers()">Çox Satılanlar</button>
             <button id="discountedButton" onclick="filterDiscountedProducts()">Endrimli Ətirlər</button>
+            <a href="#loadMoreButton">Kartlar <i class="fa-solid fa-caret-down"></i></a>
+
         </section>
 
         <section class="products" id="productsContainer">
@@ -208,15 +209,15 @@
 
         <button class="loadMoreButtons" id="loadMoreButton" onclick="loadMoreProducts()">Daha çox</button>
 
-        <section class="gift-container" id="gift_boxs">
+        <!-- <section class="gift-container" id="gift_boxs">
             <!-- <div class="gift-header">
             <i class="fa fa-times close-icon close_gift" aria-hidden="true"></i>
         </div> -->
-            <div class="gift">
+            <!-- <div class="gift">
                 <img src="./img/gift50.png" alt="endirim 50">
                 <img src="./img/gift30.png" alt="endirim 30">
             </div>
-        </section>
+        </section> --> 
 
         <div class="product_card" id="productCard" style="display: none;">
             <h3>Səbət</h3>
@@ -293,7 +294,7 @@
 
     </div>
     <script src="./js/index.js"></script>
-    
+
     <script>
         // Buton referansları
         const buttons = {

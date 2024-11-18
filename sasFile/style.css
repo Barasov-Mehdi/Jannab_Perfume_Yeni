@@ -930,6 +930,45 @@ a {
   color: white;
   /* Daha koyu gri yazı rengi */
 }
+.container .buttons_filter a {
+  background-color: rgba(211, 211, 211, 0.3);
+  text-decoration: none;
+  /* Hafif gri arka plan */
+  color: #575656;
+  /* Gri yazı rengi */
+  padding: 8px 16px;
+  /* İç boşluk */
+  text-align: center;
+  /* Yazıyı ortala */
+  font-size: 16px;
+  /* Yazı boyutu */
+  margin: 0 10px;
+  /* Butonlar arası boşluk */
+  cursor: pointer;
+  /* Fare gösterimini işaretçi yap */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  /* Geçişli efekt */
+  border: none;
+  /* Kenar yok */
+  outline: none;
+  /* Kenar çerçevesini kaldır */
+  border-radius: 4px;
+  /* Köşeleri hafif yuvarlat */
+  /* Fare ile üzerine gelindiğinde */
+  /* Aktif durumda olan buton için stil */
+}
+.container .buttons_filter a:hover {
+  background-color: rgba(169, 169, 169, 0.5);
+  /* Üzerine gelindiğinde daha belirgin gri arka plan */
+  color: #424242;
+  /* Koyu gri yazı rengi */
+}
+.container .buttons_filter a.active {
+  background-color: rgba(128, 128, 128, 0.7);
+  /* Daha koyu bir gri arka plan */
+  color: white;
+  /* Daha koyu gri yazı rengi */
+}
 .container .wp_mobile {
   position: fixed;
   right: 10px;
@@ -1152,13 +1191,34 @@ a {
   .container .message_link {
     display: none;
   }
+  .container .buttons_filter {
+    width: 100%;
+    overflow-x: hidden;
+    white-space: nowrap;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
   .container .buttons_filter button {
+    margin: 0 3px;
     background-color: #ede3da;
     color: #616161;
-    padding: 8px 10px;
+    padding: 8px 12px;
     text-align: center;
-    font-size: 12px;
-    font-weight: bold;
+    font-size: 11px;
+    font-weight: bolder;
+    display: inline-block;
+    width: 105px;
+  }
+  .container .buttons_filter a {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+    background-color: #ede3da;
+    color: #616161;
+  }
+  .container .buttons_filter a i {
+    margin-left: 5px;
   }
   .container .iframe_container {
     background: #fff;
