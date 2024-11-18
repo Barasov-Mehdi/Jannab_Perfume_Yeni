@@ -67,6 +67,7 @@ router.get('/search', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+
 router.get('/products', async (req, res) => {
     const { search } = req.query;
 

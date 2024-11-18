@@ -66,7 +66,6 @@ function initializeSlider() {
     window.onresize = updateImageArray; // Boyut değiştiğinde diziyi güncelle
 }
 
-// Slider'ı başlat
 initializeSlider();
 function searchBtn() {
     var search_btn = document.querySelectorAll('.search_btn');
@@ -168,13 +167,23 @@ function displaySearchResults(products) {
 
 addCardAndSearch(); // Önyükleme işlemini başlat
 
-// zordu 
+// zordu zorduuu
 let skipCount = 2; // İlk başta yüklenecek ürün sayısı
 const limit = 2; // Her seferinde yüklenecek ürün sayısı
 let loadedProductIds = []; // Daha önce yüklenmiş ürün ID'leri
+let currentCategory = 'all'; // Default to all products
 
 function loadMoreProducts() {
-    fetch(`/api/products?skip=${skipCount}&limit=${limit}`)
+    let url;
+
+    // Set the URL based on the current category
+    if (currentCategory !== 'all') {
+        url = `/products/filter/${currentCategory}?skip=${skipCount}&limit=${limit}`;
+    } else {
+        url = `/api/products?skip=${skipCount}&limit=${limit}`;
+    }
+
+    fetch(url)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -184,27 +193,21 @@ function loadMoreProducts() {
         .then(products => {
             const productsContainer = document.getElementById('productsContainer');
 
-            const newProducts = products.filter(product => !loadedProductIds.includes(product._id));
+            // Filter out products that have already been loaded
+            const newProducts = products.filter(product => 
+                !loadedProductIds.includes(product._id)
+            );
 
             if (newProducts.length > 0) {
                 newProducts.forEach(product => {
-                    // Fiyatı ve indirim oranını doğru bir biçimde oluşturun
-                    const originalPrice = (typeof product.price === 'object' && product.price.$numberDecimal)
+                    const originalPrice = typeof product.price === 'object' && product.price.$numberDecimal
                         ? parseFloat(product.price.$numberDecimal)
                         : product.price;
 
-                    const discount = (typeof product.discount === 'object' && product.discount.$numberDecimal)
-                        ? parseFloat(product.discount.$numberDecimal)
-                        : (product.discount ? parseFloat(product.discount) : 0);
+                    const discount = product.discount ? parseFloat(product.discount.$numberDecimal) : 0;
+                    const discountedPrice = discount > 0 ? originalPrice * (1 - discount / 100) : originalPrice;
 
-                    const discountedPrice = discount > 0
-                        ? originalPrice * (1 - discount / 100)
-                        : originalPrice;
-
-                    const discountedPrice15ml = (discountedPrice * (15 / 1)).toFixed(2);
-                    const discountedPrice30ml = (discountedPrice * (30 / 1)).toFixed(2);
-                    const discountedPrice50ml = (discountedPrice * (50 / 1)).toFixed(2);
-
+                    // Create product HTML
                     const productHTML = `
                         <div class="product" data-category="${product.category}">
                             <a target="_blank" href="/products/${product._id}">
@@ -217,33 +220,30 @@ function loadMoreProducts() {
                                 </div>
                             </a>
                             <div class="product-footer">
-                                <div class="price" style="display: none;">${originalPrice.toFixed(2)} ₼</div>
                                 <div class="volume-select">
-                                    <select class="volume-options" id="volumeSelect_${product._id}" 
-                                        onchange="updateVolumePrice('${product._id}', ${originalPrice}, ${discount})">
-                                        <option value="15" data-price="${discountedPrice15ml}">15 ml - ${discountedPrice15ml} ₼</option>
-                                        <option value="30" data-price="${discountedPrice30ml}">30 ml - ${discountedPrice30ml} ₼</option>
-                                        <option value="50" data-price="${discountedPrice50ml}">50 ml - ${discountedPrice50ml} ₼</option>
+                                    <select class="volume-options" id="volumeSelect_${product._id}">
+                                        <option value="15" data-price="${(discountedPrice * 15).toFixed(2)}">15 ml - ${(discountedPrice * 15).toFixed(2)} ₼</option>
+                                        <option value="30" data-price="${(discountedPrice * 30).toFixed(2)}">30 ml - ${(discountedPrice * 30).toFixed(2)} ₼</option>
+                                        <option value="50" data-price="${(discountedPrice * 50).toFixed(2)}">50 ml - ${(discountedPrice * 50).toFixed(2)} ₼</option>
                                     </select>
                                 </div>
                                 <a href="javascript:void(0)" class="add-to-cart" style="background-color: #f76300;" 
-                                    onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${discountedPrice.toFixed(2)}, 
-                                    document.getElementById('volumeSelect_${product._id}').value)">
+                                    onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${discountedPrice}, document.getElementById('volumeSelect_${product._id}').value)">
                                     <i class="fa-solid fa-cart-shopping" style="color: white;"></i>
-
                                 </a>
                             </div>
                         </div>
-                        
-                        `;
+                    `;
 
+                    // Append new product HTML to the container
                     productsContainer.insertAdjacentHTML('beforeend', productHTML);
-                    loadedProductIds.push(product._id);
+                    loadedProductIds.push(product._id); // Track the loaded product ID
                 });
 
-                skipCount += limit; // Geçiş sayısını güncelle
+                skipCount += limit; // Increment skip counter for the next load
             } else {
-                document.getElementById('loadMoreButton').style.display = 'none';
+                // If no new products, hide the "Load More" button
+                document.getElementById('loadMoreButton').style.display = 'flex';
             }
         })
         .catch(error => {
@@ -403,9 +403,12 @@ async function filterDiscountedProducts() {
 }
 
 async function filterAllProducts() {
+    currentCategory = 'all'; // Set category to all
+    skipCount = 0; // Reset skip
+    loadedProductIds = []; // Clear previously loaded IDs
     fetch('/api/products')
         .then(response => response.json())
-        .then(products => displayProducts(products))
+        .then(products => renderProducts(products))
         .catch(error => console.error('Error fetching products:', error));
 }
 
@@ -491,9 +494,16 @@ async function fetchProducts(url) {
 }
 
 async function filterProducts(gender) {
+    currentCategory = gender; // Update the current category
+    skipCount = 0; // Reset skip count for new category
+    loadedProductIds = []; // Clear previously loaded product IDs
     try {
-        const products = await fetchProducts(`/products/filter/${gender}`);
-        renderProducts(products);
+        const response = await fetch(`/products/filter/${gender}`); // Fetch filtered products
+        if (!response.ok) {
+            throw new Error('Hata: Ürünler alınamadı.');
+        }
+        const products = await response.json();
+        renderProducts(products); // Render to display the products
     } catch (error) {
         console.error(error);
     }
@@ -504,56 +514,38 @@ function renderProducts(products) {
     productsContainer.innerHTML = ''; // Clear existing products
 
     products.forEach(product => {
-        // Determine original price based on the data type
         const originalPrice = typeof product.price === 'object' && product.price.$numberDecimal
             ? parseFloat(product.price.$numberDecimal)
             : product.price;
 
-        // Check if there's a discount and calculate discounted prices
-        const discount = product.discount && typeof product.discount === 'object' && product.discount.$numberDecimal
-            ? parseFloat(product.discount.$numberDecimal)
-            : 0; // Defaults to 0 if no valid discount
+        const discount = product.discount ? parseFloat(product.discount.$numberDecimal) : 0;
+        const discountedPrice = discount > 0 ? originalPrice * (1 - discount / 100) : originalPrice;
 
-        const discountedPrice = discount > 0 ? originalPrice * (1 - discount / 100) : originalPrice; // Calculate discounted price
-
-        // Define prices for different volumes
-        const discountedPrice15ml = (discountedPrice * (15 / 1)).toFixed(2);
-        const discountedPrice30ml = (discountedPrice * (30 / 1)).toFixed(2);
-        const discountedPrice50ml = (discountedPrice * (50 / 1)).toFixed(2);
-
-        const productElement = `
-             <div class="product">
-                <a href="/products/${product._id}">
-                    <div class="image-container">
-                        <img src="${product.img}" alt="${product.name}">
-                        ${discount > 0 ? `<div class="discount-label">-${Math.floor(discount)}%</div>` : ''}
-                    </div>
-                    <div class="product-details">
-                        <h2>${product.name}</h2>
-                        
-                    </div>
-                </a>
-                <div class="product-footer">
-                    <div class="price" style="display: none;">${originalPrice.toFixed(2)} ₼</div>
-                    <div class="volume-select">
-                        <select class="volume-options" id="volumeSelect_${product._id}" onchange="updateVolumePrice('${product._id}', ${originalPrice}, ${discount})">
-                            <option value="15" data-price="${discountedPrice15ml}">15 ml - ${discountedPrice15ml} ₼</option>
-                            <option value="30" data-price="${discountedPrice30ml}">30 ml - ${discountedPrice30ml} ₼</option>
-                            <option value="50" data-price="${discountedPrice50ml}">50 ml - ${discountedPrice50ml} ₼</option>
-                        </select>
-                    </div>
-                    <div class="price-per-volume" id="priceDisplay_${product._id}"></div>
-                    <a href="javascript:void(0)" class="add-to-cart" style="background-color: #f76300;" 
-                       onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${discountedPrice.toFixed(2)}, document.getElementById('volumeSelect_${product._id}').value)">
-                        <i class="fa-solid fa-cart-shopping" style="color: white;"></i>
-
-                    </a>
+        // Create product element HTML
+        const productElement = `<div class="product">
+            <a href="/products/${product._id}">
+                <div class="image-container">
+                    <img src="${product.img}" alt="${product.name}">
+                    ${discount > 0 ? `<div class="discount-label">-${Math.floor(discount)}%</div>` : ''}
                 </div>
+                <div class="product-details">
+                    <h2>${product.name}</h2>
+                </div>
+            </a>
+            <div class="product-footer">
+                <div class="volume-select">
+                    <select id="volumeSelect_${product._id}">
+                        <option value="15" data-price="${(discountedPrice * 15).toFixed(2)}">15 ml - ${(discountedPrice * 15).toFixed(2)} ₼</option>
+                        <option value="30" data-price="${(discountedPrice * 30).toFixed(2)}">30 ml - ${(discountedPrice * 30).toFixed(2)} ₼</option>
+                        <option value="50" data-price="${(discountedPrice * 50).toFixed(2)}">50 ml - ${(discountedPrice * 50).toFixed(2)} ₼</option>
+                    </select>
+                </div>
+                <a href="javascript:void(0)" onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${discountedPrice}, document.getElementById('volumeSelect_${product._id}').value)" style="background-color: #f76300;">
+                    <i class="fa-solid fa-cart-shopping" style="color: white;"></i>
+                </a>
             </div>
-        `;
+        </div>`;
 
-        productsContainer.insertAdjacentHTML('beforeend', productElement); // Append the product element
+        productsContainer.insertAdjacentHTML('beforeend', productElement); // Append new product
     });
 }
-
-
