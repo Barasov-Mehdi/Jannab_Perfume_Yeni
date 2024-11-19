@@ -757,22 +757,6 @@ a {
   transform: scale(1.05);
   /* Hover efekti */
 }
-@media (max-width: 600px) {
-  .container .product_card h3 {
-    font-size: 2rem;
-    /* Mobilde başlık boyutu azaltılsın */
-  }
-  .container .product_card .total {
-    font-size: 1.2rem;
-    /* Mobilde toplam fiyat boyutunu azalt */
-  }
-  .container .product_card button {
-    width: 100%;
-    /* Mobilde buton tam genişlikte */
-    padding: 12px;
-    /* Mobilde buton dolgusunu artır */
-  }
-}
 .container .left_menu {
   display: none;
   transition: all 0.3s ease;
@@ -1244,7 +1228,7 @@ a {
     display: flex;
     padding: 10px;
     background-color: #fff;
-    font-size: 0.7em;
+    font-size: 0.8em;
     color: #333;
     cursor: pointer;
     font-weight: 550;

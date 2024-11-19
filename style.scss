@@ -910,24 +910,7 @@ a {
         }
 
         /* Mobil uyum için medya sorguları */
-        @media (max-width: 600px) {
-            h3 {
-                font-size: 2rem;
-                /* Mobilde başlık boyutu azaltılsın */
-            }
-
-            .total {
-                font-size: 1.2rem;
-                /* Mobilde toplam fiyat boyutunu azalt */
-            }
-
-            button {
-                width: 100%;
-                /* Mobilde buton tam genişlikte */
-                padding: 12px;
-                /* Mobilde buton dolgusunu artır */
-            }
-        }
+       
     }
 
     .left_menu {
@@ -1512,7 +1495,7 @@ a {
                     // border: 1px solid #ddd; // Kenar rengi
                     // border-radius: 4px; // Kenar yuvarlama
                     background-color: #fff; // Arka plan rengi
-                    font-size: 0.7em; // Yazı boyutu
+                    font-size: 0.8em; // Yazı boyutu
                     color: #333; // Yazı rengi
                     cursor: pointer; // İmleci işaretçi yap
                     font-weight: 550; // Yazı kalınlığı
