@@ -714,7 +714,7 @@ a {
     }
 
     .loadMoreButtons {
-        margin: 0 0 60px 0;
+        margin: 0 0 0 0;
         color: black;
         font-weight: bold;
         outline: none;
@@ -1246,8 +1246,9 @@ a {
         overflow: hidden; // Taşan içerikler gizlenir.
         background-color: #ede3da;
         animation: giftBox 3s ease forwards;
-        margin-bottom: 10px;
         width: 100%;
+
+        margin: 20px 0;
 
 
         @keyframes giftBox {
@@ -1443,7 +1444,6 @@ a {
                 justify-content: flex-start;
                 /* Change to flex-start for alignment */
                 max-width: 100%;
-                overflow-x: auto;
                 /* Allow horizontal scrolling */
                 // border: 1px solid red;
                 box-sizing: border-box;
@@ -1452,10 +1452,10 @@ a {
 
             button,
             a {
-                min-width: 130px;
+                min-width: 85px;
                 /* Make sure buttons and links are at least 100px wide */
-                font-size: 12px;
-                padding: 5px 18px;
+                font-size: 12.5px;
+                padding: 7px 10px;
                 text-align: center;
                 white-space: nowrap;
                 font-weight: bolder;

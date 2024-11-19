@@ -211,8 +211,8 @@ function loadMoreProducts() {
             const productsContainer = document.getElementById('productsContainer');
 
             // Filter out products that have already been loaded
-            const newProducts = products.filter(product =>
-                !loadedProductIds.includes(product._id)
+            const newProducts = products.filter(product => 
+                !loadedProductIds.includes(product._id) // Ensures only new products are included
             );
 
             if (newProducts.length > 0) {
@@ -257,9 +257,9 @@ function loadMoreProducts() {
                     loadedProductIds.push(product._id); // Track the loaded product ID
                 });
 
-                skipCount += limit; // Increment skip counter for the next load
+                skipCount += newProducts.length; // Increment skip counter for the next load
             } else {
-                // If no new products, hide the "Load More" button
+                // If no new products, you can choose to hide the "Load More" button or show a message
                 document.getElementById('loadMoreButton').style.display = 'flex';
             }
         })
@@ -440,45 +440,38 @@ function displayProducts(products) {
             : product.price;
 
         const discount = product.discount ? parseFloat(product.discount.$numberDecimal) : 0;
-        const discountPercentage = discount > 0 ? discount : 0;
+        const discountedPrice = discount > 0 ? originalPrice * (1 - discount / 100) : originalPrice;
 
-        // Calculate discounted prices for different volumes
-        const discountedPrice15ml = discount > 0 ? (originalPrice * (15 / 1) * (1 - discount / 100)).toFixed(1) : (originalPrice * (15 / 1)).toFixed(2);
-        const discountedPrice30ml = discount > 0 ? (originalPrice * (30 / 1) * (1 - discount / 100)).toFixed(1) : (originalPrice * (30 / 1)).toFixed(2);
-        const discountedPrice50ml = discount > 0 ? (originalPrice * (50 / 1) * (1 - discount / 100)).toFixed(1) : (originalPrice * (50 / 1)).toFixed(2);
-
-        const productElement = `
-            <div class="product">
-                <a href="/products/${product._id}">
+        const productHTML = `
+            <div class="product" data-category="${product.category}">
+                <a target="_blank" href="/products/${product._id}">
                     <div class="image-container">
                         <img src="${product.img}" alt="${product.name}">
-                        ${discount > 0 ? `<div class="discount-label">-${discountPercentage}%</div>` : ''}
+                        ${discount > 0 ? `<div class="discount-badge">-${Math.floor(discount)}%</div>` : ''}
                     </div>
                     <div class="product-details">
                         <h2>${product.name}</h2>
-                        
                     </div>
                 </a>
                 <div class="product-footer">
-                    <div class="price" style="display: none;">${originalPrice.toFixed(2)} ₼</div>
                     <div class="volume-select">
-                        <select class="volume-options" id="volumeSelect_${product._id}" onchange="updateVolumePrice('${product._id}', ${originalPrice}, ${discount})">
-                            <option value="15" data-price="${discountedPrice15ml}">15 ml - ${discountedPrice15ml} ₼</option>
-                            <option value="30" data-price="${discountedPrice30ml}">30 ml - ${discountedPrice30ml} ₼</option>
-                            <option value="50" data-price="${discountedPrice50ml}">50 ml - ${discountedPrice50ml} ₼</option>
+                        <select class="volume-options" id="volumeSelect_${product._id}">
+                            <option value="15" data-price="${(discountedPrice * 15).toFixed(2)}">15 ml - ${(discountedPrice * 15).toFixed(2)} ₼</option>
+                            <option value="30" data-price="${(discountedPrice * 30).toFixed(2)}">30 ml - ${(discountedPrice * 30).toFixed(2)} ₼</option>
+                            <option value="50" data-price="${(discountedPrice * 50).toFixed(2)}">50 ml - ${(discountedPrice * 50).toFixed(2)} ₼</option>
                         </select>
                     </div>
-                    <div class="price-per-volume" id="priceDisplay_${product._id}"></div>
-                    <a href="javascript:void(0)" class="add-to-cart" style="background-color: #f76300;"
-                       onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${originalPrice}, document.getElementById('volumeSelect_${product._id}').value)">
+                    <a href="javascript:void(0)" class="add-to-cart" 
+                        onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${discountedPrice}, document.getElementById('volumeSelect_${product._id}').value)"
+                        style="background-color: #f76300;">
                         <i class="fa-solid fa-cart-shopping" style="color: white;"></i>
-
                     </a>
                 </div>
             </div>
         `;
 
-        productsContainer.insertAdjacentHTML('beforeend', productElement);
+        productsContainer.insertAdjacentHTML('beforeend', productHTML);
+        loadedProductIds.push(product._id); // Track loaded product ID
     });
 }
 
