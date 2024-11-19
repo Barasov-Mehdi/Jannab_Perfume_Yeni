@@ -229,7 +229,7 @@ a {
                 .productNo {
                     position: absolute;
                     top: -12px;
-                    right: -3px;
+                    right: 3px;
                     font-size: 19px;
                 }
             }
@@ -1256,27 +1256,6 @@ a {
 
                 to {
                     transform: translateX(0);
-                }
-            }
-        }
-
-        .gift-header {
-            background-color: white; // Üst kısmın arka plan rengi.
-            padding: 10px;
-            display: flex;
-            justify-content: flex-end; // "X" simgesi sağa yaslanır.
-            border-bottom: 1px solid #ccc; // Üst ve alt kısımlar arasında bir ayrım.
-            width: 100%;
-
-            .close-icon {
-                font-size: 24px;
-                color: #292627;
-                cursor: pointer;
-                transition: color 0.3s ease;
-                text-align: end;
-
-                &:hover {
-                    color: red; // Üzerine gelindiğinde kırmızıya dönüşür.
                 }
             }
         }

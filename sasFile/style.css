@@ -189,7 +189,7 @@ a {
 .container .mb_header .mb_else_icons .basket_box .productNo {
   position: absolute;
   top: -12px;
-  right: -3px;
+  right: 3px;
   font-size: 19px;
 }
 .container .mb_text {
@@ -1061,24 +1061,6 @@ a {
       transform: translateX(0);
     }
   }
-}
-.container .gift-container .gift-header {
-  background-color: white;
-  padding: 10px;
-  display: flex;
-  justify-content: flex-end;
-  border-bottom: 1px solid #ccc;
-  width: 100%;
-}
-.container .gift-container .gift-header .close-icon {
-  font-size: 24px;
-  color: #292627;
-  cursor: pointer;
-  transition: color 0.3s ease;
-  text-align: end;
-}
-.container .gift-container .gift-header .close-icon:hover {
-  color: red;
 }
 .container .gift-container .gift {
   display: flex;
