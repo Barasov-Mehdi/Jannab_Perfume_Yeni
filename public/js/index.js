@@ -29,7 +29,7 @@ closeLeftMenu();
 
 function showProductCard() {
     var product_card = document.querySelector('.product_card');  // Sadece bir tane product_card seçiyoruz
-    var show_product_card_buttons = document.querySelectorAll('.show_product_card');  // Tüm butonları seçiyoruz
+    var show_product_card_buttons = document.querySelectorAll('.show_product_card');  // Tüm butarı seçiyoruz
 
     show_product_card_buttons.forEach((button) => {
         button.addEventListener('click', () => {
@@ -82,8 +82,8 @@ function initializeSlider() {
     setInterval(changeImage, 3000); // Resimleri değiştir
     window.onresize = updateImageArray; // Boyut değiştiğinde diziyi güncelle
 }
-
 initializeSlider();
+
 function searchBtn() {
     var search_btn = document.querySelectorAll('.search_btn');
     var search = document.querySelector('.search');
@@ -185,10 +185,10 @@ function displaySearchResults(products) {
 addCardAndSearch(); // Önyükleme işlemini başlat
 
 // zordu zorduuu
-let skipCount = 2; // İlk başta yüklenecek ürün sayısı
-const limit = 2; // Her seferinde yüklenecek ürün sayısı
-let loadedProductIds = []; // Daha önce yüklenmiş ürün ID'leri
-let currentCategory = 'all'; // Default to all products
+let skipCount = 2; 
+const limit = 2; 
+let loadedProductIds = []; 
+let currentCategory = 'all'; 
 
 function loadMoreProducts() {
     let url;
@@ -212,7 +212,7 @@ function loadMoreProducts() {
 
             // Filter out products that have already been loaded
             const newProducts = products.filter(product => 
-                !loadedProductIds.includes(product._id) // Ensures only new products are included
+                !loadedProductIds.includes(product._id) 
             );
 
             if (newProducts.length > 0) {
@@ -226,6 +226,7 @@ function loadMoreProducts() {
 
                     // Create product HTML
                     const productHTML = `
+                    <section class="products" id="productsContainer">
                         <div class="product" data-category="${product.category}">
                             <a target="_blank" href="/products/${product._id}">
                                 <div class="image-container">
@@ -250,6 +251,7 @@ function loadMoreProducts() {
                                 </a>
                             </div>
                         </div>
+                        </section>
                     `;
 
                     // Append new product HTML to the container
@@ -339,7 +341,7 @@ function updateCartDisplay() {
                 <div>${name} (${volume} ml)</div> <!-- Hacim bilgisini buraya ekliyoruz -->
                 <div class="quantity">
                     <button onclick="changeQuantity('${key}', 1)">+</button>
-                    <input type="text" value="${quantity}" readonly>
+                    <input type="text" value="${quantity}" ready>
                     <button onclick="changeQuantity('${key}', -1)">-</button>
                 </div>
             </div>
@@ -443,6 +445,7 @@ function displayProducts(products) {
         const discountedPrice = discount > 0 ? originalPrice * (1 - discount / 100) : originalPrice;
 
         const productHTML = `
+        <section class="products" id="productsContainer">
             <div class="product" data-category="${product.category}">
                 <a target="_blank" href="/products/${product._id}">
                     <div class="image-container">
@@ -468,6 +471,7 @@ function displayProducts(products) {
                     </a>
                 </div>
             </div>
+            </section>
         `;
 
         productsContainer.insertAdjacentHTML('beforeend', productHTML);
@@ -543,19 +547,23 @@ function renderProducts(products) {
                     <h2>${product.name}</h2>
                 </div>
             </a>
-            <div class="product-footer">
-                <div class="volume-select">
-                    <select id="volumeSelect_${product._id}">
-                        <option value="15" data-price="${(discountedPrice * 15).toFixed(2)}">15 ml - ${(discountedPrice * 15).toFixed(2)} ₼</option>
-                        <option value="30" data-price="${(discountedPrice * 30).toFixed(2)}">30 ml - ${(discountedPrice * 30).toFixed(2)} ₼</option>
-                        <option value="50" data-price="${(discountedPrice * 50).toFixed(2)}">50 ml - ${(discountedPrice * 50).toFixed(2)} ₼</option>
-                    </select>
+             <div class="product-footer">
+                    <div class="volume-select">
+                        <select class="volume-options" id="volumeSelect_${product._id}">
+                            <option value="15" data-price="${(discountedPrice * 15).toFixed(2)}">15 ml - ${(discountedPrice * 15).toFixed(2)} ₼</option>
+                            <option value="30" data-price="${(discountedPrice * 30).toFixed(2)}">30 ml - ${(discountedPrice * 30).toFixed(2)} ₼</option>
+                            <option value="50" data-price="${(discountedPrice * 50).toFixed(2)}">50 ml - ${(discountedPrice * 50).toFixed(2)} ₼</option>
+                        </select>
+                    </div>
+                    <a href="javascript:void(0)" 
+                        class="add-to-cart" 
+                        onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${discountedPrice}, document.getElementById('volumeSelect_${product._id}').value)" 
+                        style="background-color: #f76300;">
+                        <i class="fa-solid fa-cart-shopping" style="color: white;"></i>
+                    </a>
                 </div>
-                <a href="javascript:void(0)" onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${discountedPrice}, document.getElementById('volumeSelect_${product._id}').value)" style="background-color: #f76300;">
-                    <i class="fa-solid fa-cart-shopping" style="color: white;"></i>
-                </a>
-            </div>
         </div>`;
+        
 
         productsContainer.insertAdjacentHTML('beforeend', productElement); // Append new product
     });

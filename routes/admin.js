@@ -100,7 +100,6 @@ router.post('/add', upload.fields([{ name: 'img', maxCount: 1 },
         }
 });
 
-// Route to get discounted and non-discounted products
 router.get('/products', async (req, res) => {
     try {
         const discountedProducts = await Products.find({ discount: { $gt: 0 } });
