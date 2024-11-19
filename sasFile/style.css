@@ -1047,7 +1047,6 @@ a {
   margin: 0 auto;
   border: 2px solid white;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   background-color: #ede3da;
   animation: giftBox 3s ease forwards;
@@ -1069,7 +1068,6 @@ a {
   scroll-snap-type: x mandatory;
   gap: 10px;
   padding: 10px;
-  background-color: #ede3da;
 }
 .container .gift-container .gift img {
   flex-shrink: 0;
@@ -1077,7 +1075,6 @@ a {
   height: 420px;
   scroll-snap-align: center;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   -o-object-fit: contain;
      object-fit: contain;
 }
@@ -1187,12 +1184,12 @@ a {
   .container .gift-container .gift {
     gap: 10px;
     overflow-x: scroll;
-    width: 500px;
+    width: 100%;
     padding: 10px;
   }
   .container .gift-container .gift img {
     width: 100%;
-    height: 200px;
+    height: 400px;
   }
   .container .buttons_filter {
     display: flex;

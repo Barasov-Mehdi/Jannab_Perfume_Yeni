@@ -390,32 +390,33 @@ document.getElementById('viewDetailsButton').onclick = function () {
 };
 
 async function filterNewArrivals() {
-    try {
-        const response = await fetch('/admin/new-arrivals');
-        const products = await response.json();
-        displayProducts(products);
-    } catch (error) {
-        console.error('Error fetching new arrivals:', error);
-    }
+    currentCategory = 'new_arrivals';  // Update the current category
+    skipCount = 0; // Reset skip count
+    loadedProductIds = []; // Clear previously loaded IDs
+    await fetchAndDisplayProducts('/admin/new-arrivals');
 }
 
 async function filterBestSellers() {
-    try {
-        const response = await fetch('/admin/best-sellers');
-        const products = await response.json();
-        displayProducts(products);
-    } catch (error) {
-        console.error('Error fetching best sellers:', error);
-    }
+    currentCategory = 'best_sellers'; // Update the current category
+    skipCount = 0; // Reset skip count
+    loadedProductIds = []; // Clear previously loaded IDs
+    await fetchAndDisplayProducts('/admin/best-sellers');
 }
 
 async function filterDiscountedProducts() {
+    currentCategory = 'discounted_products'; // Update the current category
+    skipCount = 0; // Reset skip count
+    loadedProductIds = []; // Clear previously loaded IDs
+    await fetchAndDisplayProducts('/admin/discounted-products');
+}
+
+async function fetchAndDisplayProducts(url) {
     try {
-        const response = await fetch('/admin/discounted-products');
+        const response = await fetch(url);
         const products = await response.json();
         displayProducts(products);
     } catch (error) {
-        console.error('Error fetching discounted products:', error);
+        console.error('Error fetching products:', error);
     }
 }
 
