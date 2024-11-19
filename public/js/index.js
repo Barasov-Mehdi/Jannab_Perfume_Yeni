@@ -39,6 +39,23 @@ function showProductCard() {
 }
 showProductCard();
 
+function updateImage() {
+    const imgElement = document.getElementById('giftImage');
+    const windowWidth = window.innerWidth;
+
+    if (windowWidth < 775) {
+        imgElement.src = './img/gift70m.png'; // 775px'den küçükse
+        imgElement.alt = 'endirim 30'; // Alternatif metin
+    } else {
+        imgElement.src = './img/gift70.png'; // 775px ve üzerindeyse
+        imgElement.alt = 'endirim 70'; // Alternatif metin
+    }
+}
+
+// Sayfa yüklendiğinde ve pencere boyutu değiştiğinde resmi güncelle
+window.addEventListener('load', updateImage);
+window.addEventListener('resize', updateImage);
+updateImage()
 function initializeSlider() {
     var imgArrLarge = ["./img/IMG_7812.JPG", "./img/IMG_7855.JPG"]; // Geniş ekranlar için
     var imgArrSmall = ["./img/IMG_7816.JPG", "./img/IMG_7827.JPG"]; // Dar ekranlar için
@@ -194,7 +211,7 @@ function loadMoreProducts() {
             const productsContainer = document.getElementById('productsContainer');
 
             // Filter out products that have already been loaded
-            const newProducts = products.filter(product => 
+            const newProducts = products.filter(product =>
                 !loadedProductIds.includes(product._id)
             );
 

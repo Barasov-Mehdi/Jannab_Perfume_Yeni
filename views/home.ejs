@@ -22,7 +22,7 @@
         /* Position context for absolute positioning */
     }
 
-    
+
 
     .price-per-volume {
         display: none;
@@ -165,7 +165,7 @@
                 <a href="#loadMoreButton">Kartlar <i class="fa-solid fa-caret-down"></i></a>
             </div>
         </section>
-        
+
 
         <section class="products" id="productsContainer">
             <% products.slice(0, 2).forEach(product=> { %> <!-- İlk iki ürünü göster -->
@@ -213,15 +213,14 @@
 
         <button class="loadMoreButtons" id="loadMoreButton" onclick="loadMoreProducts()">Daha çox</button>
 
-        <!-- <section class="gift-container" id="gift_boxs">
+        <section class="gift-container" id="gift_boxs">
             <!-- <div class="gift-header">
-            <i class="fa fa-times close-icon close_gift" aria-hidden="true"></i>
-        </div> -->
-            <!-- <div class="gift">
-                <img src="./img/gift50.png" alt="endirim 50">
-                <img src="./img/gift30.png" alt="endirim 30">
+                <i class="fa fa-times close-icon close_gift" aria-hidden="true"></i>
+            </div> -->
+            <div class="gift">
+                <img id="giftImage" src="./img/gift70m.png" alt="endirim 30">
             </div>
-        </section> --> 
+        </section>
 
         <div class="product_card" id="productCard" style="display: none;">
             <h3>Səbət</h3>
@@ -292,9 +291,6 @@
                 <a href="tel:+994553974421" class="icon"><i class="fa-solid fa-phone"></i></a>
             </div>
         </footer>
-
-
-
 
     </div>
     <script src="./js/index.js"></script>
