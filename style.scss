@@ -194,7 +194,7 @@ a {
                 height: 30px;
                 object-fit: contain;
                 margin-right: 10px;
-                
+
             }
 
             // img:nth-child(2) {
@@ -534,7 +534,7 @@ a {
         flex-wrap: wrap;
         justify-content: space-around;
         padding: 20px;
-        margin: 0px 0 50px 0;
+        margin: 0;
         width: 95%;
 
         .volume-select {
@@ -714,7 +714,7 @@ a {
     }
 
     .loadMoreButtons {
-        margin: 0 0 0 0;
+        margin-bottom: 30px;
         color: black;
         font-weight: bold;
         outline: none;
@@ -1245,9 +1245,8 @@ a {
         overflow: hidden; // Taşan içerikler gizlenir.
         background-color: #ede3da;
         animation: giftBox 3s ease forwards;
+        margin-bottom: 30px;
         width: 100%;
-
-        margin: 20px 0;
 
 
         @keyframes giftBox {
@@ -1262,9 +1261,9 @@ a {
 
         .gift {
             display: flex; // Resimleri yatay olarak sıralar.
-            overflow-x: auto; // Yatay kaydırmayı etkinleştirir.
+            // overflow-x: auto; // Yatay kaydırmayı etkinleştirir.
             overflow-y: hidden; // Dikey taşmayı engeller.
-            scroll-snap-type: x mandatory; // Kaydırma sırasında öğelere kilitlenme sağlar.
+            // scroll-snap-type: x mandatory; // Kaydırma sırasında öğelere kilitlenme sağlar.
             gap: 10px; // Resimler arasında boşluk ekler.
             padding: 10px;
             // background-color: #ede3da;
@@ -1431,7 +1430,6 @@ a {
             }
         }
 
-
         .buttons_filter {
             display: flex;
             justify-content: center;
@@ -1440,21 +1438,30 @@ a {
 
             .buttons_wrapper {
                 display: flex;
-                justify-content: space-around;
+                justify-content: flex-start;
                 /* Change to flex-start for alignment */
                 max-width: 100%;
+                overflow-x: auto;
                 /* Allow horizontal scrolling */
                 // border: 1px solid red;
                 box-sizing: border-box;
+
+                scrollbar-width: none; // Firefox için
+                -ms-overflow-style: none; // Internet Explorer için
+
+                &::-webkit-scrollbar {
+                    display: none; // Chrome, Safari ve diğer WebKit tabanlı tarayıcılar için
+                }
+
                 /* Ensure padding and borders are included in the width */
             }
 
             button,
             a {
-                min-width: 70px;
+                min-width: 130px;
                 /* Make sure buttons and links are at least 100px wide */
-                font-size: 12.5px;
-                padding: 7px 10px;
+                font-size: 12px;
+                padding: 10px 18px;
                 text-align: center;
                 white-space: nowrap;
                 font-weight: bolder;
@@ -1478,7 +1485,7 @@ a {
             a {
                 flex-shrink: 0;
                 /* Prevent buttons from shrinking */
-                
+
             }
         }
 
