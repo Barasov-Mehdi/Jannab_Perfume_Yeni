@@ -1198,7 +1198,7 @@ a {
   }
   .container .buttons_filter .buttons_wrapper {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-around;
     /* Change to flex-start for alignment */
     max-width: 100%;
     /* Allow horizontal scrolling */
@@ -1207,7 +1207,7 @@ a {
   }
   .container .buttons_filter button,
   .container .buttons_filter a {
-    min-width: 85px;
+    min-width: 70px;
     /* Make sure buttons and links are at least 100px wide */
     font-size: 12.5px;
     padding: 7px 10px;
