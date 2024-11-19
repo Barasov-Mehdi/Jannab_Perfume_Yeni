@@ -796,7 +796,7 @@ a {
   color: black;
   font-size: 20px;
   margin: 10px 0;
-  font-weight: 600;
+  font-weight: 400;
   transition: color 0.3s ease;
 }
 .container .left_menu .menu_links a:hover {
