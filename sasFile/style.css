@@ -1077,7 +1077,7 @@ a {
      object-fit: contain;
 }
 
-@media (max-width: 775px) {
+@media (max-width: 650px) {
   .container {
     /* Media query for screens up to 420px */
   }
@@ -1224,7 +1224,7 @@ a {
     /* Prevent wrapping of button text */
   }
 }
-@media (max-width: 775px) and (max-width: 420px) {
+@media (max-width: 650px) and (max-width: 420px) {
   .container .buttons_filter .buttons_wrapper {
     width: 100%;
     /* Allow it to stretch the container fully */
