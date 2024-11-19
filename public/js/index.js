@@ -169,7 +169,7 @@ function displaySearchResults(products) {
                         <option value="50" data-price="${(discountedPrice / 1 * 50).toFixed(2)}">50 ml</option>
                     </select>
                 </div>
-                <a href="javascript:void(0)" class="add-to-cart" style="background-color: #f76300;" 
+                <a href="javascript:void(0)" class="add-to-cart" style="background-color: #333333" 
                     onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${discountedPrice}, document.getElementById('volumeSelect_${product._id}').value)">
                     <i class="fa-solid fa-cart-shopping" style="color: white;"></i>
                 </a>
@@ -185,10 +185,10 @@ function displaySearchResults(products) {
 addCardAndSearch(); // Önyükleme işlemini başlat
 
 // zordu zorduuu
-let skipCount = 2; 
-const limit = 2; 
-let loadedProductIds = []; 
-let currentCategory = 'all'; 
+let skipCount = 2;
+const limit = 2;
+let loadedProductIds = [];
+let currentCategory = 'all';
 
 function loadMoreProducts() {
     let url;
@@ -211,8 +211,8 @@ function loadMoreProducts() {
             const productsContainer = document.getElementById('productsContainer');
 
             // Filter out products that have already been loaded
-            const newProducts = products.filter(product => 
-                !loadedProductIds.includes(product._id) 
+            const newProducts = products.filter(product =>
+                !loadedProductIds.includes(product._id)
             );
 
             if (newProducts.length > 0) {
@@ -226,32 +226,30 @@ function loadMoreProducts() {
 
                     // Create product HTML
                     const productHTML = `
-                    <section class="products" id="productsContainer">
-                        <div class="product" data-category="${product.category}">
-                            <a target="_blank" href="/products/${product._id}">
-                                <div class="image-container">
-                                    <img src="${product.img}" alt="${product.name}">
-                                    ${discount > 0 ? `<div class="discount-badge">-${Math.floor(discount)}%</div>` : ''}
-                                </div>
-                                <div class="product-details">
-                                    <h2>${product.name}</h2>
-                                </div>
-                            </a>
-                            <div class="product-footer">
-                                <div class="volume-select">
-                                    <select class="volume-options" id="volumeSelect_${product._id}">
-                                        <option value="15" data-price="${(discountedPrice * 15).toFixed(2)}">15 ml - ${(discountedPrice * 15).toFixed(2)} ₼</option>
-                                        <option value="30" data-price="${(discountedPrice * 30).toFixed(2)}">30 ml - ${(discountedPrice * 30).toFixed(2)} ₼</option>
-                                        <option value="50" data-price="${(discountedPrice * 50).toFixed(2)}">50 ml - ${(discountedPrice * 50).toFixed(2)} ₼</option>
-                                    </select>
-                                </div>
-                                <a href="javascript:void(0)" class="add-to-cart" style="background-color: #f76300;" 
-                                    onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${discountedPrice}, document.getElementById('volumeSelect_${product._id}').value)">
-                                    <i class="fa-solid fa-cart-shopping" style="color: white;"></i>
-                                </a>
+                    <div class="product" data-category="${product.category}">
+                        <a target="_blank" href="/products/${product._id}">
+                            <div class="image-container">
+                                <img src="${product.img}" alt="${product.name}">
+                                ${discount > 0 ? `<div class="discount-badge">-${Math.floor(discount)}%</div>` : ''}
                             </div>
+                            <div class="product-details">
+                                <h2>${product.name}</h2>
+                            </div>
+                        </a>
+                        <div class="product-footer">
+                            <div class="volume-select">
+                                <select class="volume-options" id="volumeSelect_${product._id}">
+                                    <option value="15" data-price="${(discountedPrice * 15).toFixed(2)}">15 ml - ${(discountedPrice * 15).toFixed(2)} ₼</option>
+                                    <option value="30" data-price="${(discountedPrice * 30).toFixed(2)}">30 ml - ${(discountedPrice * 30).toFixed(2)} ₼</option>
+                                    <option value="50" data-price="${(discountedPrice * 50).toFixed(2)}">50 ml - ${(discountedPrice * 50).toFixed(2)} ₼</option>
+                                </select>
+                            </div>
+                            <a href="javascript:void(0)" class="add-to-cart" style="background-color: #333333;" 
+                                onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${discountedPrice}, document.getElementById('volumeSelect_${product._id}').value)">
+                                <i class="fa-solid fa-cart-shopping" style="color: white;"></i>
+                            </a>
                         </div>
-                        </section>
+                    </div>
                     `;
 
                     // Append new product HTML to the container
@@ -274,7 +272,7 @@ function resetButtonStyles() {
     newArrivalsButton.classList.remove('active');
     bestSellersButton.classList.remove('active');
     discountedButton.classList.remove('active');
-
+    
     newArrivalsButton.classList.add('inactive');
     bestSellersButton.classList.add('inactive');
     discountedButton.classList.add('inactive');
@@ -445,7 +443,7 @@ function displayProducts(products) {
         const discountedPrice = discount > 0 ? originalPrice * (1 - discount / 100) : originalPrice;
 
         const productHTML = `
-        <section class="products" id="productsContainer">
+        
             <div class="product" data-category="${product.category}">
                 <a target="_blank" href="/products/${product._id}">
                     <div class="image-container">
@@ -457,6 +455,9 @@ function displayProducts(products) {
                     </div>
                 </a>
                 <div class="product-footer">
+                    <div class="price" style="display: none;">
+                        ${originalPrice} ₼
+                    </div>
                     <div class="volume-select">
                         <select class="volume-options" id="volumeSelect_${product._id}">
                             <option value="15" data-price="${(discountedPrice * 15).toFixed(2)}">15 ml - ${(discountedPrice * 15).toFixed(2)} ₼</option>
@@ -466,12 +467,11 @@ function displayProducts(products) {
                     </div>
                     <a href="javascript:void(0)" class="add-to-cart" 
                         onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${discountedPrice}, document.getElementById('volumeSelect_${product._id}').value)"
-                        style="background-color: #f76300;">
+                        style="background-color: #333333;">
                         <i class="fa-solid fa-cart-shopping" style="color: white;"></i>
                     </a>
                 </div>
             </div>
-            </section>
         `;
 
         productsContainer.insertAdjacentHTML('beforeend', productHTML);
@@ -537,7 +537,8 @@ function renderProducts(products) {
         const discountedPrice = discount > 0 ? originalPrice * (1 - discount / 100) : originalPrice;
 
         // Create product element HTML
-        const productElement = `<div class="product">
+        const productElement = `
+        <div class="product">
             <a href="/products/${product._id}">
                 <div class="image-container">
                     <img src="${product.img}" alt="${product.name}">
@@ -547,23 +548,23 @@ function renderProducts(products) {
                     <h2>${product.name}</h2>
                 </div>
             </a>
-             <div class="product-footer">
-                    <div class="volume-select">
-                        <select class="volume-options" id="volumeSelect_${product._id}">
-                            <option value="15" data-price="${(discountedPrice * 15).toFixed(2)}">15 ml - ${(discountedPrice * 15).toFixed(2)} ₼</option>
-                            <option value="30" data-price="${(discountedPrice * 30).toFixed(2)}">30 ml - ${(discountedPrice * 30).toFixed(2)} ₼</option>
-                            <option value="50" data-price="${(discountedPrice * 50).toFixed(2)}">50 ml - ${(discountedPrice * 50).toFixed(2)} ₼</option>
-                        </select>
-                    </div>
-                    <a href="javascript:void(0)" 
-                        class="add-to-cart" 
-                        onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${discountedPrice}, document.getElementById('volumeSelect_${product._id}').value)" 
-                        style="background-color: #f76300;">
-                        <i class="fa-solid fa-cart-shopping" style="color: white;"></i>
-                    </a>
+            <div class="product-footer">
+                <div class="volume-select">
+                    <select class="volume-options" id="volumeSelect_${product._id}">
+                        <option value="15" data-price="${(discountedPrice * 15).toFixed(2)}">15 ml - ${(discountedPrice * 15).toFixed(2)} ₼</option>
+                        <option value="30" data-price="${(discountedPrice * 30).toFixed(2)}">30 ml - ${(discountedPrice * 30).toFixed(2)} ₼</option>
+                        <option value="50" data-price="${(discountedPrice * 50).toFixed(2)}">50 ml - ${(discountedPrice * 50).toFixed(2)} ₼</option>
+                    </select>
                 </div>
-        </div>`;
-        
+                <a href="javascript:void(0)" 
+                    class="add-to-cart" 
+                    onclick="addToCart('${product._id}', '${product.name}', '${product.img}', ${discountedPrice}, document.getElementById('volumeSelect_${product._id}').value)" 
+                    style="background-color: #333333">
+                    <i class="fa-solid fa-cart-shopping" style="color: white;"></i>
+                </a>
+            </div>
+            </div>
+        `;
 
         productsContainer.insertAdjacentHTML('beforeend', productElement); // Append new product
     });

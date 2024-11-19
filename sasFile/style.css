@@ -438,7 +438,7 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 20px;
+  padding: 10px;
   margin: 0;
   width: 95%;
 }
@@ -448,13 +448,13 @@ a {
 }
 .container .products .volume-select select.volume-options {
   padding: 10px 20px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
   background-color: #fff;
   font-size: 1em;
   color: #333;
   cursor: pointer;
   font-weight: 700;
+  outline: none;
+  border: none;
   padding-right: 40px;
   background-image: url("data:image/png;base64,...");
   background-repeat: no-repeat;
@@ -464,8 +464,7 @@ a {
 }
 .container .products .volume-select select.volume-options:focus {
   outline: none;
-  border-color: #ecc14d;
-  background-color: #f7f7f7;
+  border: none;
 }
 .container .products .volume-select select.volume-options option {
   padding: 10px;
@@ -477,7 +476,6 @@ a {
   background-color: #f2f2f2;
 }
 .container .products .product {
-  border: 1px solid #ddd;
   border-radius: 8px;
   padding: 20px;
   margin: 20px;
@@ -525,10 +523,10 @@ a {
 }
 .container .products .product .product-details h2 {
   font-size: 1.25em;
-  margin: 10px 0;
+  margin: 5px 0;
   color: #333;
   text-transform: uppercase;
-  text-align: start;
+  text-align: center;
   padding-left: 5px;
 }
 .container .products .product .product-details .rating {
@@ -558,13 +556,12 @@ a {
 }
 .container .products .product .product-footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  margin-top: 15px;
   padding: 10px 0;
   background-color: white;
   margin: 3px 0;
-  border-top: 0.5px solid grey;
 }
 .container .products .product .product-footer .price {
   font-weight: bold;
@@ -577,9 +574,9 @@ a {
   justify-content: center;
   background-color: transparent;
   padding: 14px 10px;
-  border-radius: 15%;
   font-size: 1.5em;
   transition: background-color 0.3s, color 0.3s;
+  width: 100%;
 }
 .container .products .product .product-footer a.add-to-cart:hover {
   color: white;
@@ -892,7 +889,7 @@ a {
   /* Üst kenar boşluğu */
 }
 .container .buttons_filter button {
-  background-color: rgba(211, 211, 211, 0.3);
+  background-color: #ede3da;
   /* Hafif gri arka plan */
   color: #575656;
   /* Gri yazı rengi */
@@ -930,7 +927,7 @@ a {
   /* Daha koyu gri yazı rengi */
 }
 .container .buttons_filter a {
-  background-color: rgba(211, 211, 211, 0.3);
+  background-color: #ede3da;
   text-decoration: none;
   /* Hafif gri arka plan */
   color: #575656;
@@ -1062,6 +1059,7 @@ a {
 }
 .container .gift-container .gift {
   display: flex;
+  justify-content: center;
   overflow-y: hidden;
   gap: 10px;
   padding: 10px;
@@ -1077,9 +1075,6 @@ a {
 }
 
 @media (max-width: 650px) {
-  .container {
-    /* Media query for screens up to 420px */
-  }
   .container .header {
     display: none;
   }
@@ -1180,13 +1175,13 @@ a {
   }
   .container .gift-container .gift {
     gap: 10px;
-    overflow-x: scroll;
     width: 100%;
     padding: 10px;
+    justify-content: center;
   }
   .container .gift-container .gift img {
     width: 100%;
-    height: 400px;
+    height: 300px;
   }
   .container .buttons_filter {
     display: flex;
@@ -1217,7 +1212,7 @@ a {
     text-align: center;
     white-space: nowrap;
     font-weight: bolder;
-    background-color: rgba(204, 97, 97, 0.3);
+    background-color: #ede3da;
     /* Hafif gri arka plan */
     color: black;
     /* Prevent wrapping of button text */
@@ -1226,11 +1221,167 @@ a {
 @media (max-width: 650px) and (max-width: 420px) {
   .container .buttons_filter .buttons_wrapper {
     width: 100%;
-    /* Allow it to stretch the container fully */
   }
   .container button,
   .container a {
     flex-shrink: 0;
     /* Prevent buttons from shrinking */
+  }
+}
+@media (max-width: 650px) {
+  .container .products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0;
+    width: 100%;
+  }
+  .container .products .volume-select {
+    margin: 0;
+    position: relative;
+  }
+  .container .products .volume-select select.volume-options {
+    display: flex;
+    padding: 10px;
+    background-color: #fff;
+    font-size: 0.7em;
+    color: #333;
+    cursor: pointer;
+    font-weight: 550;
+    width: 100%;
+    padding-right: 40px;
+    background-image: url("data:image/png;base64,...");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+    transition: border-color 0.3s, background-color 0.3s;
+  }
+  .container .products .volume-select select.volume-options:focus {
+    outline: none;
+    border-color: #ecc14d;
+    background-color: #f7f7f7;
+    border: none;
+  }
+  .container .products .volume-select select.volume-options option {
+    padding: 10px;
+    background-color: #fff;
+    color: #333;
+    border: none;
+    width: 100%;
+  }
+  .container .products .volume-select select.volume-options option:hover {
+    background-color: #f2f2f2;
+  }
+  .container .products .product {
+    border-radius: 8px;
+    padding: 5px;
+    margin: 2px;
+    flex: 1 1 300px;
+    max-width: 180px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+  }
+  .container .products .product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  .container .products .product .image-container {
+    width: 100%;
+    height: 205px;
+    border-radius: 5px;
+    background-color: #f5f4e9;
+    overflow: hidden;
+    position: relative;
+  }
+  .container .products .product .image-container .discount-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #f76300;
+    color: white;
+    padding: 4px 4px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  .container .products .product .image-container img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: contain;
+       object-fit: contain;
+    transition: transform 0.3s;
+  }
+  .container .products .product .image-container img:hover {
+    transform: scale(1.05);
+  }
+  .container .products .product .product-details {
+    margin-top: 10px;
+  }
+  .container .products .product .product-details h2 {
+    font-size: 0.8em;
+    margin: 1px 0;
+    color: #333;
+    text-transform: uppercase;
+    text-align: center;
+    padding-left: 5px;
+  }
+  .container .products .product .product-details .rating {
+    display: none;
+    justify-content: center;
+    margin: 10px 0;
+  }
+  .container .products .product .product-details .rating .star {
+    color: lightgray;
+    font-size: 1.5em;
+    margin: 0 2px;
+  }
+  .container .products .product .product-details .rating .star.filled {
+    color: gold;
+  }
+  .container .products .product .product-details .rating .star:nth-child(1) {
+    color: gold;
+  }
+  .container .products .product .product-details .rating .star:nth-child(2) {
+    color: gold;
+  }
+  .container .products .product .product-details .rating .star:nth-child(3) {
+    color: gold;
+  }
+  .container .products .product .product-details .rating .star:nth-child(4) {
+    color: gold;
+  }
+  .container .products .product .product-footer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+    padding: 10px 0;
+    background-color: white;
+    margin: 3px 0;
+  }
+  .container .products .product .product-footer .price {
+    font-weight: bold;
+    font-size: 1.25em;
+    color: #ecc14d;
+  }
+  .container .products .product .product-footer a.add-to-cart {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 10px;
+    border-radius: 0;
+    font-size: 1.5em;
+    transition: background-color 0.3s, color 0.3s;
+    width: 100%;
+    background-color: #333333;
+  }
+  .container .products .product .product-footer a.add-to-cart:hover {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  .container .products .product .product-footer a.add-to-cart i {
+    font-size: 16px;
   }
 }/*# sourceMappingURL=style.css.map */

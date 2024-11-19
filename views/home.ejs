@@ -135,8 +135,8 @@
                 <img class="slider_show" src="" alt="Jannab">
                 <div class="slider_box_buttons">
                     <div class="nese">
-                        <button id="allProductsButton" onclick="filterAllProducts()">Bütün Ətirlər <i
-                                class="fa-solid fa-arrow-right-long" style="color: black;"></i></button>
+                        <button class="allproductsMore" id="allProductsButton" onclick="filterAllProducts()">Bütün
+                            Ətirlər <i class="fa-solid fa-arrow-right-long" style="color: black;"></i></button>
                         <button id="womanButton" class="filterWoman" onclick="filterProducts('woman')">Woman <i
                                 class="fa-solid fa-arrow-right-long" style="color: black;"></i></button>
 
@@ -157,9 +157,9 @@
 
         <section class="buttons_filter">
             <div class="buttons_wrapper">
-                <button id="newArrivalsButton" onclick="filterNewArrivals()">Yeni Ətirlər</button>
-                <button id="bestSellersButton" onclick="filterBestSellers()">Çox Satılanlar</button>
-                <button id="discountedButton" onclick="filterDiscountedProducts()">Endrimli Ətirlər</button>
+                <button id="newArrivalsButton" onclick="filterNewArrivals()">Yeni ətirlər</button>
+                <button id="bestSellersButton" onclick="filterBestSellers()">Çox satılanlar</button>
+                <button id="discountedButton" onclick="filterDiscountedProducts()">Endrimli ətirlər</button>
                 <a href="#loadMoreButton">Kartlar <i class="fa-solid fa-caret-down"></i></a>
             </div>
         </section>
@@ -200,7 +200,7 @@
                         </div>
                         <a href="javascript:void(0)" class="add-to-cart"
                             onclick="addToCart('<%= product._id %>', '<%= product.name %>', '<%= product.img %>', '<%= product.price %>', document.getElementById('volumeSelect_<%= product._id %>').value)"
-                            style="background-color: #f76300;">
+                            style="background-color: #333333">
                             <i class="fa-solid fa-cart-shopping" style="color: white;"></i>
                         </a>
                     </div>
@@ -293,6 +293,9 @@
     <script src="./js/index.js"></script>
 
     <script>
+        var loadMoreButtons = document.querySelector('.loadMoreButtons');
+        var allproductsMore = document.querySelector('.allproductsMore');
+
         // Buton referansları
         const buttons = {
             newArrivals: document.getElementById('newArrivalsButton'),
@@ -315,6 +318,25 @@
                 }
             });
         }
+
+        function resetButtonStylesMore() {
+            Object.values(buttons).forEach(button => {
+                button.addEventListener('click', () => {
+                    loadMoreButtons.style.display = 'none'
+                })
+            });
+        }
+        resetButtonStylesMore()
+
+        function resetButtonAllStylesMore() {
+
+            allproductsMore.addEventListener('click', () => {
+                loadMoreButtons.style.display = 'flex'
+            })
+
+        }
+        resetButtonAllStylesMore()
+
 
         // Buton tıklama olaylarını ekle
         function setupButtonListeners() {
