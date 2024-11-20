@@ -210,7 +210,7 @@ a {
   top: 0;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.692);
-  display: none;
+  display: flex;
   justify-content: start;
   align-items: center;
   flex-direction: column;
@@ -257,28 +257,31 @@ a {
 }
 .container .search .search_results {
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
-  gap: 15px;
+  gap: 5px;
   margin-top: 10px;
-  max-height: 400px;
   overflow-y: auto;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   padding: 10px;
+  width: 100%;
 }
 .container .search .search_results .volume-select {
-  margin: 0 5px;
+  margin: 0 15px;
 }
 .container .search .search_results .product-result {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 80px;
-  padding: 15px;
+  padding: 5px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   background-color: #ffffff;
   transition: box-shadow 0.3s ease, transform 0.2s ease;
+  width: 100%;
 }
 .container .search .search_results .product-result:hover {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -288,7 +291,6 @@ a {
   display: flex;
   text-decoration: none;
   color: inherit;
-  width: 100%;
   justify-content: space-between;
   align-items: center;
 }
@@ -300,11 +302,6 @@ a {
   -o-object-fit: cover;
      object-fit: cover;
 }
-@media (max-width: 600px) {
-  .container .search .search_results .product-result .product-link .product-image {
-    max-width: 60px;
-  }
-}
 .container .search .search_results .product-result .product-link .product-details {
   display: flex;
   justify-content: start;
@@ -312,17 +309,19 @@ a {
 }
 .container .search .search_results .product-result .product-link .product-details .product-name {
   font-size: 1.1em;
-  margin: 0;
+  margin: 0 10px;
   font-weight: bold;
   color: #333;
   text-align: start;
+  margin-right: 5px;
 }
 .container .search .search_results .product-result .product-link .product-details .product-price {
   display: none;
 }
 .container .search .search_results i {
-  margin: 0 20px;
+  margin: 0 5px;
   color: #edbe63;
+  padding: 5px 4px;
 }
 .container .search .search_results p {
   color: #777;
@@ -1258,10 +1257,10 @@ a {
   }
   .container .products .product {
     border-radius: 8px;
-    padding: 5px;
+    padding: 3px;
     margin: 2px;
     flex: 1 1 300px;
-    max-width: 180px;
+    max-width: 175px;
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
     position: relative;

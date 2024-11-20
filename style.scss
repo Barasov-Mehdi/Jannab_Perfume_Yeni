@@ -261,7 +261,7 @@ a {
         width: 100%;
 
         background-color: rgba(0, 0, 0, 0.692);
-        display: none;
+        display: flex;
         justify-content: start;
         align-items: center;
         flex-direction: column;
@@ -313,17 +313,20 @@ a {
 
         .search_results {
             display: flex;
+            justify-content: center;
+            align-items: center;
             flex-direction: column;
-            gap: 15px; // Ürünler arasında boşluk
+            gap: 5px; // Ürünler arasında boşluk
             margin-top: 10px; // Arama sonuçları için üst boşluk
-            max-height: 400px; // Arama sonuçlarının maksimum yüksekliği (özelleştirin)
+            // max-height: 400px; // Arama sonuçlarının maksimum yüksekliği (özelleştirin)
             overflow-y: auto; // Dikey kaydırma alanı
             border: 1px solid #e0e0e0; // Çerçeve
             border-radius: 8px; // Köşe yuvarlama
             padding: 10px; // İç boşluk eklemek için
+            width: 100%;
 
             .volume-select {
-                margin: 0 5px;
+                margin: 0 15px;
             }
 
             .product-result {
@@ -331,11 +334,12 @@ a {
                 align-items: center; // Dikey hizalama
                 justify-content: space-between;
                 height: 80px;
-                padding: 15px;
+                padding: 5px;
                 border: 1px solid #e0e0e0; // Çerçeve
                 border-radius: 8px; // Köşe yuvarlama
                 background-color: #ffffff; // Arka plan rengi
                 transition: box-shadow 0.3s ease, transform 0.2s ease; // Geçiş efektleri
+                width: 100%;
 
                 &:hover {
                     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); // Hover etkisi
@@ -346,7 +350,7 @@ a {
                     display: flex; // İçerikleri yan yana yerleştir
                     text-decoration: none; // Alt çizgiyi kaldır
                     color: inherit; // Renk mirasını koru
-                    width: 100%; // Tüm genişliği kapla
+                     // Tüm genişliği kapla
                     justify-content: space-between;
                     align-items: center;
 
@@ -358,9 +362,9 @@ a {
                         object-fit: cover; // Resim kaplama
 
                         // Mobil ekranlarda daha küçük görünüm
-                        @media (max-width: 600px) {
-                            max-width: 60px;
-                        }
+                        // @media (max-width: 600px) {
+                        //     max-width: 60px;
+                        // }
                     }
 
                     .product-details {
@@ -370,10 +374,11 @@ a {
 
                         .product-name {
                             font-size: 1.1em; // Başlık boyutu
-                            margin: 0; // Varsayılan margin'i kaldır
+                            margin: 0 10px; // Varsayılan margin'i kaldır
                             font-weight: bold; // Kalın yazı tipi
                             color: #333; // Başlık rengi
                             text-align: start;
+                            margin-right: 5px;
                         }
 
                         .product-price {
@@ -384,8 +389,9 @@ a {
             }
 
             i {
-                margin: 0 20px;
+                margin: 0 5px;
                 color: #edbe63;
+                padding: 5px 4px;
 
             }
 
@@ -925,7 +931,6 @@ a {
         z-index: 1000;
         overflow-y: hidden;
         flex-direction: column;
-
         animation: slideIn 1s forwards;
 
         @keyframes slideIn {
@@ -1017,7 +1022,6 @@ a {
 
         }
 
-        // Yanaqlı ikonu
         .close_left_menu {
             color: rgb(212, 211, 211); // İkonun rəngi
             background-color: #292627; // İkonun arxa fonu
@@ -1028,7 +1032,6 @@ a {
             width: 100%; // Tam genişlik
         }
 
-        // Yaratıcı bölməsi
         .creator {
             display: flex;
             flex-direction: column; // Vertikal düzülüş
@@ -1535,10 +1538,10 @@ a {
             .product {
                 // border: 1px solid #ddd; // Ürün kartı için kenar
                 border-radius: 8px;
-                padding: 5px;
+                padding: 3px;
                 margin: 2px;
                 flex: 1 1 300px; // Minimum genişlik 300px
-                max-width: 180px; // Maksimum genişlik
+                max-width: 175px; // Maksimum genişlik
                 text-align: center;
                 transition: transform 0.3s, box-shadow 0.3s;
                 position: relative;
