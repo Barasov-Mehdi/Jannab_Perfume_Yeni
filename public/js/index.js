@@ -191,10 +191,8 @@ function displaySearchResults(products) {
         searchResults.innerHTML = '<p>Hiçbir ürün bulunamadı.</p>'; // Hiçbir sonuç yoksa mesaj yaz
     }
 }
+addCardAndSearch(); 
 
-addCardAndSearch(); // Önyükleme işlemini başlat
-
-// zordu zorduuu
 let skipCount = 4;
 const limit = 4;
 let loadedProductIds = [];
@@ -485,6 +483,7 @@ function displayProducts(products) {
         `;
 
         productsContainer.insertAdjacentHTML('beforeend', productHTML);
+        
         loadedProductIds.push(product._id); // Track loaded product ID
     });
 }
@@ -577,5 +576,7 @@ function renderProducts(products) {
         `;
 
         productsContainer.insertAdjacentHTML('beforeend', productElement); // Append new product
+        loadedProductIds.push(product._id); // Track the loaded product ID
+    
     });
 }
