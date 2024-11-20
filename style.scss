@@ -22,7 +22,6 @@ a {
     flex-direction: column;
     // position: relative;
 
-    // Header Starts
     .header {
         position: relative;
         display: flex;
@@ -451,9 +450,27 @@ a {
                         font-size: 19px;
                         font-weight: 600;
 
+                        &:hover {
+                            // background-color: rgba(169, 169, 169, 0.5);
+                            /* Üzerine gelindiğinde daha belirgin gri arka plan */
+                            color: #424242;
+                            /* Koyu gri yazı rengi */
+                        }
+            
+                        /* Aktif durumda olan buton için stil */
+                        &.active {
+                            background-color: #faefe9;
+                            /* Daha koyu bir gri arka plan */
+                            color: black;
+                            /* Daha koyu gri yazı rengi */
+                        }
+                        
+
                         i {
                             font-weight: bold;
                             line-height: 10px;
+
+                            
                         }
                     }
 
@@ -476,6 +493,8 @@ a {
                             color: orangered;
                         }
                     }
+
+                    
                 }
 
             }
@@ -1420,7 +1439,7 @@ a {
 
                 img {
                     width: 100%;
-                    height: 330px;
+                    height: 340px;
                 }
             }
         }

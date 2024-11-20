@@ -191,10 +191,10 @@ function displaySearchResults(products) {
         searchResults.innerHTML = '<p>Hiçbir ürün bulunamadı.</p>'; // Hiçbir sonuç yoksa mesaj yaz
     }
 }
-addCardAndSearch(); 
+addCardAndSearch();
 
-let skipCount = 4;
-const limit = 4;
+let skipCount = 2;
+const limit = 6;
 let loadedProductIds = [];
 let currentCategory = 'all';
 
@@ -483,7 +483,7 @@ function displayProducts(products) {
         `;
 
         productsContainer.insertAdjacentHTML('beforeend', productHTML);
-        
+
         loadedProductIds.push(product._id); // Track loaded product ID
     });
 }
@@ -577,6 +577,6 @@ function renderProducts(products) {
 
         productsContainer.insertAdjacentHTML('beforeend', productElement); // Append new product
         loadedProductIds.push(product._id); // Track the loaded product ID
-    
+
     });
 }

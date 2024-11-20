@@ -374,6 +374,18 @@ a {
   margin-right: 0;
   font-size: 19px;
   font-weight: 600;
+  /* Aktif durumda olan buton için stil */
+}
+.container .slider_box .slıdex_show_box .slider_box_buttons .nese button:hover {
+  /* Üzerine gelindiğinde daha belirgin gri arka plan */
+  color: #424242;
+  /* Koyu gri yazı rengi */
+}
+.container .slider_box .slıdex_show_box .slider_box_buttons .nese button.active {
+  background-color: #faefe9;
+  /* Daha koyu bir gri arka plan */
+  color: black;
+  /* Daha koyu gri yazı rengi */
 }
 .container .slider_box .slıdex_show_box .slider_box_buttons .nese button i {
   font-weight: bold;
@@ -1167,7 +1179,7 @@ a {
   }
   .container .gift-container .gift img {
     width: 100%;
-    height: 330px;
+    height: 340px;
   }
   .container .buttons_filter {
     display: flex;
