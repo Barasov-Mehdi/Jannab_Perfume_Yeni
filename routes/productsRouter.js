@@ -124,7 +124,7 @@ router.get('/filter/:gender', async (req, res) => {
 });
 
 router.get('/api/products', async (req, res) => {
-    const limit = 2; // Her istekte dönecek ürün sayısı
+    const limit = 4; // Her istekte dönecek ürün sayısı
     const skip = parseInt(req.query.skip) || 0; // Geçiş değerini al
     const excludeIds = req.query.excludeIds ? req.query.excludeIds.split(',').map(id => mongoose.Types.ObjectId(id)) : []; // ID'leri ObjectId formatına çevir
 

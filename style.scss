@@ -147,7 +147,7 @@ a {
         height: 90px;
         justify-content: space-around;
         align-items: center;
-        border-bottom: 0.5px solid rgb(167, 166, 166);
+        // border-bottom: 0.5px solid rgb(167, 166, 166);
         margin: 0 0 3px 0;
         background-color: white;
 
@@ -266,6 +266,7 @@ a {
         flex-direction: column;
         z-index: 1;
         overflow-y: hidden;
+        overflow-x: hidden;
 
         .close_box {
             width: 100%;
@@ -313,7 +314,7 @@ a {
         .search_results {
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: start;
             flex-direction: column;
             gap: 5px; // Ürünler arasında boşluk
             margin-top: 10px; // Arama sonuçları için üst boşluk
@@ -325,13 +326,14 @@ a {
             width: 100%;
 
             .volume-select {
-                margin: 0 15px;
+                margin: 0 13px;
+                color: black;
             }
 
             .product-result {
                 display: flex; // Yatay hizalama
                 align-items: center; // Dikey hizalama
-                justify-content: space-between;
+                justify-content: start;
                 height: 80px;
                 padding: 5px;
                 border: 1px solid #e0e0e0; // Çerçeve
@@ -339,6 +341,7 @@ a {
                 background-color: #ffffff; // Arka plan rengi
                 transition: box-shadow 0.3s ease, transform 0.2s ease; // Geçiş efektleri
                 width: 100%;
+                color: black;
 
                 &:hover {
                     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); // Hover etkisi
@@ -372,8 +375,8 @@ a {
                         width: 100%;
 
                         .product-name {
-                            font-size: 1.1em; // Başlık boyutu
-                            margin: 0 10px; // Varsayılan margin'i kaldır
+                            font-size: 1em; // Başlık boyutu
+                            margin-right: 15px; // Varsayılan margin'i kaldır
                             font-weight: bold; // Kalın yazı tipi
                             color: #333; // Başlık rengi
                             text-align: start;
@@ -642,7 +645,7 @@ a {
                     margin: 5px 0;
                     color: #333;
                     text-transform: uppercase;
-                    text-align: center;
+                    text-align: start;
                     padding-left: 5px;
                 }
 
@@ -724,13 +727,13 @@ a {
     .loadMoreButtons {
         margin-bottom: 30px;
         color: black;
-        font-weight: bold;
+        font-weight: 5400;
         outline: none;
         border: 0.5px solid grey;
         cursor: pointer;
-        font-size: 17px;
+        font-size: 16px;
         background-color: white;
-        padding: 10px;
+        padding: 4px 7px;
 
 
     }
@@ -1004,17 +1007,17 @@ a {
 
                     i:nth-child(1) {
                         font-size: 22px;
-                        color: #ff1069;
+                        color: black;
                     }
 
                     i:nth-child(2) {
                         font-size: 22.5px;
-                        color: forestgreen;
+                        color: black;
                     }
 
                     i:nth-child(3) {
                         font-size: 15px;
-                        color: blue;
+                        color: black;
                     }
                 }
             }
@@ -1274,7 +1277,6 @@ a {
 
 
 @media (max-width: 650px) {
-
     .container {
 
         .header {
@@ -1403,6 +1405,7 @@ a {
             // max-width: 600px; // Maksimum genişlik
             width: 100%;
             text-align: left;
+            margin: 5px 0;
 
         }
 
@@ -1417,7 +1420,7 @@ a {
 
                 img {
                     width: 100%;
-                    height: 300px;
+                    height: 330px;
                 }
             }
         }
@@ -1493,14 +1496,14 @@ a {
 
                 select.volume-options {
                     display: flex;
-                    padding: 10px; // İç boşluk
+                    padding: 5px; // İç boşluk
                     // border: 1px solid #ddd; // Kenar rengi
                     // border-radius: 4px; // Kenar yuvarlama
                     background-color: #fff; // Arka plan rengi
-                    font-size: 0.8em; // Yazı boyutu
-                    color: #333; // Yazı rengi
+                    font-size: 0.7em; // Yazı boyutu
+                    color: #292627; // Yazı rengi
                     cursor: pointer; // İmleci işaretçi yap
-                    font-weight: 550; // Yazı kalınlığı
+                    font-weight: 600; // Yazı kalınlığı
                     width: 100%;
 
 
@@ -1522,10 +1525,11 @@ a {
 
                     option {
                         padding: 10px; // Seçenekler için iç boşluk
-                        background-color: #fff; // Arka plan rengi
-                        color: #333; // Yazı rengi
+                        background-color: #292627;
+                        color: white; // Yazı rengi
                         border: none; // Kenar yok
                         width: 100%;
+                        font-weight: 600;
                     }
 
                     option:hover {
@@ -1591,7 +1595,7 @@ a {
                         margin: 1px 0;
                         color: #333;
                         text-transform: uppercase;
-                        text-align: center;
+                        text-align: start;
                         padding-left: 5px;
                     }
 
@@ -1671,6 +1675,5 @@ a {
                 }
             }
         }
-
     }
 }

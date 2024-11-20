@@ -102,6 +102,16 @@ function searchBtn() {
         })
     })
 
+    // Arama kısmına tıkladığınızda, dışındaki herhangi bir yere de tıklarsanız arama kutusunu gizleyin.
+    document.addEventListener('click', (event) => {
+        const isClickInside = search.contains(event.target) || Array.from(search_btn).some(btn => btn.contains(event.target));
+
+        if (!isClickInside && showSearch) {
+            search.style.display = 'none'; // Arama kutusunu gizle
+            showSearch = false; // Durumu güncelle
+        }
+    });
+
     close_search.addEventListener('click', () => {
         search.style.display = 'none';
     })
@@ -185,8 +195,8 @@ function displaySearchResults(products) {
 addCardAndSearch(); // Önyükleme işlemini başlat
 
 // zordu zorduuu
-let skipCount = 2;
-const limit = 2;
+let skipCount = 4;
+const limit = 4;
 let loadedProductIds = [];
 let currentCategory = 'all';
 
@@ -272,7 +282,7 @@ function resetButtonStyles() {
     newArrivalsButton.classList.remove('active');
     bestSellersButton.classList.remove('active');
     discountedButton.classList.remove('active');
-    
+
     newArrivalsButton.classList.add('inactive');
     bestSellersButton.classList.add('inactive');
     discountedButton.classList.add('inactive');
@@ -306,7 +316,7 @@ function addToCart(id, name, img, price, volume) {
 }
 
 function shareOnWhatsApp() {
-    let message = "Salam, ";
+    let message = "Salam, Jannab parfümdən bu məhsulları sifariş vermək istəyirəm ";
 
     // Loop through the cart to get the product details
     for (const key in cart) {
@@ -315,7 +325,7 @@ function shareOnWhatsApp() {
     }
 
     // Create the WhatsApp URL
-    const phoneNumber = "+994605846205"; // Paylaşım yapılacak telefon numarası
+    const phoneNumber = "+994776526277"; // Paylaşım yapılacak telefon numarası
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
