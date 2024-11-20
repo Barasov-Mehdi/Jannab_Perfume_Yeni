@@ -1257,10 +1257,10 @@ a {
   }
   .container .products .product {
     border-radius: 8px;
-    padding: 2px;
+    padding: 5px;
     margin: 2px;
     flex: 1 1 300px;
-    max-width: 167px;
+    max-width: 170px;
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
     position: relative;
