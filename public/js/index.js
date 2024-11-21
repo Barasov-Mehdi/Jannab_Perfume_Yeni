@@ -188,7 +188,7 @@ function displaySearchResults(products) {
             searchResults.appendChild(productElement); // Ürün sonuçlarını listele
         });
     } else {
-        searchResults.innerHTML = '<p>Hiçbir ürün bulunamadı.</p>'; // Hiçbir sonuç yoksa mesaj yaz
+        searchResults.innerHTML = '<p>Ətir tapılmadı.</p>'; // Hiçbir sonuç yoksa mesaj yaz
     }
 }
 addCardAndSearch();

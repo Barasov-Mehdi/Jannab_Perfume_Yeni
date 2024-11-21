@@ -132,13 +132,16 @@
                     <div class="nese">
                         <button class="allproductsMore" id="allProductsButton" onclick="filterAllProducts()">Bütün
                             Ətirlər <i class="fa-solid fa-arrow-right"></i></button>
-                        <button id="womanButton" class="filterWoman" onclick="filterProducts('woman')">Woman <i class="fa-solid fa-arrow-right"></i></button>
+                        <button id="womanButton" class="filterWoman" onclick="filterProducts('woman')">Woman <i
+                                class="fa-solid fa-arrow-right"></i></button>
 
                     </div>
 
                     <div class="nese">
-                        <button id="unisexButton" class="filterUnisex" onclick="filterProducts('unisex')">Unisex <i class="fa-solid fa-arrow-right"></i></button>
-                        <button id="manButton" class="filterMan" onclick="filterProducts('man')">Man <i class="fa-solid fa-arrow-right"></i></button>
+                        <button id="unisexButton" class="filterUnisex" onclick="filterProducts('unisex')">Unisex <i
+                                class="fa-solid fa-arrow-right"></i></button>
+                        <button id="manButton" class="filterMan" onclick="filterProducts('man')">Man <i
+                                class="fa-solid fa-arrow-right"></i></button>
 
                     </div>
 
@@ -152,7 +155,7 @@
                 <button id="newArrivalsButton" onclick="filterNewArrivals()">Yeni ətirlər</button>
                 <button id="bestSellersButton" onclick="filterBestSellers()">Trend ətirlər</button>
                 <button id="discountedButton" onclick="filterDiscountedProducts()">Endrimli ətirlər</button>
-                <button >Hədiyyə kartlarımız</button>
+                <button id="giftButton" >Hədiyyə kartı</button>
                 <!-- <a href="loadMoreButton">Hədiyyə kartlarımız</a> -->
             </div>
         </section>
@@ -288,6 +291,13 @@
     <script>
         var loadMoreButtons = document.querySelector('.loadMoreButtons');
         var allproductsMore = document.querySelector('.allproductsMore');
+
+        document.getElementById('giftButton').addEventListener('click', function () {
+            // gift_boxs id'sine sahip bölüme kaydır
+            document.getElementById('gift_boxs').scrollIntoView({
+                behavior: 'smooth' // Kaydırmanın düzgün ve yumuşak olmasını sağlar.
+            });
+        });
 
         // Buton referansları
         const buttons = {

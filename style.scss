@@ -321,7 +321,7 @@ a {
             margin-top: 10px; // Arama sonuçları için üst boşluk
             // max-height: 400px; // Arama sonuçlarının maksimum yüksekliği (özelleştirin)
             overflow-y: auto; // Dikey kaydırma alanı
-            border: 1px solid #e0e0e0; // Çerçeve
+            // border: 1px solid #e0e0e0; // Çerçeve
             border-radius: 8px; // Köşe yuvarlama
             padding: 10px; // İç boşluk eklemek için
             width: 100%;
@@ -1015,7 +1015,6 @@ a {
                 }
             }
 
-
             .menu_icons {
                 display: none;
                 font-size: 30px; // Yazı ölçüsü
@@ -1065,7 +1064,6 @@ a {
                     }
                 }
             }
-
         }
 
         .close_left_menu {
