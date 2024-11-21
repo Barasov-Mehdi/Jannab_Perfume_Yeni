@@ -333,10 +333,12 @@ a {
                 color: black;
                 outline: none;
                 border: none;
+                background-color: #ede3da;
+
 
                 select.volume-options {
                     display: flex;
-                    padding: 5px; // İç boşluk
+                    padding: 3px; // İç boşluk
                     background-color: #fff; // Arka plan rengi
                     font-size: 15px; // Yazı boyutu
                     color: #292627; // Yazı rengi
@@ -633,12 +635,14 @@ a {
             align-items: center;
             margin: 10px 0; // Üst ve alt boşluk
             position: relative; // İçerik düzenlemesi için konumlandırma
+            background-color: #ede3da;
+            width: 100%;
 
             select.volume-options {
                 padding: 10px 20px; // İç boşluk
                 // border: 1px solid #ddd; // Kenar rengi
                 // border-radius: 4px; // Kenar yuvarlama
-                background-color: #fff; // Arka plan rengi
+                background-color: #ede3da; // Arka plan rengi
                 font-size: 1em; // Yazı boyutu
                 color: #333; // Yazı rengi
                 cursor: pointer; // İmleci işaretçi yap
@@ -1347,17 +1351,17 @@ a {
 
         img {
             // flex-shrink: 0; // Resimlerin küçülmesini engeller.
-            width: 110%; // Resimlerin maksimum genişliği.
+            width: 100%; // Resimlerin maksimum genişliği.
             // height: 100%; // Resimlerin oranını korur.
             scroll-snap-align: center; // Kaydırma sırasında resim merkezlenir.
             border-radius: 8px; // Resimlerin köşelerini yuvarlar.
             // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); // Resimlere gölge ekler.
             object-fit: contain;
+            margin: 20px 0;
         }
     }
 
 }
-
 
 
 @media (max-width: 650px) {

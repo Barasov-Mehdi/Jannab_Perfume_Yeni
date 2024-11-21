@@ -323,7 +323,7 @@ function shareOnWhatsApp() {
     }
 
     // Create the WhatsApp URL
-    const phoneNumber = "+994776526277"; // Paylaşım yapılacak telefon numarası
+    const phoneNumber = "+994775626277"; // Paylaşım yapılacak telefon numarası
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 

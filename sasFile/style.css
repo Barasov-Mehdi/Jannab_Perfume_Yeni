@@ -275,10 +275,11 @@ a {
   color: black;
   outline: none;
   border: none;
+  background-color: #ede3da;
 }
 .container .search .search_results .volume-select select.volume-options {
   display: flex;
-  padding: 5px;
+  padding: 3px;
   background-color: #fff;
   font-size: 15px;
   color: #292627;
@@ -511,10 +512,12 @@ a {
   align-items: center;
   margin: 10px 0;
   position: relative;
+  background-color: #ede3da;
+  width: 100%;
 }
 .container .products .volume-select select.volume-options {
   padding: 10px 20px;
-  background-color: #fff;
+  background-color: #ede3da;
   font-size: 1em;
   color: #333;
   cursor: pointer;
@@ -1110,11 +1113,12 @@ a {
   }
 }
 .container .gift-container img {
-  width: 110%;
+  width: 100%;
   scroll-snap-align: center;
   border-radius: 8px;
   -o-object-fit: contain;
      object-fit: contain;
+  margin: 20px 0;
 }
 
 @media (max-width: 650px) {
