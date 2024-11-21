@@ -1328,20 +1328,11 @@ a {
     }
 
     .gift-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        max-width: 100%; // Kutu genişliği ekran boyutuna göre ayarlanır.
-        margin: 0 auto; // Ortalanır.
-        border: 2px solid white; // Kutu için ince bir çerçeve.
-        border-radius: 8px; // Köşeleri yuvarlama.
-        // box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Hafif gölge.
-        overflow: hidden; // Taşan içerikler gizlenir.
-        background-color: #ede3da;
-        animation: giftBox 3s ease forwards;
-        margin-bottom: 30px;
-        width: 100%;
+       width: 100%;
+    //    height: 400px;
+       display: flex;
+       justify-content: center;
+       align-items: center;
 
 
         @keyframes giftBox {
@@ -1354,26 +1345,26 @@ a {
             }
         }
 
-        .gift {
-            display: flex;
-            justify-content: center; // Resimleri yatay olarak sıralar.
-            // overflow-x: auto; // Yatay kaydırmayı etkinleştirir.
-            overflow-y: hidden; // Dikey taşmayı engeller.
-            // scroll-snap-type: x mandatory; // Kaydırma sırasında öğelere kilitlenme sağlar.
-            gap: 10px; // Resimler arasında boşluk ekler.
-            padding: 10px;
-            // background-color: #ede3da;
+        // .gift {
+        //     display: flex;
+        //     justify-content: center; // Resimleri yatay olarak sıralar.
+        //     // overflow-x: auto; // Yatay kaydırmayı etkinleştirir.
+        //     overflow-y: hidden; // Dikey taşmayı engeller.
+        //     // scroll-snap-type: x mandatory; // Kaydırma sırasında öğelere kilitlenme sağlar.
+        //     gap: 10px; // Resimler arasında boşluk ekler.
+        //     padding: 10px;
+        //     // background-color: #ede3da;
 
             img {
                 flex-shrink: 0; // Resimlerin küçülmesini engeller.
-                min-width: 400px; // Resimlerin maksimum genişliği.
-                height: 420px; // Resimlerin oranını korur.
+                width: 100%; // Resimlerin maksimum genişliği.
+                height: 100%; // Resimlerin oranını korur.
                 scroll-snap-align: center; // Kaydırma sırasında resim merkezlenir.
                 border-radius: 8px; // Resimlerin köşelerini yuvarlar.
                 // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); // Resimlere gölge ekler.
                 object-fit: contain;
             }
-        }
+        // }
     }
 
 }
