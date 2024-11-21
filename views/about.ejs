@@ -11,18 +11,55 @@
             margin: 0;
             padding: 0;
             width: 100%;
-            height: auto;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            /* overflow: hidden; */
+        }
+
+        .full-screen-image {
+            position: relative;
+            width: 100%;
+            height: 100%;
         }
 
         .full-screen-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* Resim kırpılmayı en aza indirir ve tam ekran yapar */
+        }
+
+        .home-link {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.3s ease;
+        }
+
+        .home-link:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #000;
+        }
+
+        @media (max-width: 768px) {
+
+            body,
+            html {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -30,10 +67,8 @@
 <body>
 
     <div class="full-screen-image" id="imageContainer">
-        <a href="/">
-            <img id="responsiveImage" src="" alt="Haqqımızda">
-
-        </a>
+        <a class="home-link" href="/">Əsas səhifə</a>
+        <img id="responsiveImage" src="" alt="Haqqımızda">
     </div>
 
     <script>
