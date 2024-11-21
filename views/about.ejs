@@ -4,90 +4,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-        integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Niyə Biz?</title>
+    <title>Haqqımızda</title>
     <style>
-        body {
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: auto;
             display: flex;
-            flex-direction: column;
-            background-color: #244364;
-            color: white;
-            font-family: Arial, sans-serif;
-            height: 100vh;
-            justify-content: space-between;
+            align-items: center;
+            justify-content: center;
+            /* overflow: hidden; */
         }
 
-        .navbar {
-            background-color: #20272e;
-        }
-
-        .navbar-brand img {
-            width: 130px;
-            height: 50px;
-        }
-
-        .header-text {
-            color: gold;
-        }
-
-        .content {
-            margin-top: 50px;
-        }
-
-        .content p {
-            font-size: 1.1rem;
-        }
-
-        .footer {
-            background-color: #20272e;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-            margin-top: 50px;
+        .full-screen-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Resim kırpılmayı en aza indirir ve tam ekran yapar */
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="/"><img src="./img/jannab_text.png" alt="Jannab"></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/"><i class="fa-solid fa-left-long"></i> Geri</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <div class="full-screen-image" id="imageContainer">
+        <a href="/">
+            <img id="responsiveImage" src="" alt="Haqqımızda">
 
-    <!-- Main Content -->
-    <div class="container content text-center">
-        <h1 class="header-text">Niyə Biz?</h1>
-        <p>
-            Sizə xüsusi və bənzərsiz qoxu təcrübələri təqdim edən Jannab Ətir Mağazasına xoş gəlmisiniz. Öz tərzinizi və
-            şəxsiyyətinizi əks etdirən eksklüziv qoxularla özünüzü ifadə etmək artıq çox asandır. Jannab qoxularla
-            danışanların üstünlük verdiyi ünvandır. Mükəmməl keyfiyyətimizi kəşf edin, zövqünüzə uyğun qoxular.
-            Həyatınıza lüks və zəriflik qatın. Ətirlərlə dolu Jannab dünyasına sizdə qoşulun.
-        </p>
+        </a>
     </div>
 
-    <!-- Footer -->
-    <div class="footer">
-        <p>&copy; 2024 Jannab Ətir Mağazası. Bütün hüquqlar qorunur.</p>
-    </div>
+    <script>
+        function loadImage() {
+            const responsiveImage = document.getElementById('responsiveImage');
+            const width = window.innerWidth;
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+            // Mobil ve büyük ekranlar için uygun resmi seç
+            responsiveImage.src = width <= 768
+                ? "/img/HaqqımızdaMB.png"  // Mobil boyutlar
+                : "/img/HaqqımızdaPC.png"; // Büyük ekranlar
+        }
+
+        // Sayfa yüklendiğinde ve pencere boyutu değiştiğinde resmi yükle
+        window.addEventListener('load', loadImage);
+        window.addEventListener('resize', loadImage);
+    </script>
+
 </body>
 
 </html>
