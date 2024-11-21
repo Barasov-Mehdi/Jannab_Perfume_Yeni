@@ -1112,6 +1112,31 @@ a {
      object-fit: contain;
   margin: 20px 0;
 }
+.container .back-to-top {
+  position: fixed;
+  bottom: 70px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  background-color: #333;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 24px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  opacity: 0.8;
+  transition: background-color 0.3s, opacity 0.3s;
+}
+.container .back-to-top:hover {
+  background-color: #555;
+  opacity: 1;
+}
+.container .back-to-top.hidden {
+  display: none;
+}
 
 @media (max-width: 650px) {
   .container .header {

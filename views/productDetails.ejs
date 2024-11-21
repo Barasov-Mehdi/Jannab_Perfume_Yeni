@@ -9,7 +9,16 @@
     </title>
     <link rel="stylesheet" href="/path/to/your/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+            /* Font aile adını ve yedeğini belirtin */
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         /* Ümumi Stillər */
         body {
             font-family: 'Arial', sans-serif;
@@ -282,15 +291,6 @@
         }
     </style>
 </head>
-<style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        font-family: 'Poppins', sans-serif;
-
-    }
-</style>
 
 <body>
     <div class="container">
@@ -387,7 +387,8 @@
                                 <% } %>
             </div>
 
-            <h4 style="text-align: center; background-color: #292627; width: 125px; text-align: center; color: white;">Ürək notları:</h4>
+            <h4 style="text-align: center; background-color: #292627; width: 125px; text-align: center; color: white;">
+                Ürək notları:</h4>
             <div class="notes-container">
                 <% if (product.heartNotes && product.heartNotes.notes.length) { %>
                     <% product.heartNotes.notes.forEach((note, index)=> { %>

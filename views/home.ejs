@@ -459,6 +459,10 @@
             <i class="fa-brands fa-whatsapp"></i>
         </a>
 
+        <div class="back-to-top" id="back-to-top">
+            &#8593; <!-- Yukarı oka karakter referansı -->
+        </div>
+
         <footer class="footer" id="footer_box">
             <div class="map_box">
                 <div class="iframe_container">
@@ -492,6 +496,29 @@
     <script>
         var loadMoreButtons = document.querySelector('.loadMoreButtons');
         var allproductsMore = document.querySelector('.allproductsMore');
+
+        // Sayfa yüklendiğinde çalışacak olan fonksiyon
+        document.addEventListener("DOMContentLoaded", function () {
+            const backToTopButton = document.getElementById('back-to-top');
+            backToTopButton.classList.add('hidden'); // 200 piksel kaydırılmadığında butonu gizle
+
+            // Kullanıcının sayfayı kaydırma durumunu dinleyin
+            window.addEventListener('scroll', function () {
+                if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+                    backToTopButton.classList.remove('hidden'); // 200 piksel kaydırıldığında butonu göster
+                } else {
+                    backToTopButton.classList.add('hidden'); // 200 piksel kaydırılmadığında butonu gizle
+                }
+            });
+
+            // Butona tıklandığında yukarı kaydırma işlemi
+            backToTopButton.addEventListener('click', function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth' // Yumuşak kaydırma efekti
+                });
+            });
+        });
 
         document.getElementById('giftButton').addEventListener('click', function () {
             // gift_boxs id'sine sahip bölüme kaydır

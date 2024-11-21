@@ -1339,6 +1339,35 @@ a {
         }
     }
 
+    .back-to-top {
+        position: fixed; // Ekranın sabit konumda kalmasını sağlar
+        bottom: 70px; // Ekranın altından 20px yukarıda
+        right: 10px; // Ekranın sağından 20px içeride
+        width: 40px; // Buton genişliği
+        height: 40px; // Buton yüksekliği
+        background-color: #333; // Arka plan rengi
+        color: white; // Yazı rengi
+        border-radius: 50%; // Yuvarlaklık
+        display: flex;
+        justify-content: center; // İçeriği ortala
+        align-items: center; // İçeriği dikey olarak ortala
+        cursor: pointer; // İmleci işaretçi yap
+        font-size: 24px; // Yazı boyutu
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); // Gölgeleme efekti
+        opacity: 0.8; // Görünürlük
+        transition: background-color 0.3s, opacity 0.3s; // Geçiş animasyonu
+
+        &:hover {
+            background-color: #555; // Üzerine gelindiğinde arka plan rengi değişimi
+            opacity: 1; // Üzerine gelindiğinde görünürlük artışı
+        }
+
+        &.hidden {
+            display: none; // Gizli durumda ise butonu gizle
+        }
+    }
+
+
 }
 
 

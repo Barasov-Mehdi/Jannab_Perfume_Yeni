@@ -314,7 +314,7 @@ function addToCart(id, name, img, price, volume) {
 }
 
 function shareOnWhatsApp() {
-    let message = "Salam, Jannab parfümdən bu məhsulları sifariş vermək istəyirəm ";
+    let message = "Salam, Jannab parfümdən bu məhsulları sifariş vermək istəyirəm\n\n ";
 
     // Loop through the cart to get the product details
     for (const key in cart) {
