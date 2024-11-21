@@ -44,7 +44,7 @@ function updateImage() {
     const windowWidth = window.innerWidth;
 
     if (windowWidth < 775) {
-        imgElement.src = './img/gift70m.png'; // 775px'den küçükse
+        imgElement.src = './img/gift30-50-70new.png'; // 775px'den küçükse
         imgElement.alt = 'endirim 30'; // Alternatif metin
     } else {
         imgElement.src = './img/gift70.png'; // 775px ve üzerindeyse
