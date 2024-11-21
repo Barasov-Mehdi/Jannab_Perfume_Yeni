@@ -524,27 +524,19 @@ a {
   font-weight: 700;
   outline: none;
   border: none;
-  -webkit-appearance: flex;
-  /* Safari ve Chrome için */
-  -moz-appearance: flex;
-  /* Firefox için */
-  appearance: flex;
-  /* Modern tarayıcılar için */
-  background: transparent;
-  /* Arka planı şeffaf yapın */
-  /* İsteğe bağlı: Sınırları görünür yapmak için */
-  padding: 10px;
-  /* İsteğe bağlı: İç boşluk ayarlamak için */
-  outline: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background: url("/img/ox.png") no-repeat calc(100% - 10px) center;
+  background-size: 12px;
   transition: border-color 0.3s, background-color 0.3s;
-}
-.container .products .volume-select select.volume-options .volume-options::-ms-expand {
-  display: flex;
-  /* Internet Explorer için default açılır menü */
 }
 .container .products .volume-select select.volume-options:focus {
   outline: none;
   border: none;
+}
+.container .products .volume-select select.volume-options::-ms-expand {
+  display: none;
 }
 .container .products .volume-select select.volume-options option {
   padding: 10px;
@@ -1283,48 +1275,42 @@ a {
     width: 100%;
   }
   .container .products .volume-select {
-    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
     position: relative;
+    background-color: #ede3da;
+    width: 100%;
   }
   .container .products .volume-select select.volume-options {
-    display: flex;
-    padding: 5px;
-    background-color: #fff;
-    font-size: 15px;
-    color: #292627;
+    padding: 10px 20px;
+    background-color: #ede3da;
+    font-size: 1em;
+    color: #333;
     cursor: pointer;
-    font-weight: 500;
-    width: 100%;
-    -webkit-appearance: flex;
-    /* Safari ve Chrome için */
-    -moz-appearance: flex;
-    /* Firefox için */
-    appearance: flex;
-    /* Modern tarayıcılar için */
-    background: transparent;
-    /* Arka planı şeffaf yapın */
-    /* İsteğe bağlı: Sınırları görünür yapmak için */
-    padding: 10px;
-    /* İsteğe bağlı: İç boşluk ayarlamak için */
+    font-weight: 700;
     outline: none;
-  }
-  .container .products .volume-select select.volume-options .volume-options::-ms-expand {
-    display: flex;
-    /* Internet Explorer için default açılır menü */
+    border: none;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    background: url("/img/ox.png") no-repeat calc(100% - 10px) center;
+    background-size: 12px;
+    transition: border-color 0.3s, background-color 0.3s;
   }
   .container .products .volume-select select.volume-options:focus {
     outline: none;
-    border-color: #ecc14d;
-    background-color: #f7f7f7;
     border: none;
+  }
+  .container .products .volume-select select.volume-options::-ms-expand {
+    display: none;
   }
   .container .products .volume-select select.volume-options option {
     padding: 10px;
-    background-color: #292627;
-    color: white;
+    background-color: #fff;
+    color: #333;
     border: none;
-    width: 100%;
-    font-weight: 600;
   }
   .container .products .volume-select select.volume-options option:hover {
     background-color: #f2f2f2;
