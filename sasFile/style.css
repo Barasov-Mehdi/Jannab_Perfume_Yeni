@@ -268,10 +268,59 @@ a {
   border-radius: 8px;
   padding: 10px;
   width: 100%;
+  color: black;
 }
 .container .search .search_results .volume-select {
   margin: 0 13px;
   color: black;
+  outline: none;
+  border: none;
+}
+.container .search .search_results .volume-select select.volume-options {
+  display: flex;
+  padding: 5px;
+  background-color: #fff;
+  font-size: 15px;
+  color: #292627;
+  cursor: pointer;
+  font-weight: 500;
+  width: 100%;
+  outline: none;
+  border: none;
+  -webkit-appearance: flex;
+  /* Safari ve Chrome için */
+  -moz-appearance: flex;
+  /* Firefox için */
+  appearance: flex;
+  /* Modern tarayıcılar için */
+  background: transparent;
+  /* Arka planı şeffaf yapın */
+  /* İsteğe bağlı: Sınırları görünür yapmak için */
+  padding: 10px;
+  /* İsteğe bağlı: İç boşluk ayarlamak için */
+}
+.container .search .search_results .volume-select select.volume-options .volume-options::-ms-expand {
+  display: flex;
+  /* Internet Explorer için default açılır menü */
+}
+.container .search .search_results .volume-select select.volume-options:focus {
+  outline: none;
+  border-color: #ecc14d;
+  background-color: #f7f7f7;
+  border: none;
+}
+.container .search .search_results .volume-select select.volume-options option {
+  padding: 10px;
+  background-color: #292627;
+  color: white;
+  border: none;
+  width: 100%;
+  font-weight: 600;
+  outline: none;
+  border: none;
+}
+.container .search .search_results .volume-select select.volume-options option:hover {
+  background-color: #f2f2f2;
 }
 .container .search .search_results .product-result {
   display: flex;
@@ -1257,10 +1306,10 @@ a {
     display: flex;
     padding: 5px;
     background-color: #fff;
-    font-size: 0.9em;
+    font-size: 15px;
     color: #292627;
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 500;
     width: 100%;
     -webkit-appearance: flex;
     /* Safari ve Chrome için */

@@ -45,6 +45,212 @@
         font-size: 1em;
         /* Adjust font size */
     }
+
+    .products {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 0;
+        width: 100%;
+    }
+
+    .products .volume-select {
+        margin: 0;
+        /* Üst ve alt boşluk */
+        position: relative;
+        /* İçerik düzenlemesi için konumlandırma */
+    }
+
+    .products .volume-select select.volume-options {
+        display: flex;
+        padding: 5px;
+        /* İç boşluk */
+        background-color: #fff;
+        /* Arka plan rengi */
+        font-size: 15px;
+        /* Yazı boyutu */
+        color: #292627;
+        /* Yazı rengi */
+        cursor: pointer;
+        /* İmleci işaretçi yap */
+        font-weight: 500;
+        /* Yazı kalınlığı */
+        width: 100%;
+        -webkit-appearance: flex;
+        /* Safari ve Chrome için */
+        -moz-appearance: flex;
+        /* Firefox için */
+        appearance: flex;
+        /* Modern tarayıcılar için */
+        background: transparent;
+        /* Arka planı şeffaf yapın */
+        padding: 10px;
+        /* İsteğe bağlı: İç boşluk ayarlamak için */
+        outline: none;
+    }
+
+    .products .volume-select select.volume-options::-ms-expand {
+        display: flex;
+        /* Internet Explorer için default açılır menü */
+    }
+
+    .products .volume-select select.volume-options:focus {
+        outline: none;
+        /* Varsayılan odak çerçevesini kaldır */
+        border-color: #ecc14d;
+        /* Odaklandığında sınır rengi değişimi */
+        background-color: #f7f7f7;
+        /* Arka plan rengi değişimi */
+        border: none;
+    }
+
+    .products .volume-select select.volume-options option {
+        padding: 10px;
+        /* Seçenekler için iç boşluk */
+        background-color: #292627;
+        color: white;
+        /* Yazı rengi */
+        border: none;
+        /* Kenar yok */
+        width: 100%;
+        font-weight: 600;
+    }
+
+    .products .volume-select select.volume-options option:hover {
+        background-color: #f2f2f2;
+        /* Seçenek üzerine gelindiğinde arka plan rengi */
+    }
+
+    .products .product {
+        border-radius: 8px;
+        padding: 5px;
+        margin: 2px;
+        flex: 1 1 300px;
+        /* Minimum genişlik 300px */
+        max-width: 170px;
+        /* Maksimum genişlik */
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+        position: relative;
+    }
+
+    .products .product:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .products .product .image-container {
+        width: 100%;
+        height: 205px;
+        border-radius: 5px;
+        background-color: #f5f4e9;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .products .product .image-container .discount-badge {
+        position: absolute;
+        top: 10px;
+        /* Konumu ayarlamak için */
+        left: 10px;
+        /* Konumu ayarlamak için */
+        background-color: #f76300;
+        /* Arka plan rengi */
+        color: white;
+        padding: 4px 4px;
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    .products .product .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        /* Resmin orantılı görünümü */
+        transition: transform 0.3s;
+    }
+
+    .products .product .image-container img:hover {
+        transform: scale(1.05);
+        /* Hover durumunda büyüme */
+    }
+
+    .products .product .product-details {
+        margin-top: 10px;
+    }
+
+    .products .product .product-details h2 {
+        font-size: 0.8em;
+        margin: 1px 0;
+        color: #333;
+        text-transform: uppercase;
+        text-align: start;
+        padding-left: 5px;
+    }
+
+    .products .product .product-details .rating {
+        display: none;
+        justify-content: center;
+        margin: 10px 0;
+    }
+
+    .products .product .product-details .rating .star {
+        color: lightgray;
+        font-size: 1.5em;
+        margin: 0 2px;
+    }
+
+    .products .product .product-details .rating .star.filled {
+        color: gold;
+    }
+
+    .products .product .product-details .rating .star:nth-child(1),
+    .products .product .product-details .rating .star:nth-child(2),
+    .products .product .product-details .rating .star:nth-child(3),
+    .products .product .product-details .rating .star:nth-child(4) {
+        color: gold;
+    }
+
+    .products .product .product-footer {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 15px;
+        padding: 10px 0;
+        /* Üst ve alt boşluk */
+        background-color: white;
+        margin: 3px 0;
+    }
+
+    .products .product .product-footer .price {
+        font-weight: bold;
+        font-size: 1.25em;
+        color: #ecc14d;
+        /* Fiyat rengi */
+    }
+
+    .products .product .product-footer a.add-to-cart {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 10px;
+        border-radius: 0;
+        font-size: 1.5em;
+        transition: background-color 0.3s, color 0.3s;
+        width: 100%;
+        background-color: #333333;
+    }
+
+    .products .product .product-footer a.add-to-cart:hover {
+        color: white;
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .products .product .product-footer a.add-to-cart i {
+        font-size: 16px;
+    }
 </style>
 
 <body>
@@ -155,7 +361,7 @@
                 <button id="newArrivalsButton" onclick="filterNewArrivals()">Yeni ətirlər</button>
                 <button id="bestSellersButton" onclick="filterBestSellers()">Trend ətirlər</button>
                 <button id="discountedButton" onclick="filterDiscountedProducts()">Endrimli ətirlər</button>
-                <button id="giftButton" >Hədiyyə kartı</button>
+                <button id="giftButton">Hədiyyə kartı</button>
                 <!-- <a href="loadMoreButton">Hədiyyə kartlarımız</a> -->
             </div>
         </section>
