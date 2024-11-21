@@ -21,6 +21,7 @@ a {
     align-items: center;
     flex-direction: column;
     // position: relative;
+    overflow-x: hidden;
 
     .header {
         position: relative;
@@ -296,6 +297,7 @@ a {
                 border-bottom-right-radius: 50px;
                 border: none;
                 outline: none;
+                padding-left: 10px;
             }
 
             .search_button {
@@ -351,7 +353,7 @@ a {
                     display: flex; // İçerikleri yan yana yerleştir
                     text-decoration: none; // Alt çizgiyi kaldır
                     color: inherit; // Renk mirasını koru
-                     // Tüm genişliği kapla
+                    // Tüm genişliği kapla
                     justify-content: space-between;
                     align-items: center;
 
@@ -456,7 +458,7 @@ a {
                             color: #424242;
                             /* Koyu gri yazı rengi */
                         }
-            
+
                         /* Aktif durumda olan buton için stil */
                         &.active {
                             background-color: #faefe9;
@@ -464,13 +466,13 @@ a {
                             color: black;
                             /* Daha koyu gri yazı rengi */
                         }
-                        
+
 
                         i {
                             font-weight: bold;
                             line-height: 10px;
 
-                            
+
                         }
                     }
 
@@ -494,7 +496,7 @@ a {
                         }
                     }
 
-                    
+
                 }
 
             }
@@ -564,6 +566,9 @@ a {
         width: 95%;
 
         .volume-select {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin: 10px 0; // Üst ve alt boşluk
             position: relative; // İçerik düzenlemesi için konumlandırma
 
@@ -579,14 +584,34 @@ a {
                 outline: none;
                 border: none;
 
-                // Ok simgesinin yerini belirlemek için iç boşluğu artırıyoruz
-                padding-right: 40px;
-                background-image: url('data:image/png;base64,...'); // Özel ok simgesi ekle
-                background-repeat: no-repeat;
-                background-position: right 10px center; // Pozisyon
-                background-size: 12px; // Boyut
+                // // Ok simgesinin yerini belirlemek için iç boşluğu artırıyoruz
+                // padding-right: 40px;
+                // background-image: url('data:image/png;base64,...'); // Özel ok simgesi ekle
+                // background-repeat: no-repeat;
+                // background-position: right 10px center; // Pozisyon
+                // background-size: 12px; // Boyut
 
-                transition: border-color 0.3s, background-color 0.3s; // Kenar rengi ve arka plan geçişi
+                -webkit-appearance: flex;
+                /* Safari ve Chrome için */
+                -moz-appearance: flex;
+                /* Firefox için */
+                appearance: flex;
+                /* Modern tarayıcılar için */
+                background: transparent;
+                /* Arka planı şeffaf yapın */
+                // border: 1px solid #ccc;
+                /* İsteğe bağlı: Sınırları görünür yapmak için */
+                padding: 10px;
+                /* İsteğe bağlı: İç boşluk ayarlamak için */
+                outline: none;
+
+                .volume-options::-ms-expand {
+                    display: flex;
+                    /* Internet Explorer için default açılır menü */
+                }
+
+                transition: border-color 0.3s,
+                background-color 0.3s; // Kenar rengi ve arka plan geçişi
 
                 &:focus {
                     outline: none; // Varsayılan odak çerçevesini kaldır
@@ -937,7 +962,7 @@ a {
         }
 
         /* Mobil uyum için medya sorguları */
-       
+
     }
 
     .left_menu {
@@ -993,7 +1018,7 @@ a {
 
             .menu_icons {
                 display: none;
-                font-size: 20px; // Yazı ölçüsü
+                font-size: 30px; // Yazı ölçüsü
                 margin: 10px 0; // Yuxarı və aşağı boşluq
                 transition: color 0.3s ease; // Üzəri rəng çevirməsi
                 animation: slideIns 1s forwards;
@@ -1025,17 +1050,17 @@ a {
                     }
 
                     i:nth-child(1) {
-                        font-size: 22px;
+                        font-size: 25px;
                         color: black;
                     }
 
                     i:nth-child(2) {
-                        font-size: 22.5px;
+                        font-size: 25px;
                         color: black;
                     }
 
                     i:nth-child(3) {
-                        font-size: 15px;
+                        font-size: 20px;
                         color: black;
                     }
                 }
@@ -1436,10 +1461,9 @@ a {
                 padding: 10px;
                 justify-content: center; // Resimleri yatay olarak sıralar.
 
-
                 img {
                     width: 100%;
-                    height: 340px;
+                    height: 380px;
                 }
             }
         }
@@ -1526,14 +1550,24 @@ a {
                     width: 100%;
 
 
-                    // Ok simgesinin yerini belirlemek için iç boşluğu artırıyoruz
-                    padding-right: 40px;
-                    background-image: url('data:image/png;base64,...'); // Özel ok simgesi ekle
-                    background-repeat: no-repeat;
-                    background-position: right 10px center; // Pozisyon
-                    background-size: 12px; // Boyut
+                    -webkit-appearance: flex;
+                    /* Safari ve Chrome için */
+                    -moz-appearance: flex;
+                    /* Firefox için */
+                    appearance: flex;
+                    /* Modern tarayıcılar için */
+                    background: transparent;
+                    /* Arka planı şeffaf yapın */
+                    // border: 1px solid #ccc;
+                    /* İsteğe bağlı: Sınırları görünür yapmak için */
+                    padding: 10px;
+                    /* İsteğe bağlı: İç boşluk ayarlamak için */
+                    outline: none;
 
-                    transition: border-color 0.3s, background-color 0.3s; // Kenar rengi ve arka plan geçişi
+                    .volume-options::-ms-expand {
+                        display: flex;
+                        /* Internet Explorer için default açılır menü */
+                    }
 
                     &:focus {
                         outline: none; // Varsayılan odak çerçevesini kaldır

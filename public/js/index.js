@@ -174,9 +174,9 @@ function displaySearchResults(products) {
                 </a>
                 <div class="volume-select">
                     <select class="volume-options" id="volumeSelect_${product._id}">
-                        <option value="15" data-price="${(discountedPrice / 1 * 15).toFixed(2)}">15 ml</option>
-                        <option value="30" data-price="${(discountedPrice / 1 * 30).toFixed(2)}">30 ml</option>
-                        <option value="50" data-price="${(discountedPrice / 1 * 50).toFixed(2)}">50 ml</option>
+                        <option value="15" data-price="${(discountedPrice / 1 * 15).toFixed()}">15 ml</option>
+                        <option value="30" data-price="${(discountedPrice / 1 * 30).toFixed()}">30 ml</option>
+                        <option value="50" data-price="${(discountedPrice / 1 * 50).toFixed()}">50 ml</option>
                     </select>
                 </div>
                 <a href="javascript:void(0)" class="add-to-cart" style="background-color: #333333" 
@@ -247,9 +247,9 @@ function loadMoreProducts() {
                         <div class="product-footer">
                             <div class="volume-select">
                                 <select class="volume-options" id="volumeSelect_${product._id}">
-                                    <option value="15" data-price="${(discountedPrice * 15).toFixed(2)}">15 ml - ${(discountedPrice * 15).toFixed(2)} ₼</option>
-                                    <option value="30" data-price="${(discountedPrice * 30).toFixed(2)}">30 ml - ${(discountedPrice * 30).toFixed(2)} ₼</option>
-                                    <option value="50" data-price="${(discountedPrice * 50).toFixed(2)}">50 ml - ${(discountedPrice * 50).toFixed(2)} ₼</option>
+                                    <option value="15" data-price="${(discountedPrice * 15).toFixed()}">15 ml - ${(discountedPrice * 15).toFixed()} ₼</option>
+                                    <option value="30" data-price="${(discountedPrice * 30).toFixed()}">30 ml - ${(discountedPrice * 30).toFixed()} ₼</option>
+                                    <option value="50" data-price="${(discountedPrice * 50).toFixed()}">50 ml - ${(discountedPrice * 50).toFixed()} ₼</option>
                                 </select>
                             </div>
                             <a href="javascript:void(0)" class="add-to-cart" style="background-color: #333333;" 
@@ -468,9 +468,9 @@ function displayProducts(products) {
                     </div>
                     <div class="volume-select">
                         <select class="volume-options" id="volumeSelect_${product._id}">
-                            <option value="15" data-price="${(discountedPrice * 15).toFixed(2)}">15 ml - ${(discountedPrice * 15).toFixed(2)} ₼</option>
-                            <option value="30" data-price="${(discountedPrice * 30).toFixed(2)}">30 ml - ${(discountedPrice * 30).toFixed(2)} ₼</option>
-                            <option value="50" data-price="${(discountedPrice * 50).toFixed(2)}">50 ml - ${(discountedPrice * 50).toFixed(2)} ₼</option>
+                            <option value="15" data-price="${(discountedPrice * 15).toFixed()}">15 ml - ${(discountedPrice * 15).toFixed()} ₼</option>
+                            <option value="30" data-price="${(discountedPrice * 30).toFixed()}">30 ml - ${(discountedPrice * 30).toFixed()} ₼</option>
+                            <option value="50" data-price="${(discountedPrice * 50).toFixed()}">50 ml - ${(discountedPrice * 50).toFixed()} ₼</option>
                         </select>
                     </div>
                     <a href="javascript:void(0)" class="add-to-cart" 
@@ -560,9 +560,9 @@ function renderProducts(products) {
             <div class="product-footer">
                 <div class="volume-select">
                     <select class="volume-options" id="volumeSelect_${product._id}">
-                        <option value="15" data-price="${(discountedPrice * 15).toFixed(2)}">15 ml - ${(discountedPrice * 15).toFixed(2)} ₼</option>
-                        <option value="30" data-price="${(discountedPrice * 30).toFixed(2)}">30 ml - ${(discountedPrice * 30).toFixed(2)} ₼</option>
-                        <option value="50" data-price="${(discountedPrice * 50).toFixed(2)}">50 ml - ${(discountedPrice * 50).toFixed(2)} ₼</option>
+                        <option value="15" data-price="${(discountedPrice * 15).toFixed()}">15 ml - ${(discountedPrice * 15).toFixed()} ₼</option>
+                        <option value="30" data-price="${(discountedPrice * 30).toFixed()}">30 ml - ${(discountedPrice * 30).toFixed()} ₼</option>
+                        <option value="50" data-price="${(discountedPrice * 50).toFixed()}">50 ml - ${(discountedPrice * 50).toFixed()} ₼</option>
                     </select>
                 </div>
                 <a href="javascript:void(0)" 

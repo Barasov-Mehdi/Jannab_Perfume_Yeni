@@ -131,14 +131,14 @@
                 <div class="slider_box_buttons">
                     <div class="nese">
                         <button class="allproductsMore" id="allProductsButton" onclick="filterAllProducts()">Bütün
-                            Ətirlər 🡪</button>
-                        <button id="womanButton" class="filterWoman" onclick="filterProducts('woman')">Woman 🡪</button>
+                            Ətirlər <i class="fa-solid fa-arrow-right"></i></button>
+                        <button id="womanButton" class="filterWoman" onclick="filterProducts('woman')">Woman <i class="fa-solid fa-arrow-right"></i></button>
 
                     </div>
 
                     <div class="nese">
-                        <button id="unisexButton" class="filterUnisex" onclick="filterProducts('unisex')">Unisex 🡪</button>
-                        <button id="manButton" class="filterMan" onclick="filterProducts('man')">Man 🡪</button>
+                        <button id="unisexButton" class="filterUnisex" onclick="filterProducts('unisex')">Unisex <i class="fa-solid fa-arrow-right"></i></button>
+                        <button id="manButton" class="filterMan" onclick="filterProducts('man')">Man <i class="fa-solid fa-arrow-right"></i></button>
 
                     </div>
 
@@ -152,7 +152,8 @@
                 <button id="newArrivalsButton" onclick="filterNewArrivals()">Yeni ətirlər</button>
                 <button id="bestSellersButton" onclick="filterBestSellers()">Trend ətirlər</button>
                 <button id="discountedButton" onclick="filterDiscountedProducts()">Endrimli ətirlər</button>
-                <a href="#loadMoreButton">Hədiyyə kartlarımız</a>
+                <button >Hədiyyə kartlarımız</button>
+                <!-- <a href="loadMoreButton">Hədiyyə kartlarımız</a> -->
             </div>
         </section>
 
@@ -182,12 +183,12 @@
                                 <% const discountedPrice=product.discount> 0 ? product.price * (1 - product.discount /
                                     100)
                                     : product.price; %>
-                                    <option value="15" data-price="<%= (discountedPrice * 15).toFixed(2) %>">15 ml - <%=
-                                            (discountedPrice * 15).toFixed(2) %> ₼</option>
-                                    <option value="30" data-price="<%= (discountedPrice * 30).toFixed(2) %>">30 ml - <%=
-                                            (discountedPrice * 30).toFixed(2) %> ₼</option>
-                                    <option value="50" data-price="<%= (discountedPrice * 50).toFixed(2) %>">50 ml - <%=
-                                            (discountedPrice * 50).toFixed(2) %> ₼</option>
+                                    <option value="15" data-price="<%= (discountedPrice * 15).toFixed() %>">15 ml - <%=
+                                            (discountedPrice * 15).toFixed() %> ₼</option>
+                                    <option value="30" data-price="<%= (discountedPrice * 30).toFixed() %>">30 ml - <%=
+                                            (discountedPrice * 30).toFixed() %> ₼</option>
+                                    <option value="50" data-price="<%= (discountedPrice * 50).toFixed() %>">50 ml - <%=
+                                            (discountedPrice * 50).toFixed() %> ₼</option>
                             </select>
                         </div>
                         <a href="javascript:void(0)" class="add-to-cart"
@@ -240,7 +241,7 @@
                         <i class="fa-brands fa-whatsapp" style="color: black;"></i>
                     </a>
                     <a href="tel:+994776526277">
-                        <i class="fa-solid fa-phone" style="color: black; font-size: 18px; margin-top: 3px;"></i>
+                        <i class="fa-solid fa-phone" style="color: black; font-size: 18.5px; margin-top: 2px;"></i>
                     </a>
                 </section>
             </div>

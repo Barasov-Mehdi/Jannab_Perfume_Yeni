@@ -21,6 +21,7 @@ a {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  overflow-x: hidden;
 }
 .container .header {
   position: relative;
@@ -244,6 +245,7 @@ a {
   border-bottom-right-radius: 50px;
   border: none;
   outline: none;
+  padding-left: 10px;
 }
 .container .search .search_box .search_button {
   width: 60px;
@@ -456,6 +458,9 @@ a {
   width: 95%;
 }
 .container .products .volume-select {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin: 10px 0;
   position: relative;
 }
@@ -468,12 +473,23 @@ a {
   font-weight: 700;
   outline: none;
   border: none;
-  padding-right: 40px;
-  background-image: url("data:image/png;base64,...");
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 12px;
+  -webkit-appearance: flex;
+  /* Safari ve Chrome için */
+  -moz-appearance: flex;
+  /* Firefox için */
+  appearance: flex;
+  /* Modern tarayıcılar için */
+  background: transparent;
+  /* Arka planı şeffaf yapın */
+  /* İsteğe bağlı: Sınırları görünür yapmak için */
+  padding: 10px;
+  /* İsteğe bağlı: İç boşluk ayarlamak için */
+  outline: none;
   transition: border-color 0.3s, background-color 0.3s;
+}
+.container .products .volume-select select.volume-options .volume-options::-ms-expand {
+  display: flex;
+  /* Internet Explorer için default açılır menü */
 }
 .container .products .volume-select select.volume-options:focus {
   outline: none;
@@ -817,7 +833,7 @@ a {
 }
 .container .left_menu .menu_links .menu_icons {
   display: none;
-  font-size: 20px;
+  font-size: 30px;
   margin: 10px 0;
   transition: color 0.3s ease;
   animation: slideIns 1s forwards;
@@ -844,15 +860,15 @@ a {
   padding: 0 5px;
 }
 .container .left_menu .menu_links .menu_icons a i:nth-child(1) {
-  font-size: 22px;
+  font-size: 25px;
   color: black;
 }
 .container .left_menu .menu_links .menu_icons a i:nth-child(2) {
-  font-size: 22.5px;
+  font-size: 25px;
   color: black;
 }
 .container .left_menu .menu_links .menu_icons a i:nth-child(3) {
-  font-size: 15px;
+  font-size: 20px;
   color: black;
 }
 .container .left_menu .close_left_menu {
@@ -1179,7 +1195,7 @@ a {
   }
   .container .gift-container .gift img {
     width: 100%;
-    height: 340px;
+    height: 380px;
   }
   .container .buttons_filter {
     display: flex;
@@ -1247,12 +1263,22 @@ a {
     cursor: pointer;
     font-weight: 600;
     width: 100%;
-    padding-right: 40px;
-    background-image: url("data:image/png;base64,...");
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 12px;
-    transition: border-color 0.3s, background-color 0.3s;
+    -webkit-appearance: flex;
+    /* Safari ve Chrome için */
+    -moz-appearance: flex;
+    /* Firefox için */
+    appearance: flex;
+    /* Modern tarayıcılar için */
+    background: transparent;
+    /* Arka planı şeffaf yapın */
+    /* İsteğe bağlı: Sınırları görünür yapmak için */
+    padding: 10px;
+    /* İsteğe bağlı: İç boşluk ayarlamak için */
+    outline: none;
+  }
+  .container .products .volume-select select.volume-options .volume-options::-ms-expand {
+    display: flex;
+    /* Internet Explorer için default açılır menü */
   }
   .container .products .volume-select select.volume-options:focus {
     outline: none;
