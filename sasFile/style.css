@@ -1343,7 +1343,7 @@ a {
   .container .products .product {
     border-radius: 8px;
     padding: 5px;
-    margin: 8px 2px;
+    margin: 10px 2px;
     flex: 1 1 300px;
     max-width: 170px;
     text-align: center;
