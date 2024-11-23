@@ -1582,6 +1582,7 @@ a {
             justify-content: center;
             margin: 0;
             width: 100%;
+            height: auto;
 
             .volume-select {
                 display: flex;
@@ -1682,6 +1683,7 @@ a {
 
                 .product-details {
                     margin-top: 10px;
+                    height: 40px;
 
                     h2 {
                         font-size: 0.8em;
@@ -1692,38 +1694,38 @@ a {
                         padding-left: 5px;
                     }
 
-                    .rating {
-                        display: none;
-                        justify-content: center;
-                        margin: 10px 0;
+                    // .rating {
+                    //     display: none;
+                    //     justify-content: center;
+                    //     margin: 10px 0;
 
-                        .star {
-                            color: lightgray;
+                    //     .star {
+                    //         color: lightgray;
 
-                            &.filled {
-                                color: gold;
-                            }
+                    //         &.filled {
+                    //             color: gold;
+                    //         }
 
-                            font-size: 1.5em;
-                            margin: 0 2px;
-                        }
+                    //         font-size: 1.5em;
+                    //         margin: 0 2px;
+                    //     }
 
-                        .star:nth-child(1) {
-                            color: gold;
-                        }
+                    //     .star:nth-child(1) {
+                    //         color: gold;
+                    //     }
 
-                        .star:nth-child(2) {
-                            color: gold;
-                        }
+                    //     .star:nth-child(2) {
+                    //         color: gold;
+                    //     }
 
-                        .star:nth-child(3) {
-                            color: gold;
-                        }
+                    //     .star:nth-child(3) {
+                    //         color: gold;
+                    //     }
 
-                        .star:nth-child(4) {
-                            color: gold;
-                        }
-                    }
+                    //     .star:nth-child(4) {
+                    //         color: gold;
+                    //     }
+                    // }
                 }
 
                 .product-footer {
