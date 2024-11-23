@@ -172,7 +172,7 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            width: 80%;
+            width: 100%;
             margin: 20px auto;
             padding: 20px;
             background-color: #f9f9f9;
@@ -220,6 +220,7 @@
         }
 
         .notes-container {
+            width: auto;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -229,7 +230,13 @@
         .note-item {
             text-align: center;
             margin: 5px;
-            max-width: 80px;
+            /* max-width: 80px; */
+            width: auto;
+        }
+        .note-item strong{
+            font-size: 14px;
+            flex-wrap: wrap;
+            width: auto;
         }
 
         .note-image {
