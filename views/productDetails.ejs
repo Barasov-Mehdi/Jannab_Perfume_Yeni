@@ -235,8 +235,9 @@
         }
 
         .note-item strong {
-            font-size: 14px;
+            font-size: 13px;
             flex-wrap: wrap;
+            /* font-weight: 100; */
             width: auto;
         }
 
@@ -336,20 +337,24 @@
                     <span class="star half"><i class="fas fa-star-half-alt"></i></span>
                 </div>
 
-                <p><strong>Təsvir:</strong>
-                    <%= product.content || 'Təsvir mövcud deyil' %>
-                </p>
                 <p><strong>Kateqoriya:</strong>
                     <span class="category-label <%= product.category %>">
                         <%= product.category.charAt(0).toUpperCase() + product.category.slice(1) %>
                     </span>
                 </p>
+
                 <p><strong>Ən Çox Satılan:</strong>
                     <%= product.bestSellers ? 'Bəli' : 'Xeyir' %>
                 </p>
-                <p><strong>Kompozisiya:</strong>
-                    <%= product.compositionDescription || 'Məlumat mövcud deyil' %>
+
+                <p><strong>Təsvir:</strong>
+                    <%= product.content || 'Təsvir mövcud deyil' %>
                 </p>
+
+
+                <!-- <p><strong>Kompozisiya:</strong>
+                    <%= product.compositionDescription || 'Məlumat mövcud deyil' %>
+                </p> -->
             </div>
         </div>
 
