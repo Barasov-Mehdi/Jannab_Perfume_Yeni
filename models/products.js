@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const compositionSchema = new mongoose.Schema({
-    notes: { type: [String], required: true }, // Array of notes
-    images: { type: [String], required: true }, // Array of image URLs
+    notes: { type: [String], required: false }, // Array of notes
+    images: { type: [String], required: false }, // Array of image URLs
 });
 
 const productsSchema = new mongoose.Schema({
