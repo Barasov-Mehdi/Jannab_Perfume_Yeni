@@ -25,6 +25,7 @@ router.get('/add', (req, res) => {
     res.render('admin/add');
 });
 
+// bu zordu
 router.post('/add', upload.fields([{ name: 'img', maxCount: 1 },
 { name: 'upperNoteImages', multiple: true },
 { name: 'heartNoteImages', multiple: true },
@@ -45,41 +46,39 @@ router.post('/add', upload.fields([{ name: 'img', maxCount: 1 },
             } = req.body;
 
             // Handle arrays of notes
-            const upperNotesArray = Array.isArray(upperNotes) ? upperNotes : [upperNotes];
-            const heartNotesArray = Array.isArray(heartNotes) ? heartNotes : [heartNotes];
-            const baseNotesArray = Array.isArray(baseNotes) ? baseNotes : [baseNotes];
+            const upperNotesArray = Array.isArray(upperNotes) ? upperNotes : [upperNotes].filter(Boolean);
+            const heartNotesArray = Array.isArray(heartNotes) ? heartNotes : [heartNotes].filter(Boolean);
+            const baseNotesArray = Array.isArray(baseNotes) ? baseNotes : [baseNotes].filter(Boolean);
 
             // Upload main product image to Cloudinary
             const imgResult = await cloudinary.uploader.upload(req.files['img'][0].path);
 
-            // Upload images for each note type to Cloudinary
-            const upperNoteImageUrls = await Promise.all(
+            const upperNoteImageUrls = req.files['upperNoteImages'] ? await Promise.all(
                 req.files['upperNoteImages'].map(async (file) => {
                     const result = await cloudinary.uploader.upload(file.path);
                     return result.secure_url;
                 })
-            );
+            ) : [];
 
-            const heartNoteImageUrls = await Promise.all(
+            const heartNoteImageUrls = req.files['heartNoteImages'] ? await Promise.all(
                 req.files['heartNoteImages'].map(async (file) => {
                     const result = await cloudinary.uploader.upload(file.path);
                     return result.secure_url;
                 })
-            );
+            ) : [];
 
-            const baseNoteImageUrls = await Promise.all(
+            const baseNoteImageUrls = req.files['baseNoteImages'] ? await Promise.all(
                 req.files['baseNoteImages'].map(async (file) => {
                     const result = await cloudinary.uploader.upload(file.path);
                     return result.secure_url;
                 })
-            );
+            ) : [];
 
-            // Create a new product instance with the provided data
             const newProduct = new Products({
                 img: imgResult.secure_url,
                 name,
-                price: mongoose.Types.Decimal128.fromString(price), // Price in Decimal128 format
-                discount: mongoose.Types.Decimal128.fromString(discount || '0'), // Discount (if any)
+                price: mongoose.Types.Decimal128.fromString(price),
+                discount: mongoose.Types.Decimal128.fromString(discount || '0'),
                 content,
                 category,
                 upperNotes: { notes: upperNotesArray, images: upperNoteImageUrls },
@@ -89,10 +88,7 @@ router.post('/add', upload.fields([{ name: 'img', maxCount: 1 },
                 bestSellers: bestSellers ? true : false,
             });
 
-            // Save the product to the database
             await newProduct.save();
-
-            // Redirect to the add product page after success
             res.redirect('/admin/add');
         } catch (err) {
             console.error('Öğe eklenirken hata oluştu', err);
