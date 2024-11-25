@@ -26,9 +26,9 @@ router.get('/add', (req, res) => {
 });
 
 router.post('/add', upload.fields([{ name: 'img', maxCount: 1 },
-{ name: 'upperNoteImages', multiple: true },
-{ name: 'heartNoteImages', multiple: true },
-{ name: 'baseNoteImages', multiple: true }]),
+{ name: 'upperNoteImages', multiple: false },
+{ name: 'heartNoteImages', multiple: false },
+{ name: 'baseNoteImages', multiple: false }]),
     async (req, res) => {
         try {
             const {
