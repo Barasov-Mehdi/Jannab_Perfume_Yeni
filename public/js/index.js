@@ -88,6 +88,7 @@ function searchBtn() {
     var search_btn = document.querySelectorAll('.search_btn');
     var search = document.querySelector('.search');
     var close_search = document.querySelector('.close_search');
+    var search_inp = document.querySelector('.search_inp');
     var showSearch = false;
 
     search_btn.forEach((e) => {
@@ -95,7 +96,8 @@ function searchBtn() {
             showSearch = !showSearch;
 
             if (showSearch) {
-                search.style.display = 'flex';  // Arama kutusunu göster
+                search.style.display = 'flex';
+                search_inp.focus();
             } else {
                 search.style.display = 'none';  // Arama kutusunu gizle
             }
