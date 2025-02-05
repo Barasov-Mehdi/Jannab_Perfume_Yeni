@@ -73,10 +73,10 @@ router.get('/products', async (req, res) => {
 
     try {
         // Öncelikle tam eşleşen ürünleri bul
-        const exactMatches = await Products.find({ name: search });
+        const exactMatches = await Product.find({ name: search });
 
         // Tam eşleşme bulamazsak, isimlerinde arama yap
-        const partialMatches = await Products.find({ name: { $regex: search, $options: 'i' } });
+        const partialMatches = await Product.find({ name: { $regex: search, $options: 'i' } });
 
         // Tam eşleşenleri, eşleşen ürünlerden çıkararak yalnızca parçalı eşleşmeleri al
         const filteredPartialMatches = partialMatches.filter(product => !exactMatches.some(exact => exact._id.equals(product._id)));
@@ -138,6 +138,17 @@ router.get('/api/products', async (req, res) => {
     } catch (error) {
         console.error('Error fetching products:', error);
         res.status(500).json({ message: 'Server Error' });
+    }
+});
+
+// Tüm ürünleri döndüren route
+router.get('/all', async (req, res) => {
+    try {
+        const allProducts = await Products.find();
+        res.json(allProducts); // Ürünleri JSON formatında döndür
+    } catch (error) {
+        console.error('Error fetching all products:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
     }
 });
 
