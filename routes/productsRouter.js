@@ -73,10 +73,10 @@ router.get('/products', async (req, res) => {
 
     try {
         // Öncelikle tam eşleşen ürünleri bul
-        const exactMatches = await Product.find({ name: search });
+        const exactMatches = await Products.find({ name: search });
 
         // Tam eşleşme bulamazsak, isimlerinde arama yap
-        const partialMatches = await Product.find({ name: { $regex: search, $options: 'i' } });
+        const partialMatches = await Products.find({ name: { $regex: search, $options: 'i' } });
 
         // Tam eşleşenleri, eşleşen ürünlerden çıkararak yalnızca parçalı eşleşmeleri al
         const filteredPartialMatches = partialMatches.filter(product => !exactMatches.some(exact => exact._id.equals(product._id)));
