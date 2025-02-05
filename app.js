@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const Products = require('./models/products');
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
-
+const cors = require('cors');
 // Cloudinary yapılandırması
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -15,7 +15,8 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 3000
+app.use(cors());;
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static('public'));
