@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Məhsul Axtar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        button:hover {
+            background-color: #3498db;
+        }
+        h2 {
+            text-align: center;
+            color: #34495e;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #fff;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        li a {
+            text-decoration: none;
+            color: #2980b9;
+            font-weight: bold;
+        }
+        li a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Məhsul Axtar</h1>
+    <form action="/search" method="GET">
+        <input type="text" name="q" placeholder="Məhsul adı daxil edin" required>
+        <button type="submit">Axtar</button>
+    </form>
+
+    <% if (products && products.length > 0) { %>
+        <h2>Axtarış Nəticələri:</h2>
+        <ul>
+            <% products.forEach(product => { %>
+                <li>
+                    <a href="/admin/edit/<%= product._id %>"><%= product.name %></a>
+                </li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p style="text-align:center;">Heç bir nəticə tapılmadı.</p>
+    <% } %>
+</body>
+</html>

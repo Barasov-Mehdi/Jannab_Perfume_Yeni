@@ -94,7 +94,7 @@ router.post('/add', upload.fields([{ name: 'img', maxCount: 1 },
             console.error('Öğe eklenirken hata oluştu', err);
             res.status(500).send('İç Sunucu Hatası');
         }
-});
+    });
 
 router.get('/products', async (req, res) => {
     try {
@@ -237,4 +237,115 @@ router.post('/remove', async (req, res) => {
     }
 });
 
+// Ürün arama rotası
+router.get('/search', async (req, res) => {
+    const searchQuery = req.query.q || '';
+    try {
+        const products = await Products.find({
+            name: { $regex: searchQuery, $options: 'i' }
+        });
+        res.render('search', { products });
+    } catch (err) {
+        console.error('Ürün arama hatası:', err);
+        res.status(500).send('İç Sunucu Hatası');
+    }
+});
+
+// Ürün düzenleme sayfası
+router.get('/edit/:id', async (req, res) => {
+    const productId = req.params.id;
+    try {
+        const product = await Products.findById(productId);
+        if (!product) return res.status(404).send('Ürün bulunamadı');
+
+        res.render('editProduct', { product });
+    } catch (err) {
+        console.error('Ürün bilgileri alınırken hata:', err);
+        res.status(500).send('İç Sunucu Hatası');
+    }
+});
+
+// Ürün düzenleme sayfası (Değişiklik yok)
+router.put('/edit/:id', upload.fields([
+    { name: 'img', maxCount: 1 },
+    { name: 'upperNoteImages', maxCount: 5 },
+    { name: 'heartNoteImages', maxCount: 5 },
+    { name: 'baseNoteImages', maxCount: 5 }
+]), async (req, res) => {
+    const productId = req.params.id;
+
+    try {
+        const {
+            name,
+            price,
+            discount,
+            category,
+            bestSellers,
+            upperNotes = [],
+            heartNotes = [],
+            baseNotes = [],
+            compositionDescription,
+        } = req.body;
+
+
+        const product = await Products.findById(productId); // Önce mevcut ürünü al
+
+        if (!product) return res.status(404).send('Ürün bulunamadı');
+
+        const updatedProductData = {
+            name,
+            price: mongoose.Types.Decimal128.fromString(price),
+            discount: mongoose.Types.Decimal128.fromString(discount || '0'),
+            category,
+            bestSellers: bestSellers ? true : false,
+            compositionDescription,
+        };
+
+        // Notlar ve resimleri güncelleme fonksiyonu
+        const updateNotesAndImages = async (noteType, notesArray, imageFiles) => {
+            const updatedNotes = { notes: Array.isArray(notesArray) ? notesArray : [notesArray] };
+
+            if (product[noteType] && product[noteType].images) {
+                updatedNotes.images = [...product[noteType].images]; // Önce mevcut resimleri kopyala
+            } else {
+                updatedNotes.images = [];
+            }
+
+            if (imageFiles && imageFiles.length > 0) {
+                for (let i = 0; i < imageFiles.length; i++) {
+                    const file = imageFiles[i];
+                    const uploadResult = await cloudinary.uploader.upload(file.path);
+                    if (updatedNotes.images[i]) {
+                        updatedNotes.images[i] = uploadResult.secure_url; // Aynı indexteki resmi değiştir
+                    } else {
+                        updatedNotes.images.push(uploadResult.secure_url); // Yeni resim ekle
+                    }
+                }
+            }
+            return updatedNotes;
+        };
+
+        updatedProductData.upperNotes = await updateNotesAndImages('upperNotes', upperNotes, req.files['upperNoteImages']);
+        updatedProductData.heartNotes = await updateNotesAndImages('heartNotes', heartNotes, req.files['heartNoteImages']);
+        updatedProductData.baseNotes = await updateNotesAndImages('baseNotes', baseNotes, req.files['baseNoteImages']);
+
+
+        // Ana resim yükleme (Değişiklik yok)
+        if (req.files['img']) {
+            const imgResult = await cloudinary.uploader.upload(req.files['img'][0].path);
+            updatedProductData.img = imgResult.secure_url;
+        }
+
+        const updatedProduct = await Products.findByIdAndUpdate(productId, updatedProductData, { new: true });
+
+        if (!updatedProduct) return res.status(404).send('Ürün bulunamadı');
+
+        res.redirect('/admin/search');
+    } catch (err) {
+        console.error('Ürün güncellenirken hata:', err);
+        res.status(500).send('İç Sunucu Hatası');
+    }
+});
+
 module.exports = router;
+// <!-- zor yeni budu  -->

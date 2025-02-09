@@ -8,6 +8,10 @@ const Products = require('./models/products');
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const cors = require('cors');
+const methodOverride = require('method-override');
+
+
+
 // Cloudinary yapılandırması
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -24,6 +28,8 @@ app.use(express.static(path.join(__dirname, 'sasFile')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+// Method-override ayarı
+app.use(methodOverride('_method'));
 
 const homeRouter = require('./routes/home');
 const aboutRouter = require('./routes/about');

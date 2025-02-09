@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .image-preview {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .image-preview img {
+            max-width: 50px;
+            margin-right: 10px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ürün Düzenle</h1>
+    <form id="editProductForm" action="/admin/edit/<%= product._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+        <label for="name">İsim:</label>
+        <input type="text" id="name" name="name" value="<%= product.name %>" required>
+
+        <label for="price">Fiyat:</label>
+        <input type="number" id="price" name="price" value="<%= product.price %>" required>
+
+        <label for="img">Ana Resim:</label>
+        <input type="file" id="img" name="img">
+        <% if (product.img) { %>
+            <div class="image-preview">
+                <img src="<%= product.img %>" alt="Ürün Resmi">
+            </div>
+        <% } %>
+
+        <label for="discount">İndirim:</label>
+        <input type="number" id="discount" name="discount" value="<%= product.discount %>">
+
+        <label for="category">Kategori:</label>
+        <input type="text" id="category" name="category" value="<%= product.category %>" required>
+
+        <label>Üst Notlar:</label>
+        <% product.upperNotes.notes.forEach((note, index) => { %>
+            <input type="text" name="upperNotes[]" value="<%= note %>">
+            <% if (product.upperNotes.images[index]) { %>
+                <div class="image-preview">
+                    <img src="<%= product.upperNotes.images[index] %>">
+                </div>
+            <% } %>
+            <input type="file" name="upperNoteImages"> <!-- name="upperNoteImages[]" olması gerek -->
+        <% }) %>
+        
+        <label>Kalp Notlar:</label>
+        <% product.heartNotes.notes.forEach((note, index) => { %>
+            <input type="text" name="heartNotes[]" value="<%= note %>">
+            <% if (product.heartNotes.images[index]) { %>
+                <div class="image-preview">
+                    <img src="<%= product.heartNotes.images[index] %>">
+                </div>
+            <% } %>
+            <input type="file" name="heartNoteImages"> <!-- name="heartNoteImages[]" olması gerek -->
+        <% }) %>
+        
+        <label>Baz Notlar:</label>
+        <% product.baseNotes.notes.forEach((note, index) => { %>
+            <input type="text" name="baseNotes[]" value="<%= note %>">
+            <% if (product.baseNotes.images[index]) { %>
+                <div class="image-preview">
+                    <img src="<%= product.baseNotes.images[index] %>">
+                </div>
+            <% } %>
+            <input type="file" name="baseNoteImages"> <!-- name="baseNoteImages[]" olması gerek -->
+        <% }) %>
+        
+
+        <label for="compositionDescription">Kompozisyon Açıklaması:</label>
+        <textarea id="compositionDescription" name="compositionDescription"><%= product.compositionDescription %></textarea>
+
+        <label for="bestSellers">En İyi Satılan:</label>
+        <input type="checkbox" id="bestSellers" name="bestSellers" <%= product.bestSellers ? 'checked' : '' %>>
+
+        <button type="submit">Güncelle</button>
+    </form>
+</body>
+</html>
+
+<!-- zor yeni budu  -->
