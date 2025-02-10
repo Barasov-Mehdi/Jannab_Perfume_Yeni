@@ -26,75 +26,88 @@ router.get('/add', (req, res) => {
 });
 
 // bu zordu
-router.post('/add', upload.fields([{ name: 'img', maxCount: 1 },
-{ name: 'upperNoteImages', multiple: true },
-{ name: 'heartNoteImages', multiple: true },
-{ name: 'baseNoteImages', multiple: true }]),
-    async (req, res) => {
-        try {
-            const {
-                name,
-                price,
-                discount,
-                content,
-                category,
-                upperNotes, // This should be an array of notes
-                heartNotes, // This should be an array of notes
-                baseNotes, // This should be an array of notes
-                compositionDescription,
-                bestSellers
-            } = req.body;
+// Ürün ekleme ve Cloudinary'ye yükleme işleminde kalite ayarı
+router.post('/add', upload.fields([
+    { name: 'img', maxCount: 1 },
+    { name: 'upperNoteImages', multiple: true },
+    { name: 'heartNoteImages', multiple: true },
+    { name: 'baseNoteImages', multiple: true }
+]), async (req, res) => {
+    try {
+        const {
+            name,
+            price,
+            discount,
+            content,
+            category,
+            upperNotes,
+            heartNotes,
+            baseNotes,
+            compositionDescription,
+            bestSellers
+        } = req.body;
 
-            // Handle arrays of notes
-            const upperNotesArray = Array.isArray(upperNotes) ? upperNotes : [upperNotes].filter(Boolean);
-            const heartNotesArray = Array.isArray(heartNotes) ? heartNotes : [heartNotes].filter(Boolean);
-            const baseNotesArray = Array.isArray(baseNotes) ? baseNotes : [baseNotes].filter(Boolean);
+        // Handle arrays of notes
+        const upperNotesArray = Array.isArray(upperNotes) ? upperNotes : [upperNotes].filter(Boolean);
+        const heartNotesArray = Array.isArray(heartNotes) ? heartNotes : [heartNotes].filter(Boolean);
+        const baseNotesArray = Array.isArray(baseNotes) ? baseNotes : [baseNotes].filter(Boolean);
 
-            // Upload main product image to Cloudinary
-            const imgResult = await cloudinary.uploader.upload(req.files['img'][0].path);
+        // Upload main product image to Cloudinary with quality setting
+        const imgResult = await cloudinary.uploader.upload(req.files['img'][0].path, {
+            quality: 'auto:low' // Kaliteyi otomatik olarak düşük ayarlayın
+        });
 
-            const upperNoteImageUrls = req.files['upperNoteImages'] ? await Promise.all(
-                req.files['upperNoteImages'].map(async (file) => {
-                    const result = await cloudinary.uploader.upload(file.path);
-                    return result.secure_url;
-                })
-            ) : [];
+        // Upper note images
+        const upperNoteImageUrls = req.files['upperNoteImages'] ? await Promise.all(
+            req.files['upperNoteImages'].map(async (file) => {
+                const result = await cloudinary.uploader.upload(file.path, {
+                    quality: 'auto:low'
+                });
+                return result.secure_url;
+            })
+        ) : [];
 
-            const heartNoteImageUrls = req.files['heartNoteImages'] ? await Promise.all(
-                req.files['heartNoteImages'].map(async (file) => {
-                    const result = await cloudinary.uploader.upload(file.path);
-                    return result.secure_url;
-                })
-            ) : [];
+        // Heart note images
+        const heartNoteImageUrls = req.files['heartNoteImages'] ? await Promise.all(
+            req.files['heartNoteImages'].map(async (file) => {
+                const result = await cloudinary.uploader.upload(file.path, {
+                    quality: 'auto:low'
+                });
+                return result.secure_url;
+            })
+        ) : [];
 
-            const baseNoteImageUrls = req.files['baseNoteImages'] ? await Promise.all(
-                req.files['baseNoteImages'].map(async (file) => {
-                    const result = await cloudinary.uploader.upload(file.path);
-                    return result.secure_url;
-                })
-            ) : [];
+        // Base note images
+        const baseNoteImageUrls = req.files['baseNoteImages'] ? await Promise.all(
+            req.files['baseNoteImages'].map(async (file) => {
+                const result = await cloudinary.uploader.upload(file.path, {
+                    quality: 'auto:low'
+                });
+                return result.secure_url;
+            })
+        ) : [];
 
-            const newProduct = new Products({
-                img: imgResult.secure_url,
-                name,
-                price: mongoose.Types.Decimal128.fromString(price),
-                discount: mongoose.Types.Decimal128.fromString(discount || '0'),
-                content,
-                category,
-                upperNotes: { notes: upperNotesArray, images: upperNoteImageUrls },
-                heartNotes: { notes: heartNotesArray, images: heartNoteImageUrls },
-                baseNotes: { notes: baseNotesArray, images: baseNoteImageUrls },
-                compositionDescription,
-                bestSellers: bestSellers ? true : false,
-            });
+        const newProduct = new Products({
+            img: imgResult.secure_url,
+            name,
+            price: mongoose.Types.Decimal128.fromString(price),
+            discount: mongoose.Types.Decimal128.fromString(discount || '0'),
+            content,
+            category,
+            upperNotes: { notes: upperNotesArray, images: upperNoteImageUrls },
+            heartNotes: { notes: heartNotesArray, images: heartNoteImageUrls },
+            baseNotes: { notes: baseNotesArray, images: baseNoteImageUrls },
+            compositionDescription,
+            bestSellers: bestSellers ? true : false,
+        });
 
-            await newProduct.save();
-            res.redirect('/admin/add');
-        } catch (err) {
-            console.error('Öğe eklenirken hata oluştu', err);
-            res.status(500).send('İç Sunucu Hatası');
-        }
-    });
+        await newProduct.save();
+        res.redirect('/admin/add');
+    } catch (err) {
+        console.error('Öğe eklenirken hata oluştu', err);
+        res.status(500).send('İç Sunucu Hatası');
+    }
+});
 
 router.get('/products', async (req, res) => {
     try {
