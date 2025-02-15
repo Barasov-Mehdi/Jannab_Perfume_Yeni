@@ -9,8 +9,12 @@ const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const cors = require('cors');
 const methodOverride = require('method-override');
+const httpProxy = require('http-proxy');
 
-
+const apiProxy = httpProxy.createProxyServer({
+  target: 'https://jannabperfume-jannabperfume-963b35916771.herokuapp.com/api',
+  changeOrigin: true, // Gerekli olabilir
+});
 
 // Cloudinary yapılandırması
 cloudinary.config({
