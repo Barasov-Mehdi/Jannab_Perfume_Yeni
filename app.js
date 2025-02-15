@@ -10,25 +10,6 @@ const cloudinary = require('cloudinary').v2;
 const cors = require('cors');
 const methodOverride = require('method-override');
 
-const httpProxy = require('http-proxy');
-
-const apiProxy = httpProxy.createProxyServer({
-  target: 'https://jannabperfume-jannabperfume-963b35916771.herokuapp.com/api', // Hedef API URL'si (Zaten doğru)
-  changeOrigin: true, // Gerekli olabilir
-});
-
-app.use('/api', (req, res, next) => {
-  apiProxy.web(req, res, next);
-});
-
-// CORS ayarlarını ekleyin (Önemli!)
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*'); // Veya belirli bir alan adını belirtin
-  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  next();
-});
-
 // Cloudinary yapılandırması
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
