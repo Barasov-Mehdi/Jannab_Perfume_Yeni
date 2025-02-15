@@ -9,22 +9,13 @@ const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const cors = require('cors');
 const methodOverride = require('method-override');
-const { createProxyMiddleware } = require('http-proxy-middleware');
+
 // Cloudinary yapılandırması
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
-
-app.use('/api', createProxyMiddleware({
-  target: 'https://jannabperfume-jannabperfume-963b35916771.herokuapp.com',
-  changeOrigin: true,
-}));
-
-
-// Eğer ortam değişkeni tanımlanmamışsa bir varsayılan değer de verebilirsiniz (isteğe bağlı):
-const apiUrl = process.env.API_URL || 'https://jannabperfume-jannabperfume-963b35916771.herokuapp.com/api/products?limit=';
 
 var PORT = process.env.PORT || 3000
 app.use(cors());;
