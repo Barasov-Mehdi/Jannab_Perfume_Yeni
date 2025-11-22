@@ -1,6 +1,6 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const Products = require('../models/products');
+//const express = require('express');
+//const mongoose = require('mongoose');
+//const Products = require('../models/products');
 const router = express.Router();
 
 // Ürün detay sayfası
